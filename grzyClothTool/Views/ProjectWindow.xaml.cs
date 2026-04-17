@@ -99,19 +99,19 @@ namespace grzyClothTool.Views
 
             OpenFileDialog files = new()
             {
-                Title = $"Select drawable files ({btn.Label})",
-                Filter = "Drawable files (*.ydd)|*.ydd",
+                Title = LocalizationHelper.GetFormat("Str.ProjectWindow.Dialog.SelectDrawableFiles", btn.Label),
+                Filter = LocalizationHelper.Get("Str.FileDialog.Filter.DrawableFiles"),
                 Multiselect = true
             };
 
             if (files.ShowDialog() == true)
             {
                 ProgressHelper.Start();
-                LogHelper.Log($"Scanning files to add...", LogType.Info);
+                LogHelper.Log(LocalizationHelper.Get("Str.ProjectWindow.Log.ScanningFiles"), LogType.Info);
 
                 await MainWindow.AddonManager.AddDrawables(files.FileNames, sexBtn);
 
-                ProgressHelper.Stop("Added drawables in {0}", true);
+                ProgressHelper.Stop(LocalizationHelper.Get("Str.ProjectWindow.Progress.AddedDrawablesIn"), true);
                 SaveHelper.SetUnsavedChanges(true);
             }
         }
@@ -124,7 +124,7 @@ namespace grzyClothTool.Views
 
             OpenFolderDialog folder = new()
             {
-                Title = $"Select a folder containing drawable files ({btn.Tag})",
+                Title = LocalizationHelper.GetFormat("Str.ProjectWindow.Dialog.SelectDrawableFolder", btn.Tag),
                 Multiselect = true
             };
 
@@ -134,7 +134,7 @@ namespace grzyClothTool.Views
 
                 try
                 {
-                    LogHelper.Log($"Scanning files to add...", LogType.Info);
+                    LogHelper.Log(LocalizationHelper.Get("Str.ProjectWindow.Log.ScanningFiles"), LogType.Info);
 
                     var allFiles = await Task.Run(() =>
                     {
@@ -157,21 +157,21 @@ namespace grzyClothTool.Views
 
                     if (allFiles.Length == 0)
                     {
-                        ProgressHelper.Stop("No drawable files found", false);
+                        ProgressHelper.Stop(LocalizationHelper.Get("Str.ProjectWindow.Progress.NoDrawableFilesFound"), false);
                         return;
                     }
 
-                    LogHelper.Log($"Adding {allFiles.Length} drawable files from {folder.FolderNames.Length} folder(s)...", LogType.Info);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.ProjectWindow.Log.AddingDrawableFiles", allFiles.Length, folder.FolderNames.Length), LogType.Info);
 
                     await MainWindow.AddonManager.AddDrawables(allFiles, sexBtn);
 
-                    ProgressHelper.Stop($"Added {allFiles.Length} drawables in {{0}}", true);
+                    ProgressHelper.Stop(LocalizationHelper.GetFormat("Str.ProjectWindow.Progress.AddedNDrawablesIn", allFiles.Length, "{0}"), true);
                     SaveHelper.SetUnsavedChanges(true);
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Error adding drawables: {ex.Message}", LogType.Error);
-                    ProgressHelper.Stop("Failed to add drawables", false);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.ProjectWindow.Log.AddDrawablesError", ex.Message), LogType.Error);
+                    ProgressHelper.Stop(LocalizationHelper.Get("Str.ProjectWindow.Progress.FailedToAddDrawables"), false);
                 }
             }
         }
@@ -206,17 +206,17 @@ namespace grzyClothTool.Views
 
             if (count == 0)
             {
-                CustomMessageBox.Show("No drawable(s) selected", "Delete drawable", CustomMessageBox.CustomMessageBoxButtons.OKOnly);
+                CustomMessageBox.Show(LocalizationHelper.Get("Str.ProjectWindow.Delete.NoDrawablesSelected"), LocalizationHelper.Get("Str.ProjectWindow.Delete.Title"), CustomMessageBox.CustomMessageBoxButtons.OKOnly);
                 return;
             }
 
             var message = count == 1
-                ? $"Are you sure you want to delete this drawable? ({Addon.SelectedDrawable.Name})"
-                : $"Are you sure you want to delete these {count} selected drawables?";
+                ? LocalizationHelper.GetFormat("Str.ProjectWindow.Delete.ConfirmSingle", Addon.SelectedDrawable.Name)
+                : LocalizationHelper.GetFormat("Str.ProjectWindow.Delete.ConfirmMultiple", count);
 
-            message += "\nThis will CHANGE NUMBERS of everything after this drawable!\n\nDo you want to replace with reserved slot instead?";
+            message += LocalizationHelper.Get("Str.ProjectWindow.Delete.ReplaceSuffix");
 
-            var result = CustomMessageBox.Show(message, "Delete drawable", CustomMessageBox.CustomMessageBoxButtons.DeleteReplaceCancel);
+            var result = CustomMessageBox.Show(message, LocalizationHelper.Get("Str.ProjectWindow.Delete.Title"), CustomMessageBox.CustomMessageBoxButtons.DeleteReplaceCancel);
             if (result == CustomMessageBox.CustomMessageBoxResult.Delete)
             {
                 MainWindow.AddonManager.DeleteDrawables([.. Addon.SelectedDrawables]);
@@ -264,9 +264,9 @@ namespace grzyClothTool.Views
         {
             if (string.IsNullOrEmpty(MainWindow.AddonManager.ProjectName))
             {
-                CustomMessageBox.Show("No project is currently loaded. Please create or open a project first.", 
-                    "No Project", 
-                    CustomMessageBox.CustomMessageBoxButtons.OKOnly, 
+                CustomMessageBox.Show(LocalizationHelper.Get("Str.ProjectWindow.Build.NoProjectLoaded"),
+                    LocalizationHelper.Get("Str.ProjectWindow.Build.NoProjectTitle"),
+                    CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                     CustomMessageBox.CustomMessageBoxIcon.Warning);
                 return;
             }
@@ -400,10 +400,10 @@ namespace grzyClothTool.Views
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error in DragEnter: {ex.Message}", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.ProjectWindow.Log.DragEnterError", ex.Message), LogType.Error);
                 e.Effects = WpfDragDropEffects.None;
             }
-            
+
             e.Handled = true;
         }
 
@@ -429,7 +429,7 @@ namespace grzyClothTool.Views
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error in DragOver: {ex.Message}", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.ProjectWindow.Log.DragOverError", ex.Message), LogType.Error);
                 e.Effects = WpfDragDropEffects.None;
             }
             
@@ -462,7 +462,7 @@ namespace grzyClothTool.Views
                     }
                     else
                     {
-                        LogHelper.Log($"Could not extract files", LogType.Error);
+                        LogHelper.Log(LocalizationHelper.Get("Str.ProjectWindow.Log.CouldNotExtractFiles"), LogType.Error);
                         e.Handled = true;
                         return;
                     }
@@ -484,12 +484,12 @@ namespace grzyClothTool.Views
 
                 if (inaccessibleFiles.Count > 0)
                 {
-                    var message = $"The following file(s) could not be accessed:\n\n" +
-                                  string.Join("\n", inaccessibleFiles.Select(Path.GetFileName)) +
-                                  "\n\nThey may be virtual paths. Please extract them to a folder first and drag from there.";
-                    
-                    CustomMessageBox.Show(message, "Files Not Accessible", 
-                        CustomMessageBox.CustomMessageBoxButtons.OKOnly, 
+                    var message = LocalizationHelper.GetFormat(
+                        "Str.ProjectWindow.Drop.FilesNotAccessible",
+                        string.Join("\n", inaccessibleFiles.Select(Path.GetFileName)));
+
+                    CustomMessageBox.Show(message, LocalizationHelper.Get("Str.ProjectWindow.Drop.FilesNotAccessibleTitle"),
+                        CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                         CustomMessageBox.CustomMessageBoxIcon.Warning);
                 }
 
@@ -536,8 +536,8 @@ namespace grzyClothTool.Views
                 if (undeterminedFiles.Count > 0)
                 {
                     var result = CustomMessageBox.Show(
-                        $"{undeterminedFiles.Count} drawable(s) could not have gender automatically determined. Please select the gender for these files:",
-                        "Select Gender",
+                        LocalizationHelper.GetFormat("Str.ProjectWindow.Drop.UndeterminedGender", undeterminedFiles.Count),
+                        LocalizationHelper.Get("Str.ProjectWindow.Drop.SelectGenderTitle"),
                         CustomMessageBox.CustomMessageBoxButtons.MaleFemaleCancel);
 
                     if (result == CustomMessageBox.CustomMessageBoxResult.Male)
@@ -550,16 +550,16 @@ namespace grzyClothTool.Views
                     }
                 }
 
-                ProgressHelper.Stop("Added drawables in {0}", true);
+                ProgressHelper.Stop(LocalizationHelper.Get("Str.ProjectWindow.Progress.AddedDrawablesIn"), true);
                 SaveHelper.SetUnsavedChanges(true);
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error in Drop event: {ex.Message}", LogType.Error);
-                
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.ProjectWindow.Log.DropEventError", ex.Message), LogType.Error);
+
                 CustomMessageBox.Show(
-                    $"An error occurred while processing dropped files:\n\n{ex.Message}",
-                    "Drag & Drop Error",
+                    LocalizationHelper.GetFormat("Str.ProjectWindow.Drop.ProcessingError", ex.Message),
+                    LocalizationHelper.Get("Str.ProjectWindow.Drop.ErrorTitle"),
                     CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                     CustomMessageBox.CustomMessageBoxIcon.Error);
             }

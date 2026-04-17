@@ -219,7 +219,7 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error displaying texture preview: {ex.Message}", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.TexturePreviewErrorFormat", ex.Message), LogType.Error);
             }
 
         }
@@ -262,7 +262,7 @@ namespace grzyClothTool.Controls
 
                 imageControl.Source = bitmapSource;
 
-                var statusText = embeddedTexture.HasReplacement ? " - REPLACEMENT" : " - Embedded";
+                var statusText = embeddedTexture.HasReplacement ? LocalizationHelper.Get("Str.SelectedDrawable.EmbeddedStatus.Replacement") : LocalizationHelper.Get("Str.SelectedDrawable.EmbeddedStatus.Embedded");
                 TextBlock textBlock = new()
                 {
                     Text = $"({embeddedTexture.Details.Type}) {embeddedTexture.Details.Name} ({w}x{h}){statusText}",
@@ -306,7 +306,7 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error displaying embedded texture preview: {ex.Message}", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.EmbeddedPreviewErrorFormat", ex.Message), LogType.Error);
             }
         }
 
@@ -380,7 +380,7 @@ namespace grzyClothTool.Controls
             {
                 if (SelectedDraw == null)
                 {
-                    LogHelper.Log($"Cannot process {propertyName}: No drawable selected", LogType.Warning);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.CannotProcessNoSelectionFormat", propertyName), LogType.Warning);
                     return;
                 }
 
@@ -390,7 +390,7 @@ namespace grzyClothTool.Controls
                 if (isExternal)
                 {
                     finalPath = sourceFilePath;
-                    LogHelper.Log($"Using original path for {propertyName}: {finalPath}", LogType.Info);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.UsingOriginalPathFormat", propertyName, finalPath), LogType.Info);
                 }
                 else
                 {
@@ -403,7 +403,7 @@ namespace grzyClothTool.Controls
 
                     var fileNameWithoutExtension = $"{SelectedDraw.Id}{suffix}";
                     finalPath = await FileHelper.CopyToProjectAssetsWithReplaceAsync(sourceFilePath, fileNameWithoutExtension);
-                    LogHelper.Log($"Copied {propertyName} file to project assets: {finalPath}", LogType.Info);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.CopiedToAssetsFormat", propertyName, finalPath), LogType.Info);
                 }
 
                 if (propertyName == "FirstPersonPath")
@@ -419,7 +419,7 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Failed to process {propertyName} file: {ex.Message}. Using original path.", LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.ProcessFileFailedFormat", propertyName, ex.Message), LogType.Warning);
                 
                 if (propertyName == "FirstPersonPath")
                 {
@@ -572,7 +572,7 @@ namespace grzyClothTool.Controls
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Log($"Failed to delete file {texture.FullFilePath}: {ex.Message}", LogType.Warning);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.DeleteFileFailedFormat", texture.FullFilePath, ex.Message), LogType.Warning);
                     }
                 }
             }
@@ -601,14 +601,14 @@ namespace grzyClothTool.Controls
             int remainingTextures = GlobalConstants.MAX_DRAWABLE_TEXTURES - SelectedDraw.Textures.Count;
             if (remainingTextures <= 0)
             {
-                Show($"You can't have more than {GlobalConstants.MAX_DRAWABLE_TEXTURES} textures per drawable!", "Error", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
+                Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.MaxTexturesFormat", GlobalConstants.MAX_DRAWABLE_TEXTURES), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
                 return;
             }
 
             OpenFileDialog files = new()
             {
-                Title = $"Select textures",
-                Filter = "Texture files (*.ytd)|*.ytd|Image files (*.jpg;*.png;*.dds)|*.jpg;*.png;*.dds",
+                Title = LocalizationHelper.Get("Str.SelectedDrawable.Dialog.SelectTexturesTitle"),
+                Filter = LocalizationHelper.Get("Str.SelectedDrawable.Filter.Textures"),
                 Multiselect = true
             };
 
@@ -623,8 +623,8 @@ namespace grzyClothTool.Controls
                     if (remainingTextures <= 0)
                     {
                         // break the loop and show which texture was the last one
-                        Show($"Reached the limit of {GlobalConstants.MAX_DRAWABLE_TEXTURES} textures. Last added texture: {Path.GetFileName(file)}.", "Info", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Warning);
-                        LogHelper.Log($"Reached the limit of {GlobalConstants.MAX_DRAWABLE_TEXTURES} textures. Last added texture: {Path.GetFileName(file)}.", LogType.Warning);
+                        Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.TextureLimitReachedFormat", GlobalConstants.MAX_DRAWABLE_TEXTURES, Path.GetFileName(file)), LocalizationHelper.Get("Str.Common.Info"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Warning);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.TextureLimitReachedFormat", GlobalConstants.MAX_DRAWABLE_TEXTURES, Path.GetFileName(file)), LogType.Warning);
                         break;
                     }
 
@@ -643,7 +643,7 @@ namespace grzyClothTool.Controls
                         }
                         catch (Exception ex)
                         {
-                            LogHelper.Log($"Failed to copy texture to project assets: {ex.Message}. Using original path.", LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.CopyTextureFailedFormat", ex.Message), LogType.Warning);
                             texturePath = file;
                         }
                     }
@@ -669,7 +669,7 @@ namespace grzyClothTool.Controls
 
             if (!allOptimized && !noneOptimized)
             {
-                Show("Some textures are already optimized while others are not. Please select textures with the same state.", "Warning", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Warning);
+                Show(LocalizationHelper.Get("Str.SelectedDrawable.Dialog.MixedOptimizationMessage"), LocalizationHelper.Get("Str.Common.Warning"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Warning);
                 return;
             }
 
@@ -713,10 +713,10 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error: {ex.Message}", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.Common.ErrorFormat", ex.Message), LogType.Error);
                 e.Effects = DragDropEffects.None;
             }
-            
+
             e.Handled = true;
         }
 
@@ -758,10 +758,10 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error: {ex.Message}", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.Common.ErrorFormat", ex.Message), LogType.Error);
                 e.Effects = DragDropEffects.None;
             }
-            
+
             e.Handled = true;
         }
 
@@ -817,7 +817,7 @@ namespace grzyClothTool.Controls
 
                                 SelectedDraw.Textures.ReassignNumbers();
 
-                                LogHelper.Log($"Texture '{droppedTexture.DisplayName}' moved from position {oldIndex} to {newIndex}");
+                                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.TextureMovedFormat", droppedTexture.DisplayName, oldIndex, newIndex));
                                 SaveHelper.SetUnsavedChanges(true);
 
                                 var textureListBox = FindTextureListBox(this);
@@ -851,7 +851,7 @@ namespace grzyClothTool.Controls
                     }
                     else
                     {
-                        LogHelper.Log($"Could not add textures", LogType.Error);
+                        LogHelper.Log(LocalizationHelper.Get("Str.SelectedDrawable.Log.CouldNotAddTextures"), LogType.Error);
                         e.Handled = true;
                         return;
                     }
@@ -873,12 +873,10 @@ namespace grzyClothTool.Controls
 
                 if (inaccessibleFiles.Count > 0)
                 {
-                    var message = $"The following texture file(s) could not be accessed:\n\n" +
-                                  string.Join("\n", inaccessibleFiles.Select(Path.GetFileName)) +
-                                  "\n\nThey may be virtual paths. Please extract them to a folder first and drag from there.";
-                    
-                    Show(message, "Files Not Accessible", 
-                        CustomMessageBoxButtons.OKOnly, 
+                    var message = LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.FilesNotAccessibleFormat", string.Join("\n", inaccessibleFiles.Select(Path.GetFileName)));
+
+                    Show(message, LocalizationHelper.Get("Str.SelectedDrawable.Dialog.FilesNotAccessibleTitle"),
+                        CustomMessageBoxButtons.OKOnly,
                         CustomMessageBoxIcon.Warning);
                 }
 
@@ -891,7 +889,7 @@ namespace grzyClothTool.Controls
                 int remainingTextures = GlobalConstants.MAX_DRAWABLE_TEXTURES - SelectedDraw.Textures.Count;
                 if (remainingTextures <= 0)
                 {
-                    Show($"You can't have more than {GlobalConstants.MAX_DRAWABLE_TEXTURES} textures per drawable!", "Error", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
+                    Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.MaxTexturesFormat", GlobalConstants.MAX_DRAWABLE_TEXTURES), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
                     return;
                 }
 
@@ -903,7 +901,7 @@ namespace grzyClothTool.Controls
                 {
                     if (remainingTextures <= 0)
                     {
-                        Show($"Reached the limit of {GlobalConstants.MAX_DRAWABLE_TEXTURES} textures. Last added texture: {Path.GetFileName(file)}.", "Info", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Warning);
+                        Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.TextureLimitReachedFormat", GlobalConstants.MAX_DRAWABLE_TEXTURES, Path.GetFileName(file)), LocalizationHelper.Get("Str.Common.Info"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Warning);
                         break;
                     }
 
@@ -922,7 +920,7 @@ namespace grzyClothTool.Controls
                         }
                         catch (Exception ex)
                         {
-                            LogHelper.Log($"Failed to copy texture to project assets: {ex.Message}. Using original path.", LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.CopyTextureFailedFormat", ex.Message), LogType.Warning);
                             texturePath = file;
                         }
                     }
@@ -942,11 +940,11 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error: {ex.Message}", LogType.Error);
-                
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.Common.ErrorFormat", ex.Message), LogType.Error);
+
                 Show(
-                    $"An error occurred while processing dropped texture files:\n\n{ex.Message}",
-                    "Drag & Drop Error",
+                    LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.DragDropProcessErrorFormat", ex.Message),
+                    LocalizationHelper.Get("Str.SelectedDrawable.Dialog.DragDropErrorTitle"),
                     CustomMessageBoxButtons.OKOnly,
                     CustomMessageBoxIcon.Error);
             }
@@ -967,8 +965,8 @@ namespace grzyClothTool.Controls
             var wrongTextureName = OptimizeWindow.CheckTexturesHaveSameSize(SelectedTextures);
             if (wrongTextureName != null)
             {
-                Show($"Texture {wrongTextureName} does not have the same size as the others!", "Error", CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.Error);
-                LogHelper.Log($"Texture {wrongTextureName} does not have the same size as the others!", LogType.Error);
+                Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.TextureSizeMismatchFormat", wrongTextureName), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.TextureSizeMismatchFormat", wrongTextureName), LogType.Error);
                 return;
             }
 
@@ -995,7 +993,7 @@ namespace grzyClothTool.Controls
                     IsOptimizeNeededTooltip = texture.TxtDetails.IsOptimizeNeededTooltip
                 };
 
-                LogHelper.Log($"Texture optimization for {texture.DisplayName} has been undone", LogType.Info);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.TextureOptimizationUndoneFormat", texture.DisplayName), LogType.Info);
             }
         }
 
@@ -1048,8 +1046,8 @@ namespace grzyClothTool.Controls
         {
             OpenFileDialog file = new()
             {
-                Title = $"Select drawable file to replace reserved",
-                Filter = "Drawable file (*.ydd)|*.ydd"
+                Title = LocalizationHelper.Get("Str.SelectedDrawable.Dialog.ReplaceReservedTitle"),
+                Filter = LocalizationHelper.Get("Str.SelectedDrawable.Filter.DrawableFile")
             };
 
             if (file.ShowDialog() == true)
@@ -1083,7 +1081,7 @@ namespace grzyClothTool.Controls
 
             OpenFolderDialog folder = new()
             {
-                Title = $"Select the folder to export textures as {format.ToUpper()}",
+                Title = LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.ExportTexturesFormat", format.ToUpper()),
                 Multiselect = false // Single folder selection
             };
 
@@ -1100,7 +1098,7 @@ namespace grzyClothTool.Controls
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred during export: {ex.Message}", "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.ExportErrorFormat", ex.Message), LocalizationHelper.Get("Str.SelectedDrawable.Dialog.ExportErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1117,8 +1115,8 @@ namespace grzyClothTool.Controls
 
             OpenFileDialog file = new()
             {
-                Title = $"Select texture file to replace {selectedTexture.DisplayName}",
-                Filter = "Texture files (*.ytd)|*.ytd|Image files (*.jpg;*.png;*.dds)|*.jpg;*.png;*.dds" // we could store all available formats somewhere
+                Title = LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.ReplaceTextureTitleFormat", selectedTexture.DisplayName),
+                Filter = LocalizationHelper.Get("Str.SelectedDrawable.Filter.Textures") // we could store all available formats somewhere
             };
 
             if (file.ShowDialog() == false)
@@ -1146,12 +1144,12 @@ namespace grzyClothTool.Controls
 
                 SaveHelper.SetUnsavedChanges(true);
                 CWHelper.SendDrawableUpdateToPreview(e);
-                LogHelper.Log($"Replaced texture '{selectedTexture.DisplayName}' with new file", Views.LogType.Info);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.ReplacedTextureFormat", selectedTexture.DisplayName), Views.LogType.Info);
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Failed to replace texture: {ex.Message}", Views.LogType.Error);
-                Show($"Failed to replace texture: {ex.Message}", "Error", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.ReplaceTextureFailedFormat", ex.Message), Views.LogType.Error);
+                Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.ReplaceTextureFailedFormat", ex.Message), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
             }
         }
 
@@ -1226,7 +1224,7 @@ namespace grzyClothTool.Controls
                 };
             }
 
-            LogHelper.Log($"Embedded texture optimization for {embeddedTexture.Details.Name} has been undone", LogType.Info);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.EmbeddedOptimizationUndoneFormat", embeddedTexture.Details.Name), LogType.Info);
         }
 
         private void RenameEmbeddedTexture_Click(object sender, RoutedEventArgs e)
@@ -1238,7 +1236,7 @@ namespace grzyClothTool.Controls
                 if (embeddedTexture?.TextureData == null)
                     return;
 
-                var (result, textBoxValue) = Show("Rename Embedded Texture", "Enter new name:", CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.None, true);
+                var (result, textBoxValue) = Show(LocalizationHelper.Get("Str.SelectedDrawable.Dialog.RenameEmbeddedTitle"), LocalizationHelper.Get("Str.SelectedDrawable.Dialog.EnterNewName"), CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.None, true);
                 if (result == CustomMessageBoxResult.OK)
                 {
                     embeddedTexture.RenameTexture(textBoxValue);
@@ -1252,7 +1250,7 @@ namespace grzyClothTool.Controls
                 return;
 
             var texture = embeddedTextureEntry.Value.Value;
-            var (res, txtValue) = Show("Rename Embedded Texture", "Enter new name:", CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.None, true);
+            var (res, txtValue) = Show(LocalizationHelper.Get("Str.SelectedDrawable.Dialog.RenameEmbeddedTitle"), LocalizationHelper.Get("Str.SelectedDrawable.Dialog.EnterNewName"), CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.None, true);
             if (res == CustomMessageBoxResult.OK)
             {
                 texture.RenameTexture(txtValue);
@@ -1293,8 +1291,8 @@ namespace grzyClothTool.Controls
             
             OpenFileDialog file = new()
             {
-                Title = $"Select texture file to replace embedded {textureType}",
-                Filter = "Image files (*.jpg;*.png;*.dds)|*.jpg;*.png;*.dds"
+                Title = LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.ReplaceEmbeddedTitleFormat", textureType),
+                Filter = LocalizationHelper.Get("Str.SelectedDrawable.Filter.ImageFiles")
             };
 
             if (file.ShowDialog() == true)
@@ -1306,12 +1304,12 @@ namespace grzyClothTool.Controls
                     embeddedTexture.SetReplacementTexture(newTextureData);
 
                     SaveHelper.SetUnsavedChanges(true);
-                    LogHelper.Log($"Embedded {textureType} texture replaced (optimization cleared)", LogType.Info);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.EmbeddedReplacedFormat", textureType), LogType.Info);
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Failed to replace embedded texture: {ex.Message}", LogType.Error);
-                    CustomMessageBox.Show($"Failed to replace embedded texture: {ex.Message}", "Error", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.SelectedDrawable.Log.ReplaceEmbeddedFailedFormat", ex.Message), LogType.Error);
+                    CustomMessageBox.Show(LocalizationHelper.GetFormat("Str.SelectedDrawable.Dialog.ReplaceEmbeddedFailedFormat", ex.Message), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
                 }
             }
         }

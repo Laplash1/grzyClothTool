@@ -164,7 +164,7 @@ mc:Ignorable="d">
                                                                Height="16"
                                                                Foreground="{DynamicResource Brush700}"
                                                                Margin="0,0,6,0" />
-                                            <TextBlock Text="Drawables"
+                                            <TextBlock Text="{DynamicResource Str.ProjectWindow.Drawables.Header}"
                                                       FontSize="12"
                                                       FontWeight="SemiBold"
                                                       Foreground="{DynamicResource Brush900}"
@@ -200,7 +200,7 @@ mc:Ignorable="d">
                                                         Padding="0,2"
                                                         VerticalAlignment="Center" />
                                                 <TextBlock Grid.Column="1"
-                                                          Text="Search..."
+                                                          Text="{DynamicResource Str.ProjectWindow.Search.Placeholder}"
                                                           Foreground="{DynamicResource Brush400}"
                                                           FontSize="11"
                                                           VerticalAlignment="Center"
@@ -268,37 +268,37 @@ mc:Ignorable="d">
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <c:CustomButton Grid.Column="0" 
-                                   Label="FEMALE" 
-                                   MyBtnClickEvent="Add_DrawableFile" 
-                                   Padding="2,8" 
-                                   CornerRadius="5" 
+                    <c:CustomButton Grid.Column="0"
+                                   Label="{DynamicResource Str.ProjectWindow.Buttons.Female}"
+                                   MyBtnClickEvent="Add_DrawableFile"
+                                   Padding="2,8"
+                                   CornerRadius="5"
                                    Margin="0,0,4,0"
                                    DropdownEnabled="True">
                         <c:CustomButton.DropdownContent>
                             <StackPanel>
-                                <c:CustomButton Tag="FEMALE" Label="Select Folder" CornerRadius="5" Margin="0,0,0,0" MyBtnClickEvent="Add_DrawableFolder" />
+                                <c:CustomButton Tag="FEMALE" Label="{DynamicResource Str.ProjectWindow.Buttons.SelectFolder}" CornerRadius="5" Margin="0,0,0,0" MyBtnClickEvent="Add_DrawableFolder" />
                             </StackPanel>
                         </c:CustomButton.DropdownContent>
                     </c:CustomButton>
-                    
-                    <c:CustomButton Grid.Column="1" 
-                                   Label="MALE" 
-                                   MyBtnClickEvent="Add_DrawableFile" 
-                                   Padding="2,8" 
-                                   CornerRadius="5" 
+
+                    <c:CustomButton Grid.Column="1"
+                                   Label="{DynamicResource Str.ProjectWindow.Buttons.Male}"
+                                   MyBtnClickEvent="Add_DrawableFile"
+                                   Padding="2,8"
+                                   CornerRadius="5"
                                    Margin="0,0,4,0"
                                    DropdownEnabled="True">
                         <c:CustomButton.DropdownContent>
                             <StackPanel>
-                                <c:CustomButton Tag="MALE" Label="Select Folder" CornerRadius="5" Margin="0,0,0,0" MyBtnClickEvent="Add_DrawableFolder" />
+                                <c:CustomButton Tag="MALE" Label="{DynamicResource Str.ProjectWindow.Buttons.SelectFolder}" CornerRadius="5" Margin="0,0,0,0" MyBtnClickEvent="Add_DrawableFolder" />
                             </StackPanel>
                         </c:CustomButton.DropdownContent>
                     </c:CustomButton>
-                    
-                    <c:CustomButton Grid.Column="2" 
-                                   Image="TrashCanOutline" 
-                                   Tooltip="Delete selected drawable" 
+
+                    <c:CustomButton Grid.Column="2"
+                                   Image="TrashCanOutline"
+                                   Tooltip="{DynamicResource Str.ProjectWindow.Buttons.DeleteDrawable.Tooltip}"
                                    ToolTipService.InitialShowDelay="0" 
                                    MyBtnClickEvent="Delete_SelectedDrawable" 
                                    Padding="2,8" 
@@ -323,16 +323,16 @@ mc:Ignorable="d">
                Padding="2,2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <c:CustomButton x:Name="PreviewButton"
-                               Label="3D PREVIEW" 
-                               Width="150" 
-                               MyBtnClickEvent="Preview_Btn" 
-                               Padding="2,8" 
+                               Label="{DynamicResource Str.ProjectWindow.Buttons.Preview3D}"
+                               Width="150"
+                               MyBtnClickEvent="Preview_Btn"
+                               Padding="2,8"
                                Margin="0,0,8,0"
                                CornerRadius="5" />
-                <c:CustomButton Label="BUILD" 
-                               Width="150" 
-                               MyBtnClickEvent="BuildResource_Btn" 
-                               Padding="2,8"  
+                <c:CustomButton Label="{DynamicResource Str.ProjectWindow.Buttons.Build}"
+                               Width="150"
+                               MyBtnClickEvent="BuildResource_Btn"
+                               Padding="2,8"
                                CornerRadius="5" />
             </StackPanel>
         </Border>

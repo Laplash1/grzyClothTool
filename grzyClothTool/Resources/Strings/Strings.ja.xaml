@@ -1,0 +1,638 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=netstandard">
+
+    <!-- Common -->
+    <system:String x:Key="Str.Common.Back">戻る</system:String>
+    <system:String x:Key="Str.Common.Ok">OK</system:String>
+    <system:String x:Key="Str.Common.Cancel">キャンセル</system:String>
+    <system:String x:Key="Str.Common.Yes">はい</system:String>
+    <system:String x:Key="Str.Common.No">いいえ</system:String>
+    <system:String x:Key="Str.Common.Close">閉じる</system:String>
+    <system:String x:Key="Str.Common.Save">保存</system:String>
+    <system:String x:Key="Str.Common.Delete">削除</system:String>
+    <system:String x:Key="Str.Common.Error">エラー</system:String>
+    <system:String x:Key="Str.Common.Warning">警告</system:String>
+    <system:String x:Key="Str.Common.Information">情報</system:String>
+    <system:String x:Key="Str.Common.Confirm">確認</system:String>
+    <system:String x:Key="Str.Common.Loading">読み込み中...</system:String>
+
+    <!-- AccountsWindow -->
+    <system:String x:Key="Str.AccountsWindow.Title">Patreon</system:String>
+    <system:String x:Key="Str.AccountsWindow.PatreonInfo">Patreon情報</system:String>
+    <system:String x:Key="Str.AccountsWindow.Status.Format">ステータス: {0}</system:String>
+    <system:String x:Key="Str.AccountsWindow.LastPayment.Format">前回の支払い: {0}</system:String>
+    <system:String x:Key="Str.AccountsWindow.NextPayment.Format">次回の支払い: {0}</system:String>
+    <system:String x:Key="Str.AccountsWindow.Button.Login">ログイン</system:String>
+    <system:String x:Key="Str.AccountsWindow.Button.Logout">ログアウト</system:String>
+    <system:String x:Key="Str.AccountsWindow.Button.Close">閉じる</system:String>
+
+    <!-- AccountsWindow_cs -->
+    <system:String x:Key="Str.Accounts.Status.Active">有効</system:String>
+    <system:String x:Key="Str.Accounts.Status.NotActive">無効</system:String>
+    <system:String x:Key="Str.Accounts.Error.LoginFailed">ログインに失敗しました</system:String>
+
+    <!-- AddonManager_cs -->
+    <system:String x:Key="Str.AddonManager.Log.LoadPedAltVariationsFailedFormat">pedalternativevariations.meta の読み込みに失敗しました: {0}</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.NoYddFilesFormat">選択した .meta ファイル ({0}) に対応する .ydd ファイルが見つかりません</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.NoYmtFileFormat">選択した .meta ファイル ({0}) に対応する .ymt ファイルが見つかりません</system:String>
+    <system:String x:Key="Str.AddonManager.Log.NoAssociatedYddFirstPersonFormat">一人称ファイルに対応する YDD ファイルが見つかりません: {0}。手動で設定してください</system:String>
+    <system:String x:Key="Str.AddonManager.Log.NoAssociatedYddYldFormat">この YLD に対応する YDD ファイルが見つかりません: {0}。手動で設定してください</system:String>
+    <system:String x:Key="Str.AddonManager.Log.CopyFirstPersonFailedFormat">一人称ファイルをプロジェクトアセットにコピーできませんでした: {0}。元のパスを使用します。</system:String>
+    <system:String x:Key="Str.AddonManager.Log.CopyClothPhysicsFailedFormat">クロスフィジックスファイルをプロジェクトアセットにコピーできませんでした: {0}。元のパスを使用します。</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DrawableSkippedDuplicateFormat">ドローアブル '{0}' は追加されませんでした (ユーザーが重複をスキップ)</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DrawableCancelledBatchFormat">ドローアブル '{0}' は追加されませんでした (ユーザーが重複バッチをキャンセル)</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DrawableCancelledDuplicateFormat">ドローアブル '{0}' は追加されませんでした (ユーザーが重複をキャンセル)</system:String>
+    <system:String x:Key="Str.AddonManager.Log.ExtractGroupErrorFormat">パスからのグループ抽出中にエラーが発生しました: {0}</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DeleteFilesFailedFormat">ドローアブル '{0}' のファイル削除に失敗しました: {1}</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.DuplicateItemFormat">  &#x2022; {0} (アドオン: {1})</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.DuplicateDetectedMessageFormat">重複ドローアブルが検出されました！
+
+追加しようとしているドローアブルは次と同一のようです:
+{0}
+
+新しいドローアブルは追加されますが、重複としてマークされます。
+
+続行しますか？</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.DuplicateDetectedTitle">重複ドローアブルを検出</system:String>
+    <system:String x:Key="Str.AddonManager.Unknown">不明</system:String>
+
+    <!-- App_cs -->
+    <system:String x:Key="Str.App.Error.Unhandled">エラーが発生しました: {0}</system:String>
+
+    <!-- AutoSaveIndicator_cs -->
+    <system:String x:Key="Str.AutoSaveIndicator.Tooltip.AutoSavingFormat">{0} 秒後に自動保存します</system:String>
+    <system:String x:Key="Str.AutoSaveIndicator.Tooltip.SaveInProgress">保存処理中</system:String>
+
+    <!-- BuildResourceHelper -->
+    <system:String x:Key="Str.BuildResourceHelper.SkippingCorruptedTextureFormat">破損したテクスチャをスキップします：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.SkippingCorruptedEmbeddedTextureFormat">破損した埋め込みテクスチャをスキップします：ドローアブル {1} 内の {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.FailedDeleteDlcRpfFormat">既存の dlc.rpf の削除に失敗しました：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.OriginalTextureNotFoundFormat">元のテクスチャ '{0}' がドローアブル {1} の TextureDictionary に見つかりません。スキップします。</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.ProcessingExceptionFormat">ファイルの処理中に例外が発生しました：{0}
+例外：{1}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.SkipCleanupNotBuildOutputFormat">クリーンアップをスキップします：ビルドパスが 'build_output' で終わっていません。パス：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.SkipCleanupRootDirFormat">クリーンアップをスキップします：ルートディレクトリは削除できません。パス：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.DeletedBuildOutputFormat">既存のビルド出力ディレクトリを削除しました：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.FailedDeleteBuildOutputFormat">ビルド出力ディレクトリの削除に失敗しました：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.ErrorBuildOutputCleanupFormat">ビルド出力のクリーンアップ中にエラーが発生しました：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.DeletedBuildTempFormat">ビルド一時ディレクトリを削除しました：{0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.FailedCleanupTempFormat">一時ディレクトリのクリーンアップに失敗しました：{0}</system:String>
+
+    <!-- BuildWindow -->
+    <system:String x:Key="Str.BuildWindow.Title">grzyClothTool - リソースをビルド</system:String>
+    <system:String x:Key="Str.BuildWindow.GroupBox.ResourceType">リソースタイプを選択</system:String>
+    <system:String x:Key="Str.BuildWindow.Radio.FiveM">FiveM</system:String>
+    <system:String x:Key="Str.BuildWindow.Radio.AltV">AltV</system:String>
+    <system:String x:Key="Str.BuildWindow.Radio.Singleplayer">シングルプレイヤー</system:String>
+    <system:String x:Key="Str.BuildWindow.Label.ProjectName">プロジェクト名</system:String>
+    <system:String x:Key="Str.BuildWindow.Label.OutputFolder">出力フォルダ</system:String>
+    <system:String x:Key="Str.BuildWindow.CheckBox.SplitAddons">アドオンを別リソースとしてビルド</system:String>
+    <system:String x:Key="Str.BuildWindow.Button.Build">リソースをビルド</system:String>
+
+    <!-- BuildWindow_cs -->
+    <system:String x:Key="Str.BuildWindow.Warning.NoProjectLoaded">プロジェクトが読み込まれていません。最初にプロジェクトを作成または開いてください。</system:String>
+    <system:String x:Key="Str.BuildWindow.Warning.BuildPathMissing">ビルドパスを特定できませんでした。プロジェクト設定を確認してください。</system:String>
+    <system:String x:Key="Str.BuildWindow.Warning.NoDrawables">ドロアブルが見つかりません。リソースをビルドするにはドロアブルを追加してください。</system:String>
+    <system:String x:Key="Str.BuildWindow.Error.FillAllFields">すべての項目を入力してください。プロジェクトが読み込まれていることを確認してください。</system:String>
+    <system:String x:Key="Str.BuildWindow.Success.BuildDone">ビルド完了、所要時間: {0}</system:String>
+    <system:String x:Key="Str.BuildWindow.Success.BuildDoneTitle">ビルド完了</system:String>
+    <system:String x:Key="Str.BuildWindow.Error.BuildFailedLog">ビルド失敗: {0}</system:String>
+    <system:String x:Key="Str.BuildWindow.Error.BuildFailed">ビルド失敗:&#x0a;&#x0a;{0}</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameEmpty">プロジェクト名を入力してください</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameTooShort">プロジェクト名は3文字以上である必要があります</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameTooLong">プロジェクト名は50文字以下である必要があります</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameInvalidChars">プロジェクト名には小文字、数字、アンダースコアのみ使用できます</system:String>
+
+    <!-- CustomMessageBox -->
+    <system:String x:Key="Str.CustomMessageBox.Caption.Default">メッセージ</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Message.Default">メッセージ内容</system:String>
+
+    <!-- CustomMessageBox_cs -->
+    <system:String x:Key="Str.CustomMessageBox.Button.OK">OK</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Cancel">キャンセル</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Yes">はい</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.No">いいえ</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.OpenFolder">フォルダーを開く</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Delete">削除</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Replace">置換</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Male">男性</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Female">女性</system:String>
+
+    <!-- DragDropHelper -->
+    <system:String x:Key="Str.DragDropHelper.FailedExtractFileFormat">ファイル {0} ({1}) の抽出に失敗しました：{2}</system:String>
+    <system:String x:Key="Str.DragDropHelper.ErrorExtractingFileFormat">ファイル {0} の抽出エラー：{1}</system:String>
+    <system:String x:Key="Str.DragDropHelper.ErrorExtractVirtualFilesFormat">ExtractVirtualFilesAsync でエラー：{0}</system:String>
+    <system:String x:Key="Str.DragDropHelper.ErrorCheckingDescriptorFormat">FileGroupDescriptor の確認エラー：{0}</system:String>
+
+    <!-- DrawableList -->
+    <system:String x:Key="Str.DrawableList.ContextMenu.ShowInDuplicateInspector">重複インスペクターで表示</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.Delete">削除</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.Replace">置換</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.DuplicateOppositeGender">反対の性別に複製</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.MoveToAnotherAddon">別のアドオンに移動</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.Move">移動</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.OpenFileLocation">ファイルの場所を開く</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportAsYDD">YDDとしてエクスポート</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportAsYDDWithTextures">YDDとテクスチャをエクスポート</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportTexturesAsDDS">テクスチャのみDDSとしてエクスポート</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportTexturesAsPNG">テクスチャのみPNGとしてエクスポート</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.Reserved">予約</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.ReservedTooltip">予約済み</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.New">新規</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.NewTooltip">新規</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.Duplicate">重複</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.SelectedTooltip">選択中</system:String>
+    <system:String x:Key="Str.DrawableList.Tooltip.EncryptedCannotPreview">暗号化済み - プレビュー不可</system:String>
+
+    <!-- DrawableList_cs -->
+    <system:String x:Key="Str.DrawableList.AddonFull.Message">選択したアドオンには、選択したドローアブルを収容できません。</system:String>
+    <system:String x:Key="Str.DrawableList.AddonFull.Title">アドオンが満杯</system:String>
+    <system:String x:Key="Str.DrawableList.Log.DuplicatedOppositeGenderFormat">ドローアブル '{0}' を反対の性別 ({1}) に複製しました - 新しいドローアブルは {2}</system:String>
+    <system:String x:Key="Str.DrawableList.Log.DuplicateOppositeErrorFormat">反対の性別へのドローアブル複製中にエラーが発生しました: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.DuplicateFailedFormat">ドローアブルの複製に失敗しました: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.SelectReplaceDrawableTitleFormat">'{0}' を置き換えるドローアブルファイルを選択してください</system:String>
+    <system:String x:Key="Str.DrawableList.Filter.DrawableFiles">ドローアブルファイル (*.ydd)|*.ydd</system:String>
+    <system:String x:Key="Str.DrawableList.Log.ReplacedDrawableFormat">ドローアブル '{0}' を新しいファイルで置き換えました</system:String>
+    <system:String x:Key="Str.DrawableList.Log.ReplaceFailedFormat">ドローアブルの置き換えに失敗しました: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ReplaceFailedFormat">ドローアブルの置き換えに失敗しました: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportTexturesFormat">テクスチャを {0} として書き出すフォルダーを選択してください</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportDrawableWithTextures">テクスチャ付きドローアブルを書き出すフォルダーを選択してください</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportDrawable">ドローアブルを書き出すフォルダーを選択してください</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportErrorFormat">書き出し中にエラーが発生しました: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportErrorTitle">書き出しエラー</system:String>
+    <system:String x:Key="Str.DrawableList.Log.MovedGroupFormat">ドローアブル '{0}' をグループ '{1}' から '{2}' に移動しました</system:String>
+    <system:String x:Key="Str.DrawableList.Log.MovedPositionFormat">ドローアブル '{0}' を位置 {1} から {2} に移動しました</system:String>
+    <system:String x:Key="Str.DrawableList.Ungrouped">グループなし</system:String>
+
+    <!-- DrawableSelectWindow -->
+    <system:String x:Key="Str.DrawableSelectWindow.Title">ドローアブルのプロパティを選択</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Heading">ドローアブルのプロパティを認識できませんでした</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Label.AssetType">アセットタイプ</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Label.DrawableType">ドローアブルタイプ</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Button.Cancel">キャンセル</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Button.Select">選択</system:String>
+
+    <!-- DuplicateBatchDialog -->
+    <system:String x:Key="Str.DuplicateBatchDialog.Window.Title">重複するDrawableを検出</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Caption.Text">重複するDrawableを検出</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Description.Text">以下のDrawableは既存の項目と重複しているようです。追加するものを選択してください：</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.SelectAll.Content">すべて選択</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.SelectNone.Content">選択解除</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.CancelAll.Content">すべてキャンセル</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Confirm.Content">確定</system:String>
+
+    <!-- DuplicateBatchDialog_cs -->
+    <system:String x:Key="Str.DuplicateBatchDialog.Unknown">不明</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.NoExistingDuplicates">既存の重複は見つかりませんでした</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.DuplicateOfPrefix">重複元: </system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.MoreCountFormat">（他 +{0} 件）</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Type.Prop">プロップ</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Type.Component">コンポーネント</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.SummaryFormat">{1} 件中 {0} 件の重複が追加されます</system:String>
+
+    <!-- DuplicateInspectorWindow -->
+    <system:String x:Key="Str.DuplicateInspector.Window.Title">重複インスペクタ</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Header.Title">重複インスペクタ</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Header.Subtitle">X 件の重複グループが見つかりました</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Badge.Dup">重複</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Group.DeleteAllExceptFirst">最初の項目以外をすべて削除</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Item.Open">開く</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Item.Delete">削除</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Footer.Refresh">更新</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Footer.Close">閉じる</system:String>
+
+    <!-- DuplicateInspectorWindow_cs -->
+    <system:String x:Key="Str.DuplicateInspector.Subtitle.None">重複は見つかりませんでした</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Subtitle.Count">{0}個の重複グループが見つかりました</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Group.Title">ドロアブル: {0}</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Group.Description">{0}個の同一ドロアブル</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Location.Unknown">不明</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Location.Addon">アドオン {0}</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Log.ScrollError">ドロアブルへのスクロールエラー: {0}</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.DeleteItem">'{0}' を削除してもよろしいですか？</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.DeleteTitle">削除の確認</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Info.AllResolved">すべての重複が解決されました！</system:String>
+    <system:String x:Key="Str.Common.Success">成功</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.BulkDelete">このグループから{0}個の重複項目を削除し、最初の1つのみを残します。&#x0a;&#x0a;よろしいですか？</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.BulkDeleteTitle">一括削除の確認</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Info.DeletedAllResolved">{0}個の重複項目を削除しました！&#x0a;&#x0a;すべての重複が解決されました！</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Info.DeletedCount">{0}個の重複項目を削除しました！</system:String>
+
+    <!-- FileHelper -->
+    <system:String x:Key="Str.FileHelper.ErrorTitle">エラー</system:String>
+    <system:String x:Key="Str.FileHelper.ErrorResolvingPathFormat">ファイルパス '{0}' の解決エラー：{1}</system:String>
+    <system:String x:Key="Str.FileHelper.OpenFileLocationErrorFormat">ファイルの場所を開く際にエラーが発生しました：{0}</system:String>
+    <system:String x:Key="Str.FileHelper.FailedCopyDrawableFormat">ドローアブルをプロジェクトアセットにコピーできませんでした：{0}。元のパスを使用します。</system:String>
+    <system:String x:Key="Str.FileHelper.FailedCopyTextureFormat">テクスチャをプロジェクトアセットにコピーできませんでした：{0}。元のパスを使用します。</system:String>
+    <system:String x:Key="Str.FileHelper.TextureAlreadyExistsFormat">テクスチャを保存できませんでした：{0}。エラー：ファイルが既に存在します。</system:String>
+    <system:String x:Key="Str.FileHelper.CouldNotSaveTextureFormat">テクスチャを保存できませんでした：{0}。エラー：{1}。</system:String>
+    <system:String x:Key="Str.FileHelper.DrawableAlreadyExistsFormat">ドローアブルを保存できませんでした：{0}。エラー：ファイルが既に存在します。</system:String>
+    <system:String x:Key="Str.FileHelper.CouldNotSaveDrawableFormat">ドローアブルを保存できませんでした：{0}。エラー：{1}。</system:String>
+    <system:String x:Key="Str.FileHelper.StartedExportingTextures">テクスチャのエクスポートを開始しました</system:String>
+    <system:String x:Key="Str.FileHelper.StartedExportingDrawables">ドローアブルのエクスポートを開始しました</system:String>
+    <system:String x:Key="Str.FileHelper.ExportedTexturesFormat">{0} 個のテクスチャを {{0}} でエクスポートしました</system:String>
+    <system:String x:Key="Str.FileHelper.ExportedDrawablesFormat">{0} 個のドローアブルを {{0}} でエクスポートしました</system:String>
+
+    <!-- FirstRunSetupWindow -->
+    <system:String x:Key="Str.FirstRunSetup.Title">grzyClothToolへようこそ - 初回セットアップ</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Heading.Welcome">grzyClothToolへようこそ!</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Heading.Subtitle">初回セットアップ</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.SelectLabel">メインプロジェクトフォルダを選択</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.Description">すべての独立したプロジェクトを格納するメインフォルダを選択してください。</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.ExampleLabel">例: </system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.ExamplePath">C:\grzyClothTool Projects</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.Hint">(特定のプロジェクトフォルダは選択しないでください - 複数のプロジェクトを格納する親フォルダを選択してください)</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Button.Browse">参照...</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Info.Heading">[i] 重要な情報</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Info.Line1">* この設定はユーザープロファイルに保存され、アプリケーションの更新後も保持されます。</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Info.Line2">* このフォルダは後から設定メニューで変更できます。</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Button.Continue">続行</system:String>
+
+    <!-- FirstRunSetupWindow_cs -->
+    <system:String x:Key="Str.FirstRunSetup.Confirm.ExitWithoutSetup">アプリケーションを使用し続けるには、メインフォルダを選択する必要があります。&#x0a;&#x0a;アプリケーションを終了します。よろしいですか？</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Confirm.SetupRequired">セットアップが必要です</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Dialog.BrowseDescription">すべてのプロジェクトを保存するメインフォルダを選択してください（特定のプロジェクトフォルダではありません）</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.SelectMainFolder">続行する前にメインフォルダを選択してください。</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.RootDriveNotAllowed">ルートドライブ (例: C:\) をメインフォルダとして使用することはできません。サブフォルダを選択または作成してください。</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.AccessDenied">アクセスが拒否されました。書き込み権限があるフォルダを選択してください。</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.ErrorFormat">エラー: {0}</system:String>
+
+    <!-- GDrawable_cs -->
+    <system:String x:Key="Str.GDrawable.FlagsTextFormat">{0} ({1} 件選択中)</system:String>
+    <system:String x:Key="Str.GDrawable.Log.CouldNotFindFileFormat">ドローアブルファイル '{0}' が見つかりませんでした: {1}</system:String>
+
+    <!-- Home -->
+    <system:String x:Key="Str.Home.Start.Header">はじめましょう</system:String>
+    <system:String x:Key="Str.Home.Start.Close">閉じる</system:String>
+    <system:String x:Key="Str.Home.Start.CreateNew">新規プロジェクトを作成</system:String>
+    <system:String x:Key="Str.Home.Start.ImportProject">プロジェクトをインポート</system:String>
+    <system:String x:Key="Str.Home.Start.OpenAddon">アドオンを開く</system:String>
+    <system:String x:Key="Str.Home.Start.OpenSave">セーブファイルを開く</system:String>
+    <system:String x:Key="Str.Home.Recent.Header">最近開いたプロジェクト</system:String>
+    <system:String x:Key="Str.Home.Recent.AddonsSuffix"> アドオン</system:String>
+    <system:String x:Key="Str.Home.Recent.DrawablesSuffix"> ドローアブル</system:String>
+    <system:String x:Key="Str.Home.Recent.LastModifiedPrefix">最終更新: </system:String>
+    <system:String x:Key="Str.Home.Recent.None">最近のプロジェクトはありません</system:String>
+    <system:String x:Key="Str.Home.Tools.Header">他のツールを見る</system:String>
+    <system:String x:Key="Str.Home.Tools.ClickToLearn">クリックして詳細を見る</system:String>
+    <system:String x:Key="Str.Home.DidYouKnow.Header">豆知識</system:String>
+    <system:String x:Key="Str.Home.Changelog.Header">最新の変更</system:String>
+    <system:String x:Key="Str.Home.Changelog.VersionPrefix">バージョン: </system:String>
+    <system:String x:Key="Str.Home.Changelog.ViewFull">GitHubで完全な変更履歴を見る</system:String>
+    <system:String x:Key="Str.Home.Changelog.Bullet">• </system:String>
+    <system:String x:Key="Str.Home.Supporters.Header">サポーター</system:String>
+
+    <!-- Home_cs -->
+    <system:String x:Key="Str.Home.Error.OpenChangelog">変更履歴を開けませんでした: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.OpenWebsite">ウェブサイトを開けませんでした: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.OpenUrl">URLを開けませんでした: {0}</system:String>
+    <system:String x:Key="Str.Home.Warning.ConfigureMainFolder">最初に設定でメインプロジェクトフォルダを構成してください。</system:String>
+    <system:String x:Key="Str.Home.Warning.ConfigurationRequired">構成が必要です</system:String>
+    <system:String x:Key="Str.Home.Warning.MainFolderMissing">メインプロジェクトフォルダが存在しません: {0}&#x0a;&#x0a;設定で更新してください。</system:String>
+    <system:String x:Key="Str.Home.Warning.FolderNotFound">フォルダが見つかりません</system:String>
+    <system:String x:Key="Str.Home.Warning.InvalidProjectNameChars">プロジェクト名に無効な文字が含まれています。別の名前を選択してください。</system:String>
+    <system:String x:Key="Str.Home.Warning.InvalidName">無効な名前</system:String>
+    <system:String x:Key="Str.Home.Warning.SaveFileMissing">この保存ファイルはもう存在しません。</system:String>
+    <system:String x:Key="Str.Home.Warning.FileNotFound">ファイルが見つかりません</system:String>
+    <system:String x:Key="Str.Home.Log.CreatedProject">新しい{0}プロジェクトを作成しました: {1} ({2})</system:String>
+    <system:String x:Key="Str.Home.Log.CreateProjectFailed">新しいプロジェクトの作成に失敗しました: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.CreateProjectFailed">新しいプロジェクトの作成に失敗しました: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.LoadSaveFailed">保存の読み込みに失敗しました: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.RemovedRecentProject">最近のリストからプロジェクトを削除しました: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.RemoveRecentProjectFailed">最近のプロジェクトの削除に失敗しました: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.DeletedOldSaveFile">古い保存ファイルを削除しました: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.DeletedOldAssetsFolder">古いアセットフォルダを削除しました: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.ClearedProjectFolder">上書きのためプロジェクトフォルダをクリアしました: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.ClearProjectFolderFailed">警告: プロジェクトフォルダを完全にクリアできませんでした: {0}</system:String>
+    <system:String x:Key="Str.Home.Dialog.OpenSaveFile">保存ファイルを開く</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.SaveFiles">保存ファイル (*.json)|*.json|すべてのファイル (*.*)|*.*</system:String>
+
+    <!-- LogWindow -->
+    <system:String x:Key="Str.LogWindow.Title">ログ</system:String>
+    <system:String x:Key="Str.LogWindow.Header.Timestamp">タイムスタンプ</system:String>
+    <system:String x:Key="Str.LogWindow.Header.Message">メッセージ</system:String>
+
+    <!-- MainWindow -->
+    <system:String x:Key="Str.MainWindow.Title">grzyClothTool (日本語版)</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Project">_プロジェクト</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.BackToHome">_ホーム画面に戻る</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Save">_保存</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.OpenAddon">_アドオンを開く</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.OpenAddon.ToolTip">アドオンファイルを開きます (現在のプロジェクトは置き換えられます)</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.AddAddon">_アドオンを追加</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.AddAddon.ToolTip">現在のプロジェクトにアドオンファイルを追加します</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.ImportProject">_プロジェクトをインポート</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.ExportProject">_プロジェクトをエクスポート</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Settings">_設定</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.View">_表示</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Logs">_ログ</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.DuplicateInspector">_重複インスペクター</system:String>
+    <system:String x:Key="Str.MainWindow.Link.Discord">Discord</system:String>
+    <system:String x:Key="Str.MainWindow.Link.SourceCode">ソースコード</system:String>
+    <system:String x:Key="Str.MainWindow.Link.SupportMe">サポートする!</system:String>
+    <system:String x:Key="Str.MainWindow.Anchorable.Preview">3Dプレビュー</system:String>
+
+    <!-- MainWindow_cs -->
+    <system:String x:Key="Str.MainWindow.Splash.CheckingUpdates">アップデートを確認中...</system:String>
+    <system:String x:Key="Str.MainWindow.Splash.StartingApp">アプリを起動中</system:String>
+    <system:String x:Key="Str.MainWindow.Log.NoChangesToSave">保存する変更はありません</system:String>
+    <system:String x:Key="Str.MainWindow.Log.ClearedData">データをクリアし、ホーム画面に移動しました</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.SelectMetaFiles">.metaファイルを選択</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.SelectMetaFilesToAdd">追加する.metaファイルを選択</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.ImportProject">プロジェクトをインポート</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.ExportProject">プロジェクトをエクスポート</system:String>
+    <system:String x:Key="Str.MainWindow.Log.SkippedMetaFile">ファイル {0} は正しい.metaファイルではない可能性があるためスキップしました</system:String>
+    <system:String x:Key="Str.MainWindow.Log.NoMetaFilesInProject">プロジェクトファイル内にmetaファイルが見つかりません。発生しないはずです。Discordで開発者に報告してください</system:String>
+    <system:String x:Key="Str.MainWindow.Error.NoValidMetaFiles">有効な.metaファイルが選択されていません。</system:String>
+    <system:String x:Key="Str.MainWindow.Warning.NoDrawablesFound">選択した.metaファイルに対応する描画ファイル (.ydd) が見つかりませんでした。&#x0a;&#x0a;.yddファイルが.metaファイルと同じディレクトリまたはサブディレクトリにあることを確認してください。</system:String>
+    <system:String x:Key="Str.MainWindow.Warning.NoDrawablesFoundTitle">ドロアブルが見つかりません</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedLoadingAddon">アドオンの読み込みを開始しました</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedAddingAddon">アドオンの追加を開始しました</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.AddonLoadedIn">{0}アドオンを{1}で読み込みました</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.AddonAddedIn">アドオンを{0}で追加しました</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedImporting">{0} のインポートを開始しました</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.ProjectImportedIn">プロジェクトを{0}でインポートしました</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedExportingProject">プロジェクトのエクスポートを開始しました</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.ProjectExportedIn">プロジェクトを{0}でエクスポートしました</system:String>
+    <system:String x:Key="Str.Common.ProjectType.SelfContained">自己完結型</system:String>
+    <system:String x:Key="Str.Common.ProjectType.External">外部</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.MetaFiles">Metaファイル (*.meta)|*.meta</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.GctProject">grzyClothToolプロジェクト (*.gctproject)|*.gctproject</system:String>
+
+    <!-- ModernLabelComboBox -->
+    <system:String x:Key="Str.ModernLabelComboBox.ClearButton.ToolTip">グループをクリア</system:String>
+
+    <!-- OptimizeWindow -->
+    <system:String x:Key="Str.Optimize.Title">テクスチャを最適化</system:String>
+    <system:String x:Key="Str.Optimize.Group.Current">現在のテクスチャ</system:String>
+    <system:String x:Key="Str.Optimize.Group.Output">出力テクスチャ</system:String>
+    <system:String x:Key="Str.Optimize.Label.Name">名前: </system:String>
+    <system:String x:Key="Str.Optimize.Label.Compression">圧縮形式: </system:String>
+    <system:String x:Key="Str.Optimize.Label.Width">幅: </system:String>
+    <system:String x:Key="Str.Optimize.Label.Height">高さ: </system:String>
+    <system:String x:Key="Str.Optimize.Label.MipMap">ミップマップ数: </system:String>
+    <system:String x:Key="Str.Optimize.Label.SelectedCount.Format">{0}個のテクスチャを選択中</system:String>
+    <system:String x:Key="Str.Optimize.Label.Downscale">テクスチャサイズを縮小</system:String>
+    <system:String x:Key="Str.Optimize.Label.SelectSize">テクスチャサイズを選択</system:String>
+    <system:String x:Key="Str.Optimize.Label.ChangeCompression">テクスチャ圧縮形式を変更</system:String>
+    <system:String x:Key="Str.Optimize.Label.SelectCompression">圧縮形式を選択</system:String>
+    <system:String x:Key="Str.Optimize.Warning.Quality">ここでテクスチャサイズを変更すると品質が低下します。テクスチャ品質を保つためには、3Dプログラムやテクスチャベイクで行うことを推奨します。</system:String>
+    <system:String x:Key="Str.Optimize.Button.Cancel">キャンセル</system:String>
+    <system:String x:Key="Str.Optimize.Button.Optimize">最適化</system:String>
+
+    <!-- OptimizeWindow_cs -->
+    <system:String x:Key="Str.OptimizeWindow.NoOptionsSelected">最適化オプションが選択されていません</system:String>
+    <system:String x:Key="Str.OptimizeWindow.Log.WillOptimizeDuringBuild">リソースビルド時にテクスチャが最適化されます</system:String>
+
+    <!-- PreviewWindowHost_cs -->
+    <system:String x:Key="Str.PreviewWindowHost.Log.InitFailedFormat">3D プレビューの初期化に失敗しました: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Log.BackgroundInitFailedFormat">3D プレビューのバックグラウンド初期化に失敗しました: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Log.CloseErrorFormat">プレビューを閉じる際にエラーが発生しました: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Log.PreviewErrorFormat">3D プレビューエラー: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Placeholder.GtaIssue">3D プレビューを利用できません (GTA V のインストールに問題 - ログを参照)</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Placeholder.GpuIssue">3D プレビューを利用できません (GPU/グラフィックスのエラー - ログを参照)</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Placeholder.Disabled">エラーにより 3D プレビューが無効化されました (ログを参照)</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Error.SetPedModel">ペッドモデルの設定に失敗しました</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Error.UpdateDrawables">3D プレビューのドローアブル更新に失敗しました</system:String>
+
+    <!-- ProjectSetupDialog -->
+    <system:String x:Key="Str.ProjectSetup.Window.Title">プロジェクト設定</system:String>
+    <system:String x:Key="Str.ProjectSetup.ProjectName.Label">プロジェクト名</system:String>
+    <system:String x:Key="Str.ProjectSetup.Field.ProjectType">プロジェクトの種類</system:String>
+    <system:String x:Key="Str.ProjectSetup.SelfContained.Title">自己完結型</system:String>
+    <system:String x:Key="Str.ProjectSetup.SelfContained.Description">ファイルはプロジェクトフォルダーにコピーされます。プロジェクトの移動や共有が容易です。</system:String>
+    <system:String x:Key="Str.ProjectSetup.External.Title">外部参照型</system:String>
+    <system:String x:Key="Str.ProjectSetup.External.Description">ファイルは元の場所に残ります。ディスク容量の節約になりますが、持ち運びはできません。</system:String>
+    <system:String x:Key="Str.ProjectSetup.External.Warning">元のファイルを移動または削除すると、プロジェクトが壊れます。</system:String>
+    <system:String x:Key="Str.ProjectSetup.Footer.Cancel">キャンセル</system:String>
+
+    <!-- ProjectSetupDialog_cs -->
+    <system:String x:Key="Str.ProjectSetup.Title.CreateNew">新規プロジェクトを作成</system:String>
+    <system:String x:Key="Str.ProjectSetup.Title.OpenExisting">既存アドオンを開く</system:String>
+    <system:String x:Key="Str.ProjectSetup.Button.Create">作成</system:String>
+    <system:String x:Key="Str.ProjectSetup.Button.Open">開く</system:String>
+    <system:String x:Key="Str.ProjectSetup.Warning.ProjectExists">"{0}" という名前のプロジェクトは既に存在します。続行すると上書きされます。</system:String>
+    <system:String x:Key="Str.ProjectSetup.DrawableCount.WithMeta">{1}個の.metaファイルで{0}個のドロアブルが見つかりました</system:String>
+    <system:String x:Key="Str.ProjectSetup.DrawableCount.Simple">{0}個のドロアブルが見つかりました</system:String>
+    <system:String x:Key="Str.ProjectSetup.Confirm.OverwriteMessage">"{0}" という名前のプロジェクトは既に存在します。&#x0a;&#x0a;上書きしますか？ この操作は元に戻せません。</system:String>
+    <system:String x:Key="Str.ProjectSetup.Confirm.OverwriteTitle">プロジェクトが既に存在します</system:String>
+
+    <!-- ProjectWindow -->
+    <system:String x:Key="Str.ProjectWindow.Drawables.Header">ドローアブル</system:String>
+    <system:String x:Key="Str.ProjectWindow.Search.Placeholder">検索...</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Female">女性</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Male">男性</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.SelectFolder">フォルダを選択</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.DeleteDrawable.Tooltip">選択したドローアブルを削除</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Preview3D">3Dプレビュー</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Build">ビルド</system:String>
+
+    <!-- ProjectWindow_cs -->
+    <system:String x:Key="Str.ProjectWindow.Dialog.SelectDrawableFiles">ドロアブルファイルを選択 ({0})</system:String>
+    <system:String x:Key="Str.ProjectWindow.Dialog.SelectDrawableFolder">ドロアブルファイルを含むフォルダを選択 ({0})</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.ScanningFiles">追加するファイルをスキャン中...</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.AddingDrawableFiles">{1}個のフォルダから{0}個のドロアブルファイルを追加中...</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.AddDrawablesError">ドロアブル追加エラー: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.DragEnterError">DragEnterエラー: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.DragOverError">DragOverエラー: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.DropEventError">Dropイベントエラー: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.CouldNotExtractFiles">ファイルを抽出できませんでした</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.AddedDrawablesIn">ドロアブルを{0}で追加しました</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.AddedNDrawablesIn">{0}個のドロアブルを{1}で追加しました</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.NoDrawableFilesFound">ドロアブルファイルが見つかりません</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.FailedToAddDrawables">ドロアブルの追加に失敗しました</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.NoDrawablesSelected">ドロアブルが選択されていません</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.Title">ドロアブルを削除</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.ConfirmSingle">このドロアブルを削除してもよろしいですか？ ({0})</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.ConfirmMultiple">選択した{0}個のドロアブルを削除してもよろしいですか？</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.ReplaceSuffix">&#x0a;このドロアブル以降のすべての番号が変更されます！&#x0a;&#x0a;代わりに予約スロットに置き換えますか？</system:String>
+    <system:String x:Key="Str.ProjectWindow.Build.NoProjectLoaded">プロジェクトが読み込まれていません。最初にプロジェクトを作成または開いてください。</system:String>
+    <system:String x:Key="Str.ProjectWindow.Build.NoProjectTitle">プロジェクトなし</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.FilesNotAccessible">以下のファイルにアクセスできませんでした:&#x0a;&#x0a;{0}&#x0a;&#x0a;仮想パスの可能性があります。一度フォルダに展開してからドラッグしてください。</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.FilesNotAccessibleTitle">ファイルにアクセスできません</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.UndeterminedGender">{0}個のドロアブルは性別を自動判定できませんでした。これらのファイルの性別を選択してください:</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.SelectGenderTitle">性別を選択</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.ProcessingError">ドロップされたファイルの処理中にエラーが発生しました:&#x0a;&#x0a;{0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.ErrorTitle">ドラッグ&amp;ドロップエラー</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.DrawableFiles">ドロアブルファイル (*.ydd)|*.ydd</system:String>
+
+    <!-- SaveHelper -->
+    <system:String x:Key="Str.SaveHelper.StartedSaving">保存を開始しました...</system:String>
+    <system:String x:Key="Str.SaveHelper.AutoSavedFormat">{0} に {1}ms で自動保存しました</system:String>
+    <system:String x:Key="Str.SaveHelper.CouldNotAutoSave">自動保存できませんでした：プロジェクトフォルダーまたはプロジェクト名が設定されていません</system:String>
+    <system:String x:Key="Str.SaveHelper.AutoSaveFailedFormat">自動保存に失敗しました：{0}</system:String>
+    <system:String x:Key="Str.SaveHelper.UnsavedTitleSuffix"> （未保存の変更）</system:String>
+    <system:String x:Key="Str.SaveHelper.UnsavedChangesMessage">未保存の変更があります。この操作を続行しますか？</system:String>
+    <system:String x:Key="Str.SaveHelper.UnsavedChangesTitle">未保存の変更</system:String>
+    <system:String x:Key="Str.SaveHelper.ScanningDuplicates">プロジェクト内の重複ドローアブルをスキャン中...</system:String>
+    <system:String x:Key="Str.SaveHelper.DuplicateScanCompleteFormat">重複スキャンが完了しました。{0} 件の重複ドローアブルグループが見つかりました。</system:String>
+    <system:String x:Key="Str.SaveHelper.LoadedSaveFromFormat">セーブを読み込みました：{0}</system:String>
+
+    <!-- SelectedDrawable -->
+    <system:String x:Key="Str.SelectedDrawable.NoDrawable.Title">ドローアブルが選択されていません</system:String>
+    <system:String x:Key="Str.SelectedDrawable.NoDrawable.Description">リストからドローアブルを選択して、プロパティを表示および編集します</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.Title">予約済みドローアブル</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.Description">これは予約済みのドローアブルスロットで、編集できません。</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.ReplaceButton">予約済みドローアブルを置き換え</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.OptionsDisabled">オプションは無効です</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.SelectedCount.Format">{0} 個のドローアブルを選択中</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.WarningTitle">警告</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.WarningMessage">選択されたドローアブルは完全に同じではありません。ドローアブルオプションを編集するには、同じものを選択するか、下のボタンをクリックして強制的に上書きしてください。</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.ForceOverride">強制上書き</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.OverrideDisabled">上書き無効</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.OverrideEnabled">上書き有効</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.DifferentTypeWarning">異なる種類のドローアブルでは上書きを有効にできません。1種類のドローアブルのみを選択してください</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.MultipleGroups">(複数のグループ)</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Section.DrawableOptions">ドローアブルオプション</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Section.PreviewOptions">プレビューオプション</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Section.Organization">整理</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Audio">オーディオ</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.RenderFlag">レンダーフラグ</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HasSkin">スキンあり</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Flags">フラグ</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HidesHair">髪を隠す</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.EnableHairScale">髪のスケールを有効化</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HairScale">髪のスケール</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.EnableHighHeels">ハイヒールを有効化</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HighHeelsAmount">ヒールの高さ</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.KeepPreview">プレビューを保持</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.DisplayName">表示名</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.DrawableType">ドローアブルの種類</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Sex">性別</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.FirstPersonFile">一人称視点ファイル</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.ClothPhysicsFile">クロス物理ファイル (.yld)</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Group">グループ</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Tags">タグ</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Preview.RunToEnable">3Dプレビューを実行してオプションを有効にする</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Textures">テクスチャ</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Textures.WarningToolTip">少なくとも1つのテクスチャに警告があります</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Embedded">埋め込み</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Embedded.WarningToolTip">少なくとも1つの埋め込みテクスチャに警告があります</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.OptimizedToolTip">このテクスチャはリソースビルド時に最適化されます</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.NotFoundToolTip">テクスチャが見つかりません。おそらくこの .ytd は空です</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.ReplacementToolTip">これは置換テクスチャです</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.NotAvailable">N/A</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Button.Preview">プレビュー</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Button.AddTextures">テクスチャを追加</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Button.DeleteSelected">選択項目を削除</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.OptimizeTexture">テクスチャを最適化</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.UndoOptimize">最適化を元に戻す</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.RemoveTexture">除去</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ReplaceTexture">置き換え</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.OpenFileLocation">ファイルの場所を開く</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ExportAsYtd">YTDとしてエクスポート</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ExportAsDds">テクスチャをDDSとしてエクスポート</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ExportAsPng">テクスチャをPNGとしてエクスポート</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.RenameEmbedded">名前を変更</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ReplaceEmbedded">置き換え</system:String>
+
+    <!-- SelectedDrawable_cs -->
+    <system:String x:Key="Str.Common.Info">情報</system:String>
+    <system:String x:Key="Str.Common.ErrorFormat">エラー: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.TexturePreviewErrorFormat">テクスチャプレビュー表示中にエラーが発生しました: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.EmbeddedPreviewErrorFormat">埋め込みテクスチャプレビュー表示中にエラーが発生しました: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.EmbeddedStatus.Replacement"> - 置換</system:String>
+    <system:String x:Key="Str.SelectedDrawable.EmbeddedStatus.Embedded"> - 埋め込み</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CannotProcessNoSelectionFormat">{0} を処理できません: ドローアブルが選択されていません</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.UsingOriginalPathFormat">{0} に元のパスを使用します: {1}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CopiedToAssetsFormat">{0} ファイルをプロジェクトアセットにコピーしました: {1}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ProcessFileFailedFormat">{0} ファイルの処理に失敗しました: {1}。元のパスを使用します。</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.DeleteFileFailedFormat">ファイル {0} の削除に失敗しました: {1}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.MaxTexturesFormat">1 ドローアブルにつきテクスチャは {0} 個を超えられません！</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.SelectTexturesTitle">テクスチャを選択</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Filter.Textures">テクスチャファイル (*.ytd)|*.ytd|画像ファイル (*.jpg;*.png;*.dds)|*.jpg;*.png;*.dds</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.TextureLimitReachedFormat">テクスチャ数の上限 {0} に達しました。最後に追加されたテクスチャ: {1}。</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CopyTextureFailedFormat">テクスチャをプロジェクトアセットにコピーできませんでした: {0}。元のパスを使用します。</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.MixedOptimizationMessage">一部のテクスチャは既に最適化済みで、他は未最適化です。同じ状態のテクスチャを選択してください。</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.TextureMovedFormat">テクスチャ '{0}' を位置 {1} から {2} に移動しました</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CouldNotAddTextures">テクスチャを追加できませんでした</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.FilesNotAccessibleFormat">次のテクスチャファイルにアクセスできませんでした:
+
+{0}
+
+仮想パスの可能性があります。先にフォルダーへ展開してから、そこからドラッグしてください。</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.FilesNotAccessibleTitle">ファイルにアクセスできません</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.DragDropProcessErrorFormat">ドロップされたテクスチャファイルの処理中にエラーが発生しました:
+
+{0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.DragDropErrorTitle">ドラッグ &amp; ドロップ エラー</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.TextureSizeMismatchFormat">テクスチャ {0} は他と同じサイズではありません！</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.TextureOptimizationUndoneFormat">{0} のテクスチャ最適化を取り消しました</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceReservedTitle">予約ドローアブルを置き換えるドローアブルファイルを選択してください</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Filter.DrawableFile">ドローアブルファイル (*.ydd)|*.ydd</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ExportTexturesFormat">テクスチャを {0} として書き出すフォルダーを選択してください</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ExportErrorFormat">書き出し中にエラーが発生しました: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ExportErrorTitle">書き出しエラー</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceTextureTitleFormat">{0} を置き換えるテクスチャファイルを選択してください</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ReplacedTextureFormat">テクスチャ '{0}' を新しいファイルで置き換えました</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ReplaceTextureFailedFormat">テクスチャの置き換えに失敗しました: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceTextureFailedFormat">テクスチャの置き換えに失敗しました: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.EmbeddedOptimizationUndoneFormat">{0} の埋め込みテクスチャ最適化を取り消しました</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.RenameEmbeddedTitle">埋め込みテクスチャの名前変更</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.EnterNewName">新しい名前を入力:</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceEmbeddedTitleFormat">埋め込み {0} を置き換えるテクスチャファイルを選択してください</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Filter.ImageFiles">画像ファイル (*.jpg;*.png;*.dds)|*.jpg;*.png;*.dds</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.EmbeddedReplacedFormat">埋め込み {0} テクスチャを置き換えました（最適化はクリアされました）</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ReplaceEmbeddedFailedFormat">埋め込みテクスチャの置き換えに失敗しました: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceEmbeddedFailedFormat">埋め込みテクスチャの置き換えに失敗しました: {0}</system:String>
+
+    <!-- SettingsLabelTextBox -->
+    <system:String x:Key="Str.SettingsLabelTextBox.EditButton.Content">編集</system:String>
+
+    <!-- SettingsWindow -->
+    <system:String x:Key="Str.Settings.Button.Back">戻る</system:String>
+    <system:String x:Key="Str.Settings.Group.Settings">設定</system:String>
+    <system:String x:Key="Str.Settings.Group.PolygonLimit">ドローアブルのポリゴン数上限</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.Description">ドローアブルのポリゴン数上限を設定します。この数値を超えると警告が表示されます</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.High">高LOD</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.Medium">中LOD</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.Low">低LOD</system:String>
+    <system:String x:Key="Str.Settings.Group.TextureResolution">テクスチャ解像度上限</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Description">各テクスチャタイプの最大解像度を設定します。幅または高さが上限を超えると警告が表示されます</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Diffuse">ディフューズ</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Normal">ノーマル</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Specular">スペキュラ</system:String>
+    <system:String x:Key="Str.Settings.Group.General">一般設定</system:String>
+    <system:String x:Key="Str.Settings.General.MainProjectsFolder.Label">メインプロジェクトフォルダ</system:String>
+    <system:String x:Key="Str.Settings.General.MainProjectsFolder.Description">すべての衣装プロジェクトを格納するメインフォルダ</system:String>
+    <system:String x:Key="Str.Settings.General.MainProjectsFolder.Title">メインプロジェクトフォルダを選択</system:String>
+    <system:String x:Key="Str.Settings.General.GTAVPath.Label">現在のGTAVパス</system:String>
+    <system:String x:Key="Str.Settings.General.GTAVPath.Description">3Dプレビューを動作させるにはGTAVパスが必要です</system:String>
+    <system:String x:Key="Str.Settings.General.GTAVPath.Title">GTA Vのパスを選択</system:String>
+    <system:String x:Key="Str.Settings.General.DisplayDrawablePath.Label">ドローアブルパスを表示</system:String>
+    <system:String x:Key="Str.Settings.General.DisplayDrawablePath.Text">有効にすると選択したドローアブルに使用されているパスを表示します</system:String>
+    <system:String x:Key="Str.Settings.General.AutoDeleteFiles.Label">ドローアブルファイルを自動削除</system:String>
+    <system:String x:Key="Str.Settings.General.AutoDeleteFiles.Text">有効にすると、アドオンからドローアブルを削除した際に、関連ファイルをシステムから自動的に削除します</system:String>
+    <system:String x:Key="Str.Settings.General.AutoDeleteFiles.Warning">警告: この機能はPC上のファイルを変更・削除します。削除されたファイルは復元できません。&#x0a;&#x0a;本当に有効にしますか?</system:String>
+    <system:String x:Key="Str.Settings.General.MarkNewDrawables.Label">新規ドローアブルを目印付け</system:String>
+    <system:String x:Key="Str.Settings.General.MarkNewDrawables.Text">有効にすると、新規ドローアブルに黄色のドットが付きます</system:String>
+
+    <!-- SettingsWindow_cs -->
+    <system:String x:Key="Str.SettingsWindow.Dialog.SelectMainProjectsFolder">メインプロジェクトフォルダを選択</system:String>
+    <system:String x:Key="Str.SettingsWindow.Warning.RootDriveNotAllowed">ルートドライブ (例: C:\) をメインフォルダとして使用することはできません。&#x0a;&#x0a;サブフォルダを選択または作成してください。</system:String>
+    <system:String x:Key="Str.SettingsWindow.Warning.InvalidFolder">無効なフォルダ</system:String>
+    <system:String x:Key="Str.SettingsWindow.Log.MainFolderUpdated">メインプロジェクトフォルダを更新しました: {0}</system:String>
+    <system:String x:Key="Str.SettingsWindow.Error.AccessDenied">アクセスが拒否されました。書き込み権限があるフォルダを選択してください。</system:String>
+    <system:String x:Key="Str.SettingsWindow.Error.MainFolderError">メインプロジェクトフォルダの設定エラー: {0}</system:String>
+
+    <!-- SplashScreen -->
+    <system:String x:Key="Str.SplashScreen.LoadingMessage">読み込み中...</system:String>
+
+    <!-- TagsEditor -->
+    <system:String x:Key="Str.TagsEditor.AddButton">追加</system:String>
+
+    <!-- UpdateHelper -->
+    <system:String x:Key="Str.UpdateHelper.Checking">アップデートを確認中...</system:String>
+    <system:String x:Key="Str.UpdateHelper.Completing">アップデートを完了中...</system:String>
+    <system:String x:Key="Str.UpdateHelper.CouldNotCheck">アップデートを確認できませんでした。</system:String>
+    <system:String x:Key="Str.UpdateHelper.UpToDate">最新です！</system:String>
+    <system:String x:Key="Str.UpdateHelper.CheckFailed">アップデート確認に失敗しました。</system:String>
+    <system:String x:Key="Str.UpdateHelper.TimedOut">アップデート確認がタイムアウトしました。</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadingFormat">v{0} をダウンロード中...</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadComplete">ダウンロード完了。インストール中...</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadCancelled">ダウンロードがキャンセルされました。</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadFailed">ダウンロードに失敗しました。後で再試行してください。</system:String>
+    <system:String x:Key="Str.UpdateHelper.InstallationFailed">インストールに失敗しました。手動でアップデートしてください。</system:String>
+
+</ResourceDictionary>

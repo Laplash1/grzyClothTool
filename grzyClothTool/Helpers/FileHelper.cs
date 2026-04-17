@@ -169,7 +169,7 @@ public static class FileHelper
         }
         catch (Exception ex)
         {
-            LogHelper.Log($"Error resolving file path '{path}': {ex.Message}", Views.LogType.Warning);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.ErrorResolvingPathFormat", path, ex.Message), Views.LogType.Warning);
             return path;
         }
     }
@@ -299,7 +299,7 @@ public static class FileHelper
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Failed to copy drawable to project assets: {ex.Message}. Using original path.", LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.FailedCopyDrawableFormat", ex.Message), LogType.Warning);
                 drawablePath = filePath; // Fallback to original path
             }
         }
@@ -324,7 +324,7 @@ public static class FileHelper
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Failed to copy texture to project assets: {ex.Message}. Using original path.", LogType.Warning);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.FailedCopyTextureFormat", ex.Message), LogType.Warning);
                     texturesList.Add((texturePath, txtNumber)); // Fallback to original path
                 }
             }
@@ -365,7 +365,7 @@ public static class FileHelper
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"An error occurred while trying to open the file location: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(LocalizationHelper.GetFormat("Str.FileHelper.OpenFileLocationErrorFormat", ex.Message), LocalizationHelper.Get("Str.FileHelper.ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
@@ -475,7 +475,7 @@ public static class FileHelper
             _ => throw new ArgumentException($"Unsupported format: {format}", nameof(format))
         };
 
-        ProgressHelper.Start("Started exporting textures");
+        ProgressHelper.Start(LocalizationHelper.Get("Str.FileHelper.StartedExportingTextures"));
 
         int successfulExports = 0;
 
@@ -487,7 +487,7 @@ public static class FileHelper
             // check if file exists
             if (File.Exists(filePath))
             {
-                LogHelper.Log($"Could not save texture: {texture.DisplayName}. Error: File already exists.", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.TextureAlreadyExistsFormat", texture.DisplayName), LogType.Error);
                 return;
             }
              
@@ -502,7 +502,7 @@ public static class FileHelper
                 catch (Exception ex)
                 {
                     // Log the error and continue processing other textures
-                    LogHelper.Log($"Could not save texture: {texture.DisplayName}. Error: {ex.Message}.", LogType.Error);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.CouldNotSaveTextureFormat", texture.DisplayName, ex.Message), LogType.Error);
                 } 
             }
             else
@@ -523,20 +523,20 @@ public static class FileHelper
                 catch (Exception ex)
                 {
                     // Log the error and continue processing other textures
-                    LogHelper.Log($"Could not save texture: {texture.DisplayName}. Error: {ex.Message}.", LogType.Error);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.CouldNotSaveTextureFormat", texture.DisplayName, ex.Message), LogType.Error);
                 }
             }
         });
 
         await Task.WhenAll(tasks);
 
-        ProgressHelper.Stop($"Exported {successfulExports} texture(s) in {{0}}", true);
+        ProgressHelper.Stop(LocalizationHelper.GetFormat("Str.FileHelper.ExportedTexturesFormat", successfulExports), true);
     }
 
     public static async Task SaveDrawablesAsync(List<GDrawable> drawables, string folderPath)
     {
         Directory.CreateDirectory(folderPath);
-        ProgressHelper.Start("Started exporting drawables");
+        ProgressHelper.Start(LocalizationHelper.Get("Str.FileHelper.StartedExportingDrawables"));
 
         int successfulExports = 0;
 
@@ -548,7 +548,7 @@ public static class FileHelper
             // check if file exists
             if (File.Exists(filePath))
             {
-                LogHelper.Log($"Could not save drawable: {drawable.Name}. Error: File already exists.", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.DrawableAlreadyExistsFormat", drawable.Name), LogType.Error);
                 return;
             }
 
@@ -560,12 +560,12 @@ public static class FileHelper
             catch (Exception ex)
             {
                 // Log the error and continue processing other drawables
-                LogHelper.Log($"Could not save drawable: {drawable.Name}. Error: {ex.Message}.", LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.FileHelper.CouldNotSaveDrawableFormat", drawable.Name, ex.Message), LogType.Error);
             }
         });
 
         await Task.WhenAll(tasks);
 
-        ProgressHelper.Stop($"Exported {successfulExports} drawable(s) in {{0}}", true);
+        ProgressHelper.Stop(LocalizationHelper.GetFormat("Str.FileHelper.ExportedDrawablesFormat", successfulExports), true);
     }
 }

@@ -13,7 +13,7 @@
         d:DataContext="{d:DesignInstance Type=helpers:NavigationHelper, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Background="{DynamicResource Brush50}"
-        Title="grzyClothTool" Height="900" Width="1400" MinWidth="1200" MinHeight="800"
+        Title="{DynamicResource Str.MainWindow.Title}" Height="900" Width="1400" MinWidth="1200" MinHeight="800"
         MouseDown="Window_MouseDown"
         Closed="Window_Closed"
         Closing="Window_Closing"
@@ -28,23 +28,23 @@
             </Menu.ItemsPanel>
 
 
-            <MenuItem Header="_Project">
-                <MenuItem Header="_Back to home screen" Click="HomeScreen_Click" />
+            <MenuItem Header="{DynamicResource Str.MainWindow.Menu.Project}">
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.BackToHome}" Click="HomeScreen_Click" />
                 <Separator />
-                <MenuItem Header="_Save" Click="Save_Click" InputGestureText="Ctrl+S" />
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.Save}" Click="Save_Click" InputGestureText="Ctrl+S" />
                 <Separator />
-                <MenuItem Header="_Open Addon" Click="OpenAddon_Click" 
-                          ToolTip="Open addon files (replaces current project)" />
-                <MenuItem Header="_Add Addon" Click="AddAddon_Click" 
-                          ToolTip="Add addon files to current project" />
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.OpenAddon}" Click="OpenAddon_Click"
+                          ToolTip="{DynamicResource Str.MainWindow.Menu.OpenAddon.ToolTip}" />
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.AddAddon}" Click="AddAddon_Click"
+                          ToolTip="{DynamicResource Str.MainWindow.Menu.AddAddon.ToolTip}" />
                 <Separator />
-                <MenuItem Header="_Import Project" Click="ImportProject_Click" />
-                <MenuItem Header="_Export Project" Click="ExportProject_Click" />
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.ImportProject}" Click="ImportProject_Click" />
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.ExportProject}" Click="ExportProject_Click" />
             </MenuItem>
-            <MenuItem Header="_Settings" Tag="Settings" Click="Navigation_Click" />
-            <MenuItem Header="_View" Tag="View">
-                <MenuItem Header="_Logs" Tag="Logs" Click="LogsOpen_Click" />
-                <MenuItem Header="_Duplicate Inspector" Tag="DuplicateInspector" Click="DuplicateInspector_Click" />
+            <MenuItem Header="{DynamicResource Str.MainWindow.Menu.Settings}" Tag="Settings" Click="Navigation_Click" />
+            <MenuItem Header="{DynamicResource Str.MainWindow.Menu.View}" Tag="View">
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.Logs}" Tag="Logs" Click="LogsOpen_Click" />
+                <MenuItem Header="{DynamicResource Str.MainWindow.Menu.DuplicateInspector}" Tag="DuplicateInspector" Click="DuplicateInspector_Click" />
             </MenuItem>
 
             <MenuItem Header="" IsEnabled="False">
@@ -79,13 +79,13 @@
                 </StackPanel>
             </StatusBarItem>
             <StatusBarItem Grid.Column="1" HorizontalAlignment="Right" Padding="5,0,10,2">
-                <Hyperlink NavigateUri="{x:Static constants:GlobalConstants.DISCORD_INVITE_URL}" RequestNavigate="Hyperlink_RequestNavigate">Discord</Hyperlink>
+                <Hyperlink NavigateUri="{x:Static constants:GlobalConstants.DISCORD_INVITE_URL}" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="{DynamicResource Str.MainWindow.Link.Discord}"/></Hyperlink>
             </StatusBarItem>
             <StatusBarItem Grid.Column="2" HorizontalAlignment="Right" Padding="5,0,10,2">
-                <Hyperlink NavigateUri="https://github.com/grzybeek/grzyClothTool" RequestNavigate="Hyperlink_RequestNavigate">Source code</Hyperlink>
+                <Hyperlink NavigateUri="https://github.com/grzybeek/grzyClothTool" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="{DynamicResource Str.MainWindow.Link.SourceCode}"/></Hyperlink>
             </StatusBarItem>
             <StatusBarItem Grid.Column="3" HorizontalAlignment="Right" Padding="5,0,10,2">
-                <Hyperlink NavigateUri="https://patreon.com/grzybeek" RequestNavigate="Hyperlink_RequestNavigate">Support me!</Hyperlink>
+                <Hyperlink NavigateUri="https://patreon.com/grzybeek" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="{DynamicResource Str.MainWindow.Link.SupportMe}"/></Hyperlink>
             </StatusBarItem>
 
             <StatusBarItem Grid.ColumnSpan="4" Padding="0" VerticalAlignment="Bottom">
@@ -110,7 +110,7 @@
                         <ad:LayoutAnchorable
                             x:Name="PreviewAnchorable"
                             ContentId="PreviewAnchorable"
-                            Title="3D Preview"
+                            Title="{DynamicResource Str.MainWindow.Anchorable.Preview}"
                             CanClose="True"
                             CanHide="True"
                             CanFloat="True"

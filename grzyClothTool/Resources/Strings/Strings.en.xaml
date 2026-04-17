@@ -1,0 +1,638 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=netstandard">
+
+    <!-- Common -->
+    <system:String x:Key="Str.Common.Back">Back</system:String>
+    <system:String x:Key="Str.Common.Ok">OK</system:String>
+    <system:String x:Key="Str.Common.Cancel">Cancel</system:String>
+    <system:String x:Key="Str.Common.Yes">Yes</system:String>
+    <system:String x:Key="Str.Common.No">No</system:String>
+    <system:String x:Key="Str.Common.Close">Close</system:String>
+    <system:String x:Key="Str.Common.Save">Save</system:String>
+    <system:String x:Key="Str.Common.Delete">Delete</system:String>
+    <system:String x:Key="Str.Common.Error">Error</system:String>
+    <system:String x:Key="Str.Common.Warning">Warning</system:String>
+    <system:String x:Key="Str.Common.Information">Information</system:String>
+    <system:String x:Key="Str.Common.Confirm">Confirm</system:String>
+    <system:String x:Key="Str.Common.Loading">Loading...</system:String>
+
+    <!-- AccountsWindow -->
+    <system:String x:Key="Str.AccountsWindow.Title">Patreon</system:String>
+    <system:String x:Key="Str.AccountsWindow.PatreonInfo">Patreon information</system:String>
+    <system:String x:Key="Str.AccountsWindow.Status.Format">Status: {0}</system:String>
+    <system:String x:Key="Str.AccountsWindow.LastPayment.Format">Last Payment: {0}</system:String>
+    <system:String x:Key="Str.AccountsWindow.NextPayment.Format">Next Payment: {0}</system:String>
+    <system:String x:Key="Str.AccountsWindow.Button.Login">LOGIN</system:String>
+    <system:String x:Key="Str.AccountsWindow.Button.Logout">LOGOUT</system:String>
+    <system:String x:Key="Str.AccountsWindow.Button.Close">Close</system:String>
+
+    <!-- AccountsWindow_cs -->
+    <system:String x:Key="Str.Accounts.Status.Active">ACTIVE</system:String>
+    <system:String x:Key="Str.Accounts.Status.NotActive">NOT ACTIVE</system:String>
+    <system:String x:Key="Str.Accounts.Error.LoginFailed">Failed to login</system:String>
+
+    <!-- AddonManager_cs -->
+    <system:String x:Key="Str.AddonManager.Log.LoadPedAltVariationsFailedFormat">Error loading pedalternativevariations.meta: {0}</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.NoYddFilesFormat">No .ydd files found for selected .meta file ({0})</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.NoYmtFileFormat">No .ymt file found for selected .meta file ({0})</system:String>
+    <system:String x:Key="Str.AddonManager.Log.NoAssociatedYddFirstPersonFormat">Could not find associated YDD file for first person file: {0}, please do it manually</system:String>
+    <system:String x:Key="Str.AddonManager.Log.NoAssociatedYddYldFormat">Could not find associated YDD file for this YLD: {0}, please do it manually</system:String>
+    <system:String x:Key="Str.AddonManager.Log.CopyFirstPersonFailedFormat">Failed to copy first person file to project assets: {0}. Using original path.</system:String>
+    <system:String x:Key="Str.AddonManager.Log.CopyClothPhysicsFailedFormat">Failed to copy cloth physics file to project assets: {0}. Using original path.</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DrawableSkippedDuplicateFormat">Drawable '{0}' was not added (user skipped duplicate)</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DrawableCancelledBatchFormat">Drawable '{0}' was not added (user cancelled duplicate batch)</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DrawableCancelledDuplicateFormat">Drawable '{0}' was not added (user cancelled duplicate)</system:String>
+    <system:String x:Key="Str.AddonManager.Log.ExtractGroupErrorFormat">Error extracting group from path: {0}</system:String>
+    <system:String x:Key="Str.AddonManager.Log.DeleteFilesFailedFormat">Failed to delete files for drawable '{0}': {1}</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.DuplicateItemFormat">  &#x2022; {0} (Addon: {1})</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.DuplicateDetectedMessageFormat">A duplicate drawable has been detected!
+
+The drawable you're trying to add appears to be identical to:
+{0}
+
+This new drawable will be added but marked as a duplicate.
+
+Do you want to continue?</system:String>
+    <system:String x:Key="Str.AddonManager.Dialog.DuplicateDetectedTitle">Duplicate Drawable Detected</system:String>
+    <system:String x:Key="Str.AddonManager.Unknown">Unknown</system:String>
+
+    <!-- App_cs -->
+    <system:String x:Key="Str.App.Error.Unhandled">An error occurred: {0}</system:String>
+
+    <!-- AutoSaveIndicator_cs -->
+    <system:String x:Key="Str.AutoSaveIndicator.Tooltip.AutoSavingFormat">Auto-saving in {0} seconds</system:String>
+    <system:String x:Key="Str.AutoSaveIndicator.Tooltip.SaveInProgress">Save in progress</system:String>
+
+    <!-- BuildResourceHelper -->
+    <system:String x:Key="Str.BuildResourceHelper.SkippingCorruptedTextureFormat">Skipping corrupted texture: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.SkippingCorruptedEmbeddedTextureFormat">Skipping corrupted embedded texture: {0} in drawable {1}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.FailedDeleteDlcRpfFormat">Failed to delete existing dlc.rpf: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.OriginalTextureNotFoundFormat">Original texture '{0}' not found in TextureDictionary for drawable {1}. Skipping.</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.ProcessingExceptionFormat">Exception occurred while processing file: {0}
+Exception: {1}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.SkipCleanupNotBuildOutputFormat">Skipping cleanup: Build path does not end with 'build_output'. Path: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.SkipCleanupRootDirFormat">Skipping cleanup: Cannot delete root directory. Path: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.DeletedBuildOutputFormat">Deleted existing build output directory: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.FailedDeleteBuildOutputFormat">Failed to delete build output directory: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.ErrorBuildOutputCleanupFormat">Error during build output cleanup: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.DeletedBuildTempFormat">Deleted build temp directory: {0}</system:String>
+    <system:String x:Key="Str.BuildResourceHelper.FailedCleanupTempFormat">Failed to clean up temp directory: {0}</system:String>
+
+    <!-- BuildWindow -->
+    <system:String x:Key="Str.BuildWindow.Title">grzyClothTool - Build resource</system:String>
+    <system:String x:Key="Str.BuildWindow.GroupBox.ResourceType">Select resource type</system:String>
+    <system:String x:Key="Str.BuildWindow.Radio.FiveM">FiveM</system:String>
+    <system:String x:Key="Str.BuildWindow.Radio.AltV">AltV</system:String>
+    <system:String x:Key="Str.BuildWindow.Radio.Singleplayer">Singleplayer</system:String>
+    <system:String x:Key="Str.BuildWindow.Label.ProjectName">Project name</system:String>
+    <system:String x:Key="Str.BuildWindow.Label.OutputFolder">Output folder</system:String>
+    <system:String x:Key="Str.BuildWindow.CheckBox.SplitAddons">Build addons as separate resources</system:String>
+    <system:String x:Key="Str.BuildWindow.Button.Build">Build resource</system:String>
+
+    <!-- BuildWindow_cs -->
+    <system:String x:Key="Str.BuildWindow.Warning.NoProjectLoaded">No project loaded. Please create or open a project first.</system:String>
+    <system:String x:Key="Str.BuildWindow.Warning.BuildPathMissing">Build path could not be determined. Please check your project settings.</system:String>
+    <system:String x:Key="Str.BuildWindow.Warning.NoDrawables">No drawables found. Add drawables to be able to build resource.</system:String>
+    <system:String x:Key="Str.BuildWindow.Error.FillAllFields">Please fill in all fields. Make sure a project is loaded.</system:String>
+    <system:String x:Key="Str.BuildWindow.Success.BuildDone">Build done, elapsed time: {0}</system:String>
+    <system:String x:Key="Str.BuildWindow.Success.BuildDoneTitle">Build done</system:String>
+    <system:String x:Key="Str.BuildWindow.Error.BuildFailedLog">Build failed: {0}</system:String>
+    <system:String x:Key="Str.BuildWindow.Error.BuildFailed">Build failed:&#x0a;&#x0a;{0}</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameEmpty">Project name cannot be empty</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameTooShort">Project name must be at least 3 characters long</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameTooLong">Project name cannot be longer than 50 characters</system:String>
+    <system:String x:Key="Str.BuildWindow.Validation.NameInvalidChars">Project name can only contain lowercase letters, numbers, and underscores</system:String>
+
+    <!-- CustomMessageBox -->
+    <system:String x:Key="Str.CustomMessageBox.Caption.Default">Custom Message Box Caption</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Message.Default">Custom Message Box Message</system:String>
+
+    <!-- CustomMessageBox_cs -->
+    <system:String x:Key="Str.CustomMessageBox.Button.OK">OK</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Cancel">Cancel</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Yes">Yes</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.No">No</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.OpenFolder">Open Folder</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Delete">Delete</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Replace">Replace</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Male">Male</system:String>
+    <system:String x:Key="Str.CustomMessageBox.Button.Female">Female</system:String>
+
+    <!-- DragDropHelper -->
+    <system:String x:Key="Str.DragDropHelper.FailedExtractFileFormat">Failed to extract file {0} ({1}): {2}</system:String>
+    <system:String x:Key="Str.DragDropHelper.ErrorExtractingFileFormat">Error extracting file {0}: {1}</system:String>
+    <system:String x:Key="Str.DragDropHelper.ErrorExtractVirtualFilesFormat">Error in ExtractVirtualFilesAsync: {0}</system:String>
+    <system:String x:Key="Str.DragDropHelper.ErrorCheckingDescriptorFormat">Error checking FileGroupDescriptor: {0}</system:String>
+
+    <!-- DrawableList -->
+    <system:String x:Key="Str.DrawableList.ContextMenu.ShowInDuplicateInspector">Show in duplicate inspector</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.Delete">Delete</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.Replace">Replace</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.DuplicateOppositeGender">Duplicate to opposite gender</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.MoveToAnotherAddon">Move to another addon</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.Move">Move</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.OpenFileLocation">Open file location</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportAsYDD">Export as YDD</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportAsYDDWithTextures">Export as YDD with textures</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportTexturesAsDDS">Export only textures as DDS</system:String>
+    <system:String x:Key="Str.DrawableList.ContextMenu.ExportTexturesAsPNG">Export only textures as PNG</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.Reserved">RSV</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.ReservedTooltip">Reserved</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.New">NEW</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.NewTooltip">New</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.Duplicate">DUP</system:String>
+    <system:String x:Key="Str.DrawableList.Badge.SelectedTooltip">Selected</system:String>
+    <system:String x:Key="Str.DrawableList.Tooltip.EncryptedCannotPreview">Encrypted - Cannot preview</system:String>
+
+    <!-- DrawableList_cs -->
+    <system:String x:Key="Str.DrawableList.AddonFull.Message">The selected addon cannot fit the selected drawables.</system:String>
+    <system:String x:Key="Str.DrawableList.AddonFull.Title">Addon full</system:String>
+    <system:String x:Key="Str.DrawableList.Log.DuplicatedOppositeGenderFormat">Duplicated drawable '{0}' to opposite gender ({1}) - new drawable is {2}</system:String>
+    <system:String x:Key="Str.DrawableList.Log.DuplicateOppositeErrorFormat">Error duplicating drawable to opposite gender: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.DuplicateFailedFormat">Failed to duplicate drawable: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.SelectReplaceDrawableTitleFormat">Select drawable file to replace '{0}'</system:String>
+    <system:String x:Key="Str.DrawableList.Filter.DrawableFiles">Drawable files (*.ydd)|*.ydd</system:String>
+    <system:String x:Key="Str.DrawableList.Log.ReplacedDrawableFormat">Replaced drawable '{0}' with new file</system:String>
+    <system:String x:Key="Str.DrawableList.Log.ReplaceFailedFormat">Failed to replace drawable: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ReplaceFailedFormat">Failed to replace drawable: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportTexturesFormat">Select the folder to export textures as {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportDrawableWithTextures">Select the folder to export drawable with textures</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportDrawable">Select the folder to export drawable</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportErrorFormat">An error occurred during export: {0}</system:String>
+    <system:String x:Key="Str.DrawableList.Dialog.ExportErrorTitle">Export Error</system:String>
+    <system:String x:Key="Str.DrawableList.Log.MovedGroupFormat">Drawable '{0}' moved from group '{1}' to '{2}'</system:String>
+    <system:String x:Key="Str.DrawableList.Log.MovedPositionFormat">Drawable '{0}' moved from position {1} to {2}</system:String>
+    <system:String x:Key="Str.DrawableList.Ungrouped">Ungrouped</system:String>
+
+    <!-- DrawableSelectWindow -->
+    <system:String x:Key="Str.DrawableSelectWindow.Title">Select your drawable properties</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Heading">Could not recognize your drawable properties</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Label.AssetType">Asset type</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Label.DrawableType">Drawable type</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Button.Cancel">Cancel</system:String>
+    <system:String x:Key="Str.DrawableSelectWindow.Button.Select">Select</system:String>
+
+    <!-- DuplicateBatchDialog -->
+    <system:String x:Key="Str.DuplicateBatchDialog.Window.Title">Duplicate Drawables Detected</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Caption.Text">Duplicate Drawables Detected</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Description.Text">The following drawables appear to be duplicates of existing items. Select which ones you want to add:</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.SelectAll.Content">Select All</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.SelectNone.Content">Select None</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.CancelAll.Content">Cancel All</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Confirm.Content">Confirm</system:String>
+
+    <!-- DuplicateBatchDialog_cs -->
+    <system:String x:Key="Str.DuplicateBatchDialog.Unknown">Unknown</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.NoExistingDuplicates">No existing duplicates found</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.DuplicateOfPrefix">Duplicate of: </system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.MoreCountFormat"> (+{0} more)</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Type.Prop">Prop</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.Type.Component">Component</system:String>
+    <system:String x:Key="Str.DuplicateBatchDialog.SummaryFormat">{0} of {1} duplicate(s) will be added</system:String>
+
+    <!-- DuplicateInspectorWindow -->
+    <system:String x:Key="Str.DuplicateInspector.Window.Title">Duplicate Inspector</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Header.Title">Duplicate Inspector</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Header.Subtitle">Found X duplicate groups</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Badge.Dup">DUP</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Group.DeleteAllExceptFirst">Delete All Except First</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Item.Open">Open</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Item.Delete">Delete</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Footer.Refresh">Refresh</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Footer.Close">Close</system:String>
+
+    <!-- DuplicateInspectorWindow_cs -->
+    <system:String x:Key="Str.DuplicateInspector.Subtitle.None">No duplicates found</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Subtitle.Count">Found {0} duplicate group(s)</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Group.Title">Drawable: {0}</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Group.Description">{0} identical drawables</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Location.Unknown">Unknown</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Location.Addon">Addon {0}</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Log.ScrollError">Error scrolling drawable into view: {0}</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.DeleteItem">Are you sure you want to delete '{0}'?</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.DeleteTitle">Confirm Delete</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Info.AllResolved">All duplicates have been resolved!</system:String>
+    <system:String x:Key="Str.Common.Success">Success</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.BulkDelete">This will delete {0} duplicate items from this group, keeping only the first one.&#x0a;&#x0a;Are you sure?</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Confirm.BulkDeleteTitle">Confirm Bulk Delete</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Info.DeletedAllResolved">Deleted {0} duplicate items!&#x0a;&#x0a;All duplicates have been resolved!</system:String>
+    <system:String x:Key="Str.DuplicateInspector.Info.DeletedCount">Deleted {0} duplicate items!</system:String>
+
+    <!-- FileHelper -->
+    <system:String x:Key="Str.FileHelper.ErrorTitle">Error</system:String>
+    <system:String x:Key="Str.FileHelper.ErrorResolvingPathFormat">Error resolving file path '{0}': {1}</system:String>
+    <system:String x:Key="Str.FileHelper.OpenFileLocationErrorFormat">An error occurred while trying to open the file location: {0}</system:String>
+    <system:String x:Key="Str.FileHelper.FailedCopyDrawableFormat">Failed to copy drawable to project assets: {0}. Using original path.</system:String>
+    <system:String x:Key="Str.FileHelper.FailedCopyTextureFormat">Failed to copy texture to project assets: {0}. Using original path.</system:String>
+    <system:String x:Key="Str.FileHelper.TextureAlreadyExistsFormat">Could not save texture: {0}. Error: File already exists.</system:String>
+    <system:String x:Key="Str.FileHelper.CouldNotSaveTextureFormat">Could not save texture: {0}. Error: {1}.</system:String>
+    <system:String x:Key="Str.FileHelper.DrawableAlreadyExistsFormat">Could not save drawable: {0}. Error: File already exists.</system:String>
+    <system:String x:Key="Str.FileHelper.CouldNotSaveDrawableFormat">Could not save drawable: {0}. Error: {1}.</system:String>
+    <system:String x:Key="Str.FileHelper.StartedExportingTextures">Started exporting textures</system:String>
+    <system:String x:Key="Str.FileHelper.StartedExportingDrawables">Started exporting drawables</system:String>
+    <system:String x:Key="Str.FileHelper.ExportedTexturesFormat">Exported {0} texture(s) in {{0}}</system:String>
+    <system:String x:Key="Str.FileHelper.ExportedDrawablesFormat">Exported {0} drawable(s) in {{0}}</system:String>
+
+    <!-- FirstRunSetupWindow -->
+    <system:String x:Key="Str.FirstRunSetup.Title">Welcome to grzyClothTool - First Time Setup</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Heading.Welcome">Welcome to grzyClothTool!</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Heading.Subtitle">First Time Setup</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.SelectLabel">Select Main Projects Folder</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.Description">Choose a MAIN folder where ALL self-contained projects will be stored.</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.ExampleLabel">Example: </system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.ExamplePath">C:\grzyClothTool Projects</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Folder.Hint">(Do NOT select a specific project folder - select the parent folder that will contain multiple projects)</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Button.Browse">Browse...</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Info.Heading">[i] Important Information</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Info.Line1">* This setting is stored in your user profile and will persist across application updates.</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Info.Line2">* You can change this folder later in the Settings menu.</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Button.Continue">Continue</system:String>
+
+    <!-- FirstRunSetupWindow_cs -->
+    <system:String x:Key="Str.FirstRunSetup.Confirm.ExitWithoutSetup">You must select a main folder to continue using the application.&#x0a;&#x0a;This will close the application. Are you sure?</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Confirm.SetupRequired">Setup Required</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Dialog.BrowseDescription">Select the MAIN folder where ALL your projects will be stored (not a specific project folder)</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.SelectMainFolder">Please select a main folder before continuing.</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.RootDriveNotAllowed">You cannot use a root drive (e.g., C:\) as the main folder. Please select or create a subfolder.</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.AccessDenied">Access denied. Please select a folder where you have write permissions.</system:String>
+    <system:String x:Key="Str.FirstRunSetup.Validation.ErrorFormat">Error: {0}</system:String>
+
+    <!-- GDrawable_cs -->
+    <system:String x:Key="Str.GDrawable.FlagsTextFormat">{0} ({1} selected)</system:String>
+    <system:String x:Key="Str.GDrawable.Log.CouldNotFindFileFormat">Could not find drawable file '{0}': {1}</system:String>
+
+    <!-- Home -->
+    <system:String x:Key="Str.Home.Start.Header">Start your journey</system:String>
+    <system:String x:Key="Str.Home.Start.Close">Close</system:String>
+    <system:String x:Key="Str.Home.Start.CreateNew">Create new project</system:String>
+    <system:String x:Key="Str.Home.Start.ImportProject">Import project</system:String>
+    <system:String x:Key="Str.Home.Start.OpenAddon">Open addon</system:String>
+    <system:String x:Key="Str.Home.Start.OpenSave">Open save</system:String>
+    <system:String x:Key="Str.Home.Recent.Header">Recently opened</system:String>
+    <system:String x:Key="Str.Home.Recent.AddonsSuffix"> addons</system:String>
+    <system:String x:Key="Str.Home.Recent.DrawablesSuffix"> drawables</system:String>
+    <system:String x:Key="Str.Home.Recent.LastModifiedPrefix">Last modified: </system:String>
+    <system:String x:Key="Str.Home.Recent.None">No recent projects</system:String>
+    <system:String x:Key="Str.Home.Tools.Header">Explore my other tools</system:String>
+    <system:String x:Key="Str.Home.Tools.ClickToLearn">Click to learn more</system:String>
+    <system:String x:Key="Str.Home.DidYouKnow.Header">Did you know?</system:String>
+    <system:String x:Key="Str.Home.Changelog.Header">Latest changes</system:String>
+    <system:String x:Key="Str.Home.Changelog.VersionPrefix">Version: </system:String>
+    <system:String x:Key="Str.Home.Changelog.ViewFull">View Full Changelog on GitHub</system:String>
+    <system:String x:Key="Str.Home.Changelog.Bullet">• </system:String>
+    <system:String x:Key="Str.Home.Supporters.Header">Supporters</system:String>
+
+    <!-- Home_cs -->
+    <system:String x:Key="Str.Home.Error.OpenChangelog">Failed to open changelog: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.OpenWebsite">Failed to open website: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.OpenUrl">Failed to open URL: {0}</system:String>
+    <system:String x:Key="Str.Home.Warning.ConfigureMainFolder">Please configure the main projects folder in settings first.</system:String>
+    <system:String x:Key="Str.Home.Warning.ConfigurationRequired">Configuration Required</system:String>
+    <system:String x:Key="Str.Home.Warning.MainFolderMissing">Main projects folder does not exist: {0}&#x0a;&#x0a;Please update it in settings.</system:String>
+    <system:String x:Key="Str.Home.Warning.FolderNotFound">Folder Not Found</system:String>
+    <system:String x:Key="Str.Home.Warning.InvalidProjectNameChars">Project name contains invalid characters. Please choose a different name.</system:String>
+    <system:String x:Key="Str.Home.Warning.InvalidName">Invalid Name</system:String>
+    <system:String x:Key="Str.Home.Warning.SaveFileMissing">This save file no longer exists.</system:String>
+    <system:String x:Key="Str.Home.Warning.FileNotFound">File Not Found</system:String>
+    <system:String x:Key="Str.Home.Log.CreatedProject">Created new {0} project: {1} at {2}</system:String>
+    <system:String x:Key="Str.Home.Log.CreateProjectFailed">Failed to create new project: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.CreateProjectFailed">Failed to create new project: {0}</system:String>
+    <system:String x:Key="Str.Home.Error.LoadSaveFailed">Failed to load save: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.RemovedRecentProject">Removed project from recent list: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.RemoveRecentProjectFailed">Failed to remove recent project: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.DeletedOldSaveFile">Deleted old save file: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.DeletedOldAssetsFolder">Deleted old assets folder: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.ClearedProjectFolder">Cleared project folder for overwrite: {0}</system:String>
+    <system:String x:Key="Str.Home.Log.ClearProjectFolderFailed">Warning: Could not fully clear project folder: {0}</system:String>
+    <system:String x:Key="Str.Home.Dialog.OpenSaveFile">Open Save File</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.SaveFiles">Save files (*.json)|*.json|All files (*.*)|*.*</system:String>
+
+    <!-- LogWindow -->
+    <system:String x:Key="Str.LogWindow.Title">Logs</system:String>
+    <system:String x:Key="Str.LogWindow.Header.Timestamp">Timestamp</system:String>
+    <system:String x:Key="Str.LogWindow.Header.Message">Message</system:String>
+
+    <!-- MainWindow -->
+    <system:String x:Key="Str.MainWindow.Title">grzyClothTool</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Project">_Project</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.BackToHome">_Back to home screen</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Save">_Save</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.OpenAddon">_Open Addon</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.OpenAddon.ToolTip">Open addon files (replaces current project)</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.AddAddon">_Add Addon</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.AddAddon.ToolTip">Add addon files to current project</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.ImportProject">_Import Project</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.ExportProject">_Export Project</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Settings">_Settings</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.View">_View</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.Logs">_Logs</system:String>
+    <system:String x:Key="Str.MainWindow.Menu.DuplicateInspector">_Duplicate Inspector</system:String>
+    <system:String x:Key="Str.MainWindow.Link.Discord">Discord</system:String>
+    <system:String x:Key="Str.MainWindow.Link.SourceCode">Source code</system:String>
+    <system:String x:Key="Str.MainWindow.Link.SupportMe">Support me!</system:String>
+    <system:String x:Key="Str.MainWindow.Anchorable.Preview">3D Preview</system:String>
+
+    <!-- MainWindow_cs -->
+    <system:String x:Key="Str.MainWindow.Splash.CheckingUpdates">Checking for updates...</system:String>
+    <system:String x:Key="Str.MainWindow.Splash.StartingApp">Starting app</system:String>
+    <system:String x:Key="Str.MainWindow.Log.NoChangesToSave">No changes to save</system:String>
+    <system:String x:Key="Str.MainWindow.Log.ClearedData">Cleared data, moved to home screen</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.SelectMetaFiles">Select .meta file(s)</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.SelectMetaFilesToAdd">Select .meta file(s) to add</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.ImportProject">Import project</system:String>
+    <system:String x:Key="Str.MainWindow.Dialog.ExportProject">Export project</system:String>
+    <system:String x:Key="Str.MainWindow.Log.SkippedMetaFile">Skipped file {0} as it is probably not a correct .meta file</system:String>
+    <system:String x:Key="Str.MainWindow.Log.NoMetaFilesInProject">No meta files found in project file, this shouldn't happen, please report it to developer on discord</system:String>
+    <system:String x:Key="Str.MainWindow.Error.NoValidMetaFiles">No valid .meta files were selected.</system:String>
+    <system:String x:Key="Str.MainWindow.Warning.NoDrawablesFound">No drawable files (.ydd) were found for the selected .meta file(s).&#x0a;&#x0a;Please make sure the .ydd files are in the same directory or subdirectories as the .meta file.</system:String>
+    <system:String x:Key="Str.MainWindow.Warning.NoDrawablesFoundTitle">No Drawables Found</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedLoadingAddon">Started loading addon</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedAddingAddon">Started adding addon</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.AddonLoadedIn">{0} addon loaded in {1}</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.AddonAddedIn">Addon added in {0}</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedImporting">Started importing {0}</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.ProjectImportedIn">Project imported in {0}</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.StartedExportingProject">Started exporting project</system:String>
+    <system:String x:Key="Str.MainWindow.Progress.ProjectExportedIn">Project exported in {0}</system:String>
+    <system:String x:Key="Str.Common.ProjectType.SelfContained">Self-contained</system:String>
+    <system:String x:Key="Str.Common.ProjectType.External">External</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.MetaFiles">Meta files (*.meta)|*.meta</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.GctProject">grzyClothTool project (*.gctproject)|*.gctproject</system:String>
+
+    <!-- ModernLabelComboBox -->
+    <system:String x:Key="Str.ModernLabelComboBox.ClearButton.ToolTip">Clear Group</system:String>
+
+    <!-- OptimizeWindow -->
+    <system:String x:Key="Str.Optimize.Title">Optimize textures</system:String>
+    <system:String x:Key="Str.Optimize.Group.Current">Current texture</system:String>
+    <system:String x:Key="Str.Optimize.Group.Output">Output texture</system:String>
+    <system:String x:Key="Str.Optimize.Label.Name">Name: </system:String>
+    <system:String x:Key="Str.Optimize.Label.Compression">Compression: </system:String>
+    <system:String x:Key="Str.Optimize.Label.Width">Width: </system:String>
+    <system:String x:Key="Str.Optimize.Label.Height">Height: </system:String>
+    <system:String x:Key="Str.Optimize.Label.MipMap">Mipmap amount: </system:String>
+    <system:String x:Key="Str.Optimize.Label.SelectedCount.Format">Selected {0} textures</system:String>
+    <system:String x:Key="Str.Optimize.Label.Downscale">Downscale texture size</system:String>
+    <system:String x:Key="Str.Optimize.Label.SelectSize">Select texture size</system:String>
+    <system:String x:Key="Str.Optimize.Label.ChangeCompression">Change texture compression</system:String>
+    <system:String x:Key="Str.Optimize.Label.SelectCompression">Select compression</system:String>
+    <system:String x:Key="Str.Optimize.Warning.Quality">Changing texture size here will make quality worse. To preserve texture quality this should be done with 3d programs and texture baking.</system:String>
+    <system:String x:Key="Str.Optimize.Button.Cancel">Cancel</system:String>
+    <system:String x:Key="Str.Optimize.Button.Optimize">Optimize</system:String>
+
+    <!-- OptimizeWindow_cs -->
+    <system:String x:Key="Str.OptimizeWindow.NoOptionsSelected">No optimization options selected</system:String>
+    <system:String x:Key="Str.OptimizeWindow.Log.WillOptimizeDuringBuild">Textures will be optimized during resource build</system:String>
+
+    <!-- PreviewWindowHost_cs -->
+    <system:String x:Key="Str.PreviewWindowHost.Log.InitFailedFormat">3D Preview initialization failed: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Log.BackgroundInitFailedFormat">3D Preview background initialization failed: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Log.CloseErrorFormat">Error closing preview: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Log.PreviewErrorFormat">3D Preview error: {0}</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Placeholder.GtaIssue">3D Preview unavailable (GTA V installation issue - see log)</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Placeholder.GpuIssue">3D Preview unavailable (GPU/Graphics error - see log)</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Placeholder.Disabled">3D Preview disabled due to errors (see log)</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Error.SetPedModel">Failed to set ped model</system:String>
+    <system:String x:Key="Str.PreviewWindowHost.Error.UpdateDrawables">Failed to update drawables in 3D preview</system:String>
+
+    <!-- ProjectSetupDialog -->
+    <system:String x:Key="Str.ProjectSetup.Window.Title">Project Setup</system:String>
+    <system:String x:Key="Str.ProjectSetup.ProjectName.Label">Project Name</system:String>
+    <system:String x:Key="Str.ProjectSetup.Field.ProjectType">Project Type</system:String>
+    <system:String x:Key="Str.ProjectSetup.SelfContained.Title">Self-contained</system:String>
+    <system:String x:Key="Str.ProjectSetup.SelfContained.Description">Files are copied to project folder. Project can be moved or shared easily.</system:String>
+    <system:String x:Key="Str.ProjectSetup.External.Title">External</system:String>
+    <system:String x:Key="Str.ProjectSetup.External.Description">Files stay in original locations. Uses less disk space but not portable.</system:String>
+    <system:String x:Key="Str.ProjectSetup.External.Warning">Moving or deleting original files will break the project.</system:String>
+    <system:String x:Key="Str.ProjectSetup.Footer.Cancel">Cancel</system:String>
+
+    <!-- ProjectSetupDialog_cs -->
+    <system:String x:Key="Str.ProjectSetup.Title.CreateNew">Create New Project</system:String>
+    <system:String x:Key="Str.ProjectSetup.Title.OpenExisting">Open Existing Addon</system:String>
+    <system:String x:Key="Str.ProjectSetup.Button.Create">Create</system:String>
+    <system:String x:Key="Str.ProjectSetup.Button.Open">Open</system:String>
+    <system:String x:Key="Str.ProjectSetup.Warning.ProjectExists">A project named "{0}" already exists. Continuing will overwrite it.</system:String>
+    <system:String x:Key="Str.ProjectSetup.DrawableCount.WithMeta">Found {0} drawable(s) in {1} .meta files</system:String>
+    <system:String x:Key="Str.ProjectSetup.DrawableCount.Simple">Found {0} drawable(s)</system:String>
+    <system:String x:Key="Str.ProjectSetup.Confirm.OverwriteMessage">A project named "{0}" already exists.&#x0a;&#x0a;Do you want to overwrite it? This cannot be undone.</system:String>
+    <system:String x:Key="Str.ProjectSetup.Confirm.OverwriteTitle">Project Already Exists</system:String>
+
+    <!-- ProjectWindow -->
+    <system:String x:Key="Str.ProjectWindow.Drawables.Header">Drawables</system:String>
+    <system:String x:Key="Str.ProjectWindow.Search.Placeholder">Search...</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Female">FEMALE</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Male">MALE</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.SelectFolder">Select Folder</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.DeleteDrawable.Tooltip">Delete selected drawable</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Preview3D">3D PREVIEW</system:String>
+    <system:String x:Key="Str.ProjectWindow.Buttons.Build">BUILD</system:String>
+
+    <!-- ProjectWindow_cs -->
+    <system:String x:Key="Str.ProjectWindow.Dialog.SelectDrawableFiles">Select drawable files ({0})</system:String>
+    <system:String x:Key="Str.ProjectWindow.Dialog.SelectDrawableFolder">Select a folder containing drawable files ({0})</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.ScanningFiles">Scanning files to add...</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.AddingDrawableFiles">Adding {0} drawable files from {1} folder(s)...</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.AddDrawablesError">Error adding drawables: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.DragEnterError">Error in DragEnter: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.DragOverError">Error in DragOver: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.DropEventError">Error in Drop event: {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Log.CouldNotExtractFiles">Could not extract files</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.AddedDrawablesIn">Added drawables in {0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.AddedNDrawablesIn">Added {0} drawables in {1}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.NoDrawableFilesFound">No drawable files found</system:String>
+    <system:String x:Key="Str.ProjectWindow.Progress.FailedToAddDrawables">Failed to add drawables</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.NoDrawablesSelected">No drawable(s) selected</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.Title">Delete drawable</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.ConfirmSingle">Are you sure you want to delete this drawable? ({0})</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.ConfirmMultiple">Are you sure you want to delete these {0} selected drawables?</system:String>
+    <system:String x:Key="Str.ProjectWindow.Delete.ReplaceSuffix">&#x0a;This will CHANGE NUMBERS of everything after this drawable!&#x0a;&#x0a;Do you want to replace with reserved slot instead?</system:String>
+    <system:String x:Key="Str.ProjectWindow.Build.NoProjectLoaded">No project is currently loaded. Please create or open a project first.</system:String>
+    <system:String x:Key="Str.ProjectWindow.Build.NoProjectTitle">No Project</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.FilesNotAccessible">The following file(s) could not be accessed:&#x0a;&#x0a;{0}&#x0a;&#x0a;They may be virtual paths. Please extract them to a folder first and drag from there.</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.FilesNotAccessibleTitle">Files Not Accessible</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.UndeterminedGender">{0} drawable(s) could not have gender automatically determined. Please select the gender for these files:</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.SelectGenderTitle">Select Gender</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.ProcessingError">An error occurred while processing dropped files:&#x0a;&#x0a;{0}</system:String>
+    <system:String x:Key="Str.ProjectWindow.Drop.ErrorTitle">Drag &amp; Drop Error</system:String>
+    <system:String x:Key="Str.FileDialog.Filter.DrawableFiles">Drawable files (*.ydd)|*.ydd</system:String>
+
+    <!-- SaveHelper -->
+    <system:String x:Key="Str.SaveHelper.StartedSaving">Started saving...</system:String>
+    <system:String x:Key="Str.SaveHelper.AutoSavedFormat">Auto-saved to {0} in {1}ms</system:String>
+    <system:String x:Key="Str.SaveHelper.CouldNotAutoSave">Could not auto-save: Project folder not configured or project name not set</system:String>
+    <system:String x:Key="Str.SaveHelper.AutoSaveFailedFormat">Auto-save failed: {0}</system:String>
+    <system:String x:Key="Str.SaveHelper.UnsavedTitleSuffix"> (Unsaved changes)</system:String>
+    <system:String x:Key="Str.SaveHelper.UnsavedChangesMessage">You have unsaved changes. Do you want to continue with this action?</system:String>
+    <system:String x:Key="Str.SaveHelper.UnsavedChangesTitle">Unsaved changes</system:String>
+    <system:String x:Key="Str.SaveHelper.ScanningDuplicates">Scanning project for duplicate drawables...</system:String>
+    <system:String x:Key="Str.SaveHelper.DuplicateScanCompleteFormat">Duplicate scan complete. Found {0} duplicate drawable groups.</system:String>
+    <system:String x:Key="Str.SaveHelper.LoadedSaveFromFormat">Loaded save from: {0}</system:String>
+
+    <!-- SelectedDrawable -->
+    <system:String x:Key="Str.SelectedDrawable.NoDrawable.Title">No drawable selected</system:String>
+    <system:String x:Key="Str.SelectedDrawable.NoDrawable.Description">Select a drawable from the list to view and edit its properties</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.Title">Reserved Drawable</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.Description">This is a reserved drawable slot and cannot be edited.</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.ReplaceButton">REPLACE RESERVED DRAWABLE</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Reserved.OptionsDisabled">Options Disabled</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.SelectedCount.Format">Selected {0} drawable(s)</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.WarningTitle">WARNING</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.WarningMessage">The selected drawables are not exactly the same. To edit drawable options, select the same or click button below to force override.</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.ForceOverride">Force Override</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.OverrideDisabled">Override Disabled</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.OverrideEnabled">OVERRIDE ENABLED</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.DifferentTypeWarning">Override cannot be enabled for drawables of different type. Select only one type of drawables</system:String>
+    <system:String x:Key="Str.SelectedDrawable.MultiSelect.MultipleGroups">(Multiple groups)</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Section.DrawableOptions">Drawable Options</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Section.PreviewOptions">Preview Options</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Section.Organization">Organization</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Audio">Audio</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.RenderFlag">RenderFlag</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HasSkin">Has Skin</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Flags">Flags</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HidesHair">Hides Hair</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.EnableHairScale">Enable Hair scale</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HairScale">Hair scale</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.EnableHighHeels">Enable High heels</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.HighHeelsAmount">High heels amount</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.KeepPreview">Keep preview</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.DisplayName">Display Name</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.DrawableType">Drawable Type</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Sex">Sex</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.FirstPersonFile">First person file</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.ClothPhysicsFile">Cloth physics file (.yld)</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Group">Group</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Field.Tags">Tags</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Preview.RunToEnable">Run 3D Preview to enable options</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Textures">Textures</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Textures.WarningToolTip">At least one texture has warning</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Embedded">Embedded</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Tab.Embedded.WarningToolTip">At least one embedded texture has warning</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.OptimizedToolTip">This texture will be optimized on resource build</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.NotFoundToolTip">Texture not found. Most likely this .ytd is empty</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.ReplacementToolTip">This is a replacement texture</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Texture.NotAvailable">N/A</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Button.Preview">Preview</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Button.AddTextures">ADD TEXTURES</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Button.DeleteSelected">Delete Selected</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.OptimizeTexture">Optimize texture</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.UndoOptimize">Undo optimize</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.RemoveTexture">Remove</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ReplaceTexture">Replace</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.OpenFileLocation">Open file location</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ExportAsYtd">Export as YTD</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ExportAsDds">Export texture as DDS</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ExportAsPng">Export texture as PNG</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.RenameEmbedded">Rename</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Menu.ReplaceEmbedded">Replace</system:String>
+
+    <!-- SelectedDrawable_cs -->
+    <system:String x:Key="Str.Common.Info">Info</system:String>
+    <system:String x:Key="Str.Common.ErrorFormat">Error: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.TexturePreviewErrorFormat">Error displaying texture preview: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.EmbeddedPreviewErrorFormat">Error displaying embedded texture preview: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.EmbeddedStatus.Replacement"> - REPLACEMENT</system:String>
+    <system:String x:Key="Str.SelectedDrawable.EmbeddedStatus.Embedded"> - Embedded</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CannotProcessNoSelectionFormat">Cannot process {0}: No drawable selected</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.UsingOriginalPathFormat">Using original path for {0}: {1}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CopiedToAssetsFormat">Copied {0} file to project assets: {1}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ProcessFileFailedFormat">Failed to process {0} file: {1}. Using original path.</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.DeleteFileFailedFormat">Failed to delete file {0}: {1}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.MaxTexturesFormat">You can't have more than {0} textures per drawable!</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.SelectTexturesTitle">Select textures</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Filter.Textures">Texture files (*.ytd)|*.ytd|Image files (*.jpg;*.png;*.dds)|*.jpg;*.png;*.dds</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.TextureLimitReachedFormat">Reached the limit of {0} textures. Last added texture: {1}.</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CopyTextureFailedFormat">Failed to copy texture to project assets: {0}. Using original path.</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.MixedOptimizationMessage">Some textures are already optimized while others are not. Please select textures with the same state.</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.TextureMovedFormat">Texture '{0}' moved from position {1} to {2}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.CouldNotAddTextures">Could not add textures</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.FilesNotAccessibleFormat">The following texture file(s) could not be accessed:
+
+{0}
+
+They may be virtual paths. Please extract them to a folder first and drag from there.</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.FilesNotAccessibleTitle">Files Not Accessible</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.DragDropProcessErrorFormat">An error occurred while processing dropped texture files:
+
+{0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.DragDropErrorTitle">Drag &amp; Drop Error</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.TextureSizeMismatchFormat">Texture {0} does not have the same size as the others!</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.TextureOptimizationUndoneFormat">Texture optimization for {0} has been undone</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceReservedTitle">Select drawable file to replace reserved</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Filter.DrawableFile">Drawable file (*.ydd)|*.ydd</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ExportTexturesFormat">Select the folder to export textures as {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ExportErrorFormat">An error occurred during export: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ExportErrorTitle">Export Error</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceTextureTitleFormat">Select texture file to replace {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ReplacedTextureFormat">Replaced texture '{0}' with new file</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ReplaceTextureFailedFormat">Failed to replace texture: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceTextureFailedFormat">Failed to replace texture: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.EmbeddedOptimizationUndoneFormat">Embedded texture optimization for {0} has been undone</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.RenameEmbeddedTitle">Rename Embedded Texture</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.EnterNewName">Enter new name:</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceEmbeddedTitleFormat">Select texture file to replace embedded {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Filter.ImageFiles">Image files (*.jpg;*.png;*.dds)|*.jpg;*.png;*.dds</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.EmbeddedReplacedFormat">Embedded {0} texture replaced (optimization cleared)</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Log.ReplaceEmbeddedFailedFormat">Failed to replace embedded texture: {0}</system:String>
+    <system:String x:Key="Str.SelectedDrawable.Dialog.ReplaceEmbeddedFailedFormat">Failed to replace embedded texture: {0}</system:String>
+
+    <!-- SettingsLabelTextBox -->
+    <system:String x:Key="Str.SettingsLabelTextBox.EditButton.Content">Edit</system:String>
+
+    <!-- SettingsWindow -->
+    <system:String x:Key="Str.Settings.Button.Back">Back</system:String>
+    <system:String x:Key="Str.Settings.Group.Settings">Settings</system:String>
+    <system:String x:Key="Str.Settings.Group.PolygonLimit">Drawable polygon count limit</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.Description">Sets limit for drawable polygon count, if it exceeds this number it will display warning</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.High">High LOD</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.Medium">Medium LOD</system:String>
+    <system:String x:Key="Str.Settings.PolygonLimit.Low">Low LOD</system:String>
+    <system:String x:Key="Str.Settings.Group.TextureResolution">Texture resolution limits</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Description">Sets maximum resolution for each texture type. If width or height exceeds the limit, a warning will be displayed</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Diffuse">Diffuse</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Normal">Normal</system:String>
+    <system:String x:Key="Str.Settings.TextureResolution.Specular">Specular</system:String>
+    <system:String x:Key="Str.Settings.Group.General">General settings</system:String>
+    <system:String x:Key="Str.Settings.General.MainProjectsFolder.Label">Main Projects Folder</system:String>
+    <system:String x:Key="Str.Settings.General.MainProjectsFolder.Description">Main folder where all your clothing projects are stored</system:String>
+    <system:String x:Key="Str.Settings.General.MainProjectsFolder.Title">Select your Main Projects Folder</system:String>
+    <system:String x:Key="Str.Settings.General.GTAVPath.Label">Current GTAV Path</system:String>
+    <system:String x:Key="Str.Settings.General.GTAVPath.Description">GTAV path is required for 3D preview to work</system:String>
+    <system:String x:Key="Str.Settings.General.GTAVPath.Title">Select your GTA V Path</system:String>
+    <system:String x:Key="Str.Settings.General.DisplayDrawablePath.Label">Display drawable path</system:String>
+    <system:String x:Key="Str.Settings.General.DisplayDrawablePath.Text">Enabled will display used path for selected drawable</system:String>
+    <system:String x:Key="Str.Settings.General.AutoDeleteFiles.Label">Delete drawable files automatically</system:String>
+    <system:String x:Key="Str.Settings.General.AutoDeleteFiles.Text">When enabled, it will automatically remove the associated files from your system when you delete a drawable from the addon</system:String>
+    <system:String x:Key="Str.Settings.General.AutoDeleteFiles.Warning">WARNING: This function will modify and remove files from your PC. Any removed files cannot be recovered.&#x0a;&#x0a;Are you sure you want to enable it?</system:String>
+    <system:String x:Key="Str.Settings.General.MarkNewDrawables.Label">Mark new drawables</system:String>
+    <system:String x:Key="Str.Settings.General.MarkNewDrawables.Text">When enabled, new drawables will be marked with a yellow dot</system:String>
+
+    <!-- SettingsWindow_cs -->
+    <system:String x:Key="Str.SettingsWindow.Dialog.SelectMainProjectsFolder">Select Main Projects Folder</system:String>
+    <system:String x:Key="Str.SettingsWindow.Warning.RootDriveNotAllowed">You cannot use a root drive (e.g., C:\) as the main folder.&#x0a;&#x0a;Please select or create a subfolder.</system:String>
+    <system:String x:Key="Str.SettingsWindow.Warning.InvalidFolder">Invalid Folder</system:String>
+    <system:String x:Key="Str.SettingsWindow.Log.MainFolderUpdated">Main projects folder updated to: {0}</system:String>
+    <system:String x:Key="Str.SettingsWindow.Error.AccessDenied">Access denied. Please select a folder where you have write permissions.</system:String>
+    <system:String x:Key="Str.SettingsWindow.Error.MainFolderError">Error setting main projects folder: {0}</system:String>
+
+    <!-- SplashScreen -->
+    <system:String x:Key="Str.SplashScreen.LoadingMessage">Loading...</system:String>
+
+    <!-- TagsEditor -->
+    <system:String x:Key="Str.TagsEditor.AddButton">Add</system:String>
+
+    <!-- UpdateHelper -->
+    <system:String x:Key="Str.UpdateHelper.Checking">Checking for updates...</system:String>
+    <system:String x:Key="Str.UpdateHelper.Completing">Completing update...</system:String>
+    <system:String x:Key="Str.UpdateHelper.CouldNotCheck">Could not check for updates.</system:String>
+    <system:String x:Key="Str.UpdateHelper.UpToDate">You're up to date!</system:String>
+    <system:String x:Key="Str.UpdateHelper.CheckFailed">Update check failed.</system:String>
+    <system:String x:Key="Str.UpdateHelper.TimedOut">Update check timed out.</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadingFormat">Downloading v{0}...</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadComplete">Download complete. Installing...</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadCancelled">Download cancelled.</system:String>
+    <system:String x:Key="Str.UpdateHelper.DownloadFailed">Download failed. Please try again later.</system:String>
+    <system:String x:Key="Str.UpdateHelper.InstallationFailed">Installation failed. Please update manually.</system:String>
+
+</ResourceDictionary>

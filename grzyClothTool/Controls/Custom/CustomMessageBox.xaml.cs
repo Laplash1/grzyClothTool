@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using grzyClothTool.Helpers;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -29,7 +30,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = nameof(OK);
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.OK");
                 b.Click += delegate { result = CustomMessageBoxResult.OK; Close(); };
                 return b;
             }
@@ -39,7 +40,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = nameof(Cancel);
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.Cancel");
                 b.Click += delegate { result = CustomMessageBoxResult.Cancel; Close(); };
                 return b;
             }
@@ -49,7 +50,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = nameof(Yes);
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.Yes");
                 b.Click += delegate { result = CustomMessageBoxResult.Yes; Close(); };
                 return b;
             }
@@ -59,7 +60,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = nameof(No);
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.No");
                 b.Click += delegate { result = CustomMessageBoxResult.No; Close(); };
                 return b;
             }
@@ -69,7 +70,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = "Open Folder";
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.OpenFolder");
                 b.Click += delegate { result = CustomMessageBoxResult.OpenFolder; Close(); };
                 return b;
             }
@@ -80,7 +81,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = "Delete";
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.Delete");
                 b.Click += delegate { result = CustomMessageBoxResult.Delete; Close(); };
                 return b;
             }
@@ -91,7 +92,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = "Replace";
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.Replace");
                 b.Click += delegate { result = CustomMessageBoxResult.Replace; Close(); };
                 return b;
             }
@@ -102,7 +103,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = "Male";
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.Male");
                 b.Click += delegate { result = CustomMessageBoxResult.Male; Close(); };
                 return b;
             }
@@ -113,7 +114,7 @@ namespace grzyClothTool.Controls
             get
             {
                 var b = GetDefaultButton();
-                b.Content = "Female";
+                b.Content = LocalizationHelper.Get("Str.CustomMessageBox.Button.Female");
                 b.Click += delegate { result = CustomMessageBoxResult.Female; Close(); };
                 return b;
             }

@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterOwner"
         MouseDown="Window_MouseDown"
         Closing="Window_Closing"
-        Title="grzyClothTool - Build resource"
+        Title="{DynamicResource Str.BuildWindow.Title}"
         Background="{DynamicResource Brush50}"
         Height="550"
         Width="500">
@@ -21,25 +21,25 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
 
-            <GroupBox Header="Select resource type" Margin="15" Style="{DynamicResource FixedGroupBox}">
+            <GroupBox Header="{DynamicResource Str.BuildWindow.GroupBox.ResourceType}" Margin="15" Style="{DynamicResource FixedGroupBox}">
                 <StackPanel>
-                    <c:ModernLabelRadioButton 
+                    <c:ModernLabelRadioButton
                         Margin="5,5,5,0"
                         GroupName="resource"
-                        Label="FiveM"
+                        Label="{DynamicResource Str.BuildWindow.Radio.FiveM}"
                         IsChecked="True"
                         MyBtnSelectEvent="RadioButton_ChangedEvent"
                     />
-                    <c:ModernLabelRadioButton 
+                    <c:ModernLabelRadioButton
                         Margin="5,1,5,5"
                         GroupName="resource"
-                        Label="AltV"
+                        Label="{DynamicResource Str.BuildWindow.Radio.AltV}"
                         MyBtnSelectEvent="RadioButton_ChangedEvent"
                     />
-                    <c:ModernLabelRadioButton 
+                    <c:ModernLabelRadioButton
                         Margin="5,1,5,5"
                         GroupName="resource"
-                        Label="Singleplayer"
+                        Label="{DynamicResource Str.BuildWindow.Radio.Singleplayer}"
                         MyBtnSelectEvent="RadioButton_ChangedEvent"
                     />
                 </StackPanel>
@@ -47,7 +47,7 @@
 
             <c:ModernLabelTextBox 
                 x:Name="name"
-                Label="Project name"
+                Label="{DynamicResource Str.BuildWindow.Label.ProjectName}"
                 Margin="15,15,15,0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Stretch"
@@ -55,15 +55,15 @@
 
             <c:ModernLabelTextBox 
                 x:Name="output"
-                Label="Output folder"
+                Label="{DynamicResource Str.BuildWindow.Label.OutputFolder}"
                 Margin="15,15,15,0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Stretch"
                 IsFolderSelection="True"
                 Text="{Binding BuildPath}" />
 
-            <c:ModernLabelCheckBox 
-                Label="Build addons as separate resources" 
+            <c:ModernLabelCheckBox
+                Label="{DynamicResource Str.BuildWindow.CheckBox.SplitAddons}"
                 x:Name="split_addons" 
                 VerticalAlignment="Top" 
                 Margin="10,10,10,0"
@@ -103,7 +103,7 @@
                     CornerRadius="5"
                     Width="150"
                     IsEnabled="{Binding CanBuild}"
-                    Label="Build resource"
+                    Label="{DynamicResource Str.BuildWindow.Button.Build}"
                     MyBtnClickEvent="build_MyBtnClickEvent" />
             </Border>
         </Grid>

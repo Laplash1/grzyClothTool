@@ -95,7 +95,7 @@ namespace grzyClothTool.Views
 
         private void MainProjectsFolder_Click(object sender, RoutedEventArgs e)
         {
-            var title = e.Source.GetType().GetProperty("Title")?.GetValue(e.Source)?.ToString() ?? "Select Main Projects Folder";
+            var title = e.Source.GetType().GetProperty("Title")?.GetValue(e.Source)?.ToString() ?? LocalizationHelper.Get("Str.SettingsWindow.Dialog.SelectMainProjectsFolder");
 
             OpenFolderDialog selectedFolder = new()
             {
@@ -116,8 +116,8 @@ namespace grzyClothTool.Views
                     if (PersistentSettingsHelper.IsRootDrive(selectedFolder.FolderName))
                     {
                         CustomMessageBox.Show(
-                            "You cannot use a root drive (e.g., C:\\) as the main folder.\n\nPlease select or create a subfolder.",
-                            "Invalid Folder",
+                            LocalizationHelper.Get("Str.SettingsWindow.Warning.RootDriveNotAllowed"),
+                            LocalizationHelper.Get("Str.SettingsWindow.Warning.InvalidFolder"),
                             CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                             CustomMessageBox.CustomMessageBoxIcon.Warning);
                         return;
@@ -133,21 +133,21 @@ namespace grzyClothTool.Views
                     File.Delete(testFile);
 
                     MainProjectsFolder = selectedFolder.FolderName;
-                    LogHelper.Log($"Main projects folder updated to: {selectedFolder.FolderName}", LogType.Info);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.SettingsWindow.Log.MainFolderUpdated", selectedFolder.FolderName), LogType.Info);
                 }
                 catch (UnauthorizedAccessException)
                 {
                     CustomMessageBox.Show(
-                        "Access denied. Please select a folder where you have write permissions.",
-                        "Error",
+                        LocalizationHelper.Get("Str.SettingsWindow.Error.AccessDenied"),
+                        LocalizationHelper.Get("Str.Common.Error"),
                         CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                         CustomMessageBox.CustomMessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
                     CustomMessageBox.Show(
-                        $"Error setting main projects folder: {ex.Message}",
-                        "Error",
+                        LocalizationHelper.GetFormat("Str.SettingsWindow.Error.MainFolderError", ex.Message),
+                        LocalizationHelper.Get("Str.Common.Error"),
                         CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                         CustomMessageBox.CustomMessageBoxIcon.Error);
                 }

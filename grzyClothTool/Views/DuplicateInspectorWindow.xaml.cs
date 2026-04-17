@@ -68,9 +68,9 @@ namespace grzyClothTool.Views
 
             DuplicateGroupsControl.ItemsSource = null;
             DuplicateGroupsControl.ItemsSource = _groups;
-            SubtitleText.Text = _groups.Count == 0 
-                ? "No duplicates found" 
-                : $"Found {_groups.Count} duplicate group{(_groups.Count > 1 ? "s" : "")}";
+            SubtitleText.Text = _groups.Count == 0
+                ? LocalizationHelper.Get("Str.DuplicateInspector.Subtitle.None")
+                : LocalizationHelper.GetFormat("Str.DuplicateInspector.Subtitle.Count", _groups.Count);
         }
 
         private DuplicateGroupViewModel CreateDrawableGroup(string hash)
@@ -83,8 +83,8 @@ namespace grzyClothTool.Views
             var group = new DuplicateGroupViewModel
             {
                 GroupId = hash,
-                GroupTitle = $"Drawable: {firstDrawable.Name}",
-                GroupDescription = $"{duplicates.Count} identical drawables",
+                GroupTitle = LocalizationHelper.GetFormat("Str.DuplicateInspector.Group.Title", firstDrawable.Name),
+                GroupDescription = LocalizationHelper.GetFormat("Str.DuplicateInspector.Group.Description", duplicates.Count),
                 GroupColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(firstDrawable.DuplicateInfo.DuplicateColor)),
                 Count = duplicates.Count,
                 Items = []
@@ -124,17 +124,17 @@ namespace grzyClothTool.Views
         private static string GetDrawableLocation(GDrawable drawable)
         {
             if (MainWindow.AddonManager?.Addons == null)
-                return "Unknown";
+                return LocalizationHelper.Get("Str.DuplicateInspector.Location.Unknown");
 
             for (int i = 0; i < MainWindow.AddonManager.Addons.Count; i++)
             {
                 if (MainWindow.AddonManager.Addons[i].Drawables.Contains(drawable))
                 {
-                    return $"Addon {i + 1}";
+                    return LocalizationHelper.GetFormat("Str.DuplicateInspector.Location.Addon", i + 1);
                 }
             }
 
-            return "Unknown";
+            return LocalizationHelper.Get("Str.DuplicateInspector.Location.Unknown");
         }
 
         private void OpenItem_Click(object sender, RoutedEventArgs e)
@@ -183,7 +183,7 @@ namespace grzyClothTool.Views
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error scrolling drawable into view: {ex.Message}", Views.LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.DuplicateInspector.Log.ScrollError", ex.Message), Views.LogType.Warning);
             }
         }
 
@@ -215,8 +215,8 @@ namespace grzyClothTool.Views
             if (sender is System.Windows.Controls.Button button && button.Tag is DuplicateItemViewModel vm)
             {
                 var result = Controls.CustomMessageBox.Show(
-                    $"Are you sure you want to delete '{vm.Name}'?",
-                    "Confirm Delete",
+                    LocalizationHelper.GetFormat("Str.DuplicateInspector.Confirm.DeleteItem", vm.Name),
+                    LocalizationHelper.Get("Str.DuplicateInspector.Confirm.DeleteTitle"),
                     Controls.CustomMessageBox.CustomMessageBoxButtons.OKCancel,
                     Controls.CustomMessageBox.CustomMessageBoxIcon.Warning);
 
@@ -224,12 +224,12 @@ namespace grzyClothTool.Views
                 {
                     DeleteSingleItem(vm);
                     LoadAllDuplicates(); // refresh
-                    
+
                     if (_groups.Count == 0)
                     {
                         Controls.CustomMessageBox.Show(
-                            "All duplicates have been resolved!",
-                            "Success",
+                            LocalizationHelper.Get("Str.DuplicateInspector.Info.AllResolved"),
+                            LocalizationHelper.Get("Str.Common.Success"),
                             Controls.CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                             Controls.CustomMessageBox.CustomMessageBoxIcon.Information);
                         Close();
@@ -246,15 +246,15 @@ namespace grzyClothTool.Views
                     return;
 
                 var result = Controls.CustomMessageBox.Show(
-                    $"This will delete {group.Items.Count - 1} duplicate items from this group, keeping only the first one.\n\nAre you sure?",
-                    "Confirm Bulk Delete",
+                    LocalizationHelper.GetFormat("Str.DuplicateInspector.Confirm.BulkDelete", group.Items.Count - 1),
+                    LocalizationHelper.Get("Str.DuplicateInspector.Confirm.BulkDeleteTitle"),
                     Controls.CustomMessageBox.CustomMessageBoxButtons.OKCancel,
                     Controls.CustomMessageBox.CustomMessageBoxIcon.Warning);
 
                 if (result == Controls.CustomMessageBox.CustomMessageBoxResult.OK)
                 {
                     var itemsToDelete = group.Items.Skip(1).ToList();
-                    
+
                     foreach (var vm in itemsToDelete)
                     {
                         DeleteSingleItem(vm);
@@ -266,8 +266,8 @@ namespace grzyClothTool.Views
                     if (_groups.Count == 0)
                     {
                         Controls.CustomMessageBox.Show(
-                            $"Deleted {itemsToDelete.Count} duplicate items!\n\nAll duplicates have been resolved!",
-                            "Success",
+                            LocalizationHelper.GetFormat("Str.DuplicateInspector.Info.DeletedAllResolved", itemsToDelete.Count),
+                            LocalizationHelper.Get("Str.Common.Success"),
                             Controls.CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                             Controls.CustomMessageBox.CustomMessageBoxIcon.Information);
                         Close();
@@ -275,8 +275,8 @@ namespace grzyClothTool.Views
                     else
                     {
                         Controls.CustomMessageBox.Show(
-                            $"Deleted {itemsToDelete.Count} duplicate items!",
-                            "Success",
+                            LocalizationHelper.GetFormat("Str.DuplicateInspector.Info.DeletedCount", itemsToDelete.Count),
+                            LocalizationHelper.Get("Str.Common.Success"),
                             Controls.CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                             Controls.CustomMessageBox.CustomMessageBoxIcon.Information);
                     }

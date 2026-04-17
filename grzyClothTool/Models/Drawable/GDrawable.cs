@@ -368,7 +368,7 @@ public class GDrawable : INotifyPropertyChanged
         {
             var count = SelectedFlags.Count(i => i.IsSelected && i.Value != (int)Enums.DrawableFlags.NONE);
 
-            return count > 0 ? $"{Flags} ({count} selected)" : "NONE";
+            return count > 0 ? LocalizationHelper.GetFormat("Str.GDrawable.FlagsTextFormat", Flags, count) : "NONE";
         } 
     }
 
@@ -498,7 +498,7 @@ public class GDrawable : INotifyPropertyChanged
         }
         catch (Exception ex)
         {
-            LogHelper.Log($"Could not find drawable file '{Name}': {ex.Message}", Views.LogType.Warning);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.GDrawable.Log.CouldNotFindFileFormat", Name, ex.Message), Views.LogType.Warning);
             IsLoading = false;
         }
     }

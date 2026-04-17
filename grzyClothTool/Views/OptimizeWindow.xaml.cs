@@ -224,7 +224,7 @@ namespace grzyClothTool.Views
             if (!IsTextureDownsizeEnabled && !IsTextureCompressionEnabled)
             {
                 Close();
-                CustomMessageBox.Show("No optimization options selected");
+                CustomMessageBox.Show(LocalizationHelper.Get("Str.OptimizeWindow.NoOptionsSelected"));
                 return;
             }
 
@@ -244,7 +244,7 @@ namespace grzyClothTool.Views
                 };
             } 
 
-            LogHelper.Log("Textures will be optimized during resource build");
+            LogHelper.Log(LocalizationHelper.Get("Str.OptimizeWindow.Log.WillOptimizeDuringBuild"));
             Close();
         }
 

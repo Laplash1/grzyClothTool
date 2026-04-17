@@ -14,7 +14,7 @@
         SizeToContent="Height"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Title="Duplicate Drawables Detected">
+        Title="{DynamicResource Str.DuplicateBatchDialog.Window.Title}">
     <Grid Margin="5" Background="{DynamicResource Brush50}">
         <Grid.RowDefinitions>
             <RowDefinition Height="28"/>
@@ -38,10 +38,10 @@
             </Border.Effect>
         </Border>
 
-        <TextBlock x:Name="DialogCaption" 
-                   HorizontalAlignment="Stretch" 
-                   Grid.Row="0" 
-                   Text="Duplicate Drawables Detected"
+        <TextBlock x:Name="DialogCaption"
+                   HorizontalAlignment="Stretch"
+                   Grid.Row="0"
+                   Text="{DynamicResource Str.DuplicateBatchDialog.Caption.Text}"
                    Background="Gainsboro"
                    Foreground="Black"
                    FontWeight="SemiBold"
@@ -49,11 +49,11 @@
                    Padding="5,4,0,0" 
                    MouseLeftButtonDown="OnCaptionPress"/>
 
-        <TextBlock Grid.Row="1" 
+        <TextBlock Grid.Row="1"
                    Margin="12,12,12,8"
                    TextWrapping="Wrap"
                    Foreground="{DynamicResource Brush950}"
-                   Text="The following drawables appear to be duplicates of existing items. Select which ones you want to add:"/>
+                   Text="{DynamicResource Str.DuplicateBatchDialog.Description.Text}"/>
 
         <Border Grid.Row="2" 
                 Margin="12,4,12,8" 
@@ -112,32 +112,32 @@
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Center" 
                     Margin="0,0,12,0">
-            <Button x:Name="BtnSelectAll" 
-                    Content="Select All" 
+            <Button x:Name="BtnSelectAll"
+                    Content="{DynamicResource Str.DuplicateBatchDialog.SelectAll.Content}"
                     Width="80" Height="28" 
                     Margin="4,0"
                     Background="White"
                     BorderBrush="DarkGray"
                     Foreground="Black"
                     Click="BtnSelectAll_Click"/>
-            <Button x:Name="BtnSelectNone" 
-                    Content="Select None" 
+            <Button x:Name="BtnSelectNone"
+                    Content="{DynamicResource Str.DuplicateBatchDialog.SelectNone.Content}"
                     Width="80" Height="28" 
                     Margin="4,0"
                     Background="White"
                     BorderBrush="DarkGray"
                     Foreground="Black"
                     Click="BtnSelectNone_Click"/>
-            <Button x:Name="BtnCancel" 
-                    Content="Cancel All" 
+            <Button x:Name="BtnCancel"
+                    Content="{DynamicResource Str.DuplicateBatchDialog.CancelAll.Content}"
                     Width="80" Height="28" 
                     Margin="4,0"
                     Background="White"
                     BorderBrush="DarkGray"
                     Foreground="Black"
                     Click="BtnCancel_Click"/>
-            <Button x:Name="BtnConfirm" 
-                    Content="Confirm" 
+            <Button x:Name="BtnConfirm"
+                    Content="{DynamicResource Str.DuplicateBatchDialog.Confirm.Content}"
                     Width="80" Height="28" 
                     Margin="4,0"
                     Background="#4CAF50"

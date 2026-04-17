@@ -140,7 +140,7 @@ public static class DragDropHelper
                     }
                     catch (Exception comEx)
                     {
-                        LogHelper.Log($"Failed to extract file {i + 1} ({safeFilename}): {comEx.Message}", LogType.Error);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.DragDropHelper.FailedExtractFileFormat", i + 1, safeFilename, comEx.Message), LogType.Error);
                     }
 
                     if (contentStream != null && contentStream.Length > 0)
@@ -158,14 +158,14 @@ public static class DragDropHelper
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Error extracting file {i + 1}: {ex.Message}", LogType.Error);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.DragDropHelper.ErrorExtractingFileFormat", i + 1, ex.Message), LogType.Error);
                     continue;
                 }
             }
         }
         catch (Exception ex)
         {
-            LogHelper.Log($"Error in ExtractVirtualFilesAsync: {ex.Message}", LogType.Error);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.DragDropHelper.ErrorExtractVirtualFilesFormat", ex.Message), LogType.Error);
         }
 
         return extractedFiles;
@@ -233,7 +233,7 @@ public static class DragDropHelper
         }
         catch (Exception ex)
         {
-            LogHelper.Log($"Error checking FileGroupDescriptor: {ex.Message}", LogType.Error);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.DragDropHelper.ErrorCheckingDescriptorFormat", ex.Message), LogType.Error);
             return false;
         }
     }

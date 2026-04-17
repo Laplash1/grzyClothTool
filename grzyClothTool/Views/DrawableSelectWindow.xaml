@@ -6,7 +6,7 @@
         xmlns:c="clr-namespace:grzyClothTool.Controls"
         xmlns:local="clr-namespace:grzyClothTool.Views"
         mc:Ignorable="d"
-        Title="Select your drawable properties"
+        Title="{DynamicResource Str.DrawableSelectWindow.Title}"
         ResizeMode="NoResize"
         Background="{DynamicResource Brush50}"
         WindowStartupLocation="CenterOwner"
@@ -18,11 +18,11 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="15">
-            <TextBlock Text="Could not recognize your drawable properties" FontSize="16" Foreground="{DynamicResource Brush950}" FontWeight="Medium"/>
+            <TextBlock Text="{DynamicResource Str.DrawableSelectWindow.Heading}" FontSize="16" Foreground="{DynamicResource Brush950}" FontWeight="Medium"/>
             <TextBlock x:Name="path" Text="{Binding AssetPath}" d:Text="C:\this\is\some\random\path\10.ydd" FontSize="12" Foreground="{DynamicResource Brush500}" FontWeight="Light" Margin="0 0 0 25" TextWrapping="WrapWithOverflow"/>
             <c:ModernLabelComboBox
                 x:Name="assetType"
-                Label="Asset type"
+                Label="{DynamicResource Str.DrawableSelectWindow.Label.AssetType}"
                 ItemsSource="{Binding AssetTypes}"
                 SelectedItem="{Binding SelectedAssetType}"
                 Width="250"
@@ -31,7 +31,7 @@
             />
             <c:ModernLabelComboBox
                 x:Name="x"
-                Label="Drawable type"
+                Label="{DynamicResource Str.DrawableSelectWindow.Label.DrawableType}"
                 IsEnabled="{Binding IsAssetTypeSelected}"
                 ItemsSource="{Binding DrawableTypes}"
                 SelectedItem="{Binding SelectedDrawableType}"
@@ -45,7 +45,7 @@
                 x:Name="cancel"
                 CornerRadius="5"
                 Width="150"
-                Label="Cancel"
+                Label="{DynamicResource Str.DrawableSelectWindow.Button.Cancel}"
                 MyBtnClickEvent="Cancel_MyBtnClickEvent"
              />
             <c:CustomButton 
@@ -53,7 +53,7 @@
                 x:Name="select"
                 CornerRadius="5"
                 Width="150"
-                Label="Select"
+                Label="{DynamicResource Str.DrawableSelectWindow.Button.Select}"
                 IsEnabled="{Binding IsSubmitEnabled}"
                 MyBtnClickEvent="Select_MyBtnClickEvent"
              />

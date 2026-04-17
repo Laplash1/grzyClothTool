@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
+using Sentry;
 
 namespace grzyClothTool.Helpers;
 
@@ -58,13 +59,16 @@ public static class UpdateHelper
                         {
                             SafeDeleteDirectory(folder, maxAttempts: 2);
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            
+                            LogCleanupException("SafeCleanupUpdateFolder:extract", ex);
                         }
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    LogCleanupException("SafeCleanupUpdateFolder:enumerate", ex);
+                }
 
                 try
                 {
@@ -73,13 +77,22 @@ public static class UpdateHelper
                         Directory.Delete(_updateFolder);
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    LogCleanupException("SafeCleanupUpdateFolder:delete", ex);
+                }
             }
         }
-        catch
+        catch (Exception ex)
         {
-
+            LogCleanupException("SafeCleanupUpdateFolder:outer", ex);
         }
+    }
+
+    private static void LogCleanupException(string context, Exception ex)
+    {
+        Debug.WriteLine($"UpdateHelper[{context}]: {ex.Message}");
+        try { SentrySdk.CaptureException(ex); } catch { }
     }
 
     private static void SafeDeleteDirectory(string path, int maxAttempts = MAX_RETRIES)
@@ -136,8 +149,9 @@ public static class UpdateHelper
                 file.Attributes = FileAttributes.Normal;
             }
         }
-        catch
+        catch (Exception ex)
         {
+            LogCleanupException("SetAttributesNormal", ex);
         }
     }
 
@@ -195,7 +209,7 @@ public static class UpdateHelper
             var removeTempFilesArg = args.FirstOrDefault(arg => arg.StartsWith("--removeTempFiles"));
             if (removeTempFilesArg != null)
             {
-                App.splashScreen.AddMessage("Completing update...");
+                App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.Completing"));
                 
                 var oldExePath = removeTempFilesArg.Split('=')[1].Trim('"');
                 
@@ -214,40 +228,44 @@ public static class UpdateHelper
             
             string currentVersion = GetCurrentVersion();
                 
-            App.splashScreen.AddMessage("Checking for updates...");
+            App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.Checking"));
             var latestVersion = await RetryOperation(async () => await GetLatestVersion(), maxAttempts: 2, cts.Token);
 
             if (latestVersion is null)
             {
-                App.splashScreen.AddMessage("Could not check for updates.");
+                App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.CouldNotCheck"));
                 await Task.Delay(500, cts.Token);
                 return;
             }
 
             if(latestVersion == currentVersion)
             {
-                App.splashScreen.AddMessage("You're up to date!");
+                App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.UpToDate"));
                 await Task.Delay(500, cts.Token);
                 return;
             }
 
-            App.splashScreen.AddMessage($"Downloading v{latestVersion}...");
+            App.splashScreen.AddMessage(LocalizationHelper.GetFormat("Str.UpdateHelper.DownloadingFormat", latestVersion));
             
             await DownloadUpdate(latestVersion, cts.Token);
         }
         catch (OperationCanceledException)
         {
-            App.splashScreen.AddMessage("Update check timed out.");
+            App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.TimedOut"));
             await Task.Delay(1000);
         }
         catch (Exception ex)
         {
-            App.splashScreen.AddMessage("Update check failed.");
+            App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.CheckFailed"));
             try
             {
                 await File.WriteAllTextAsync("update_check_failed.log", $"[{DateTime.Now}]\n{ex}");
             }
-            catch { }
+            catch (Exception logEx)
+            {
+                LogCleanupException("CheckForUpdates:writeLog", logEx);
+            }
+            try { SentrySdk.CaptureException(ex); } catch { }
             await Task.Delay(1000);
         }
         finally
@@ -304,14 +322,14 @@ public static class UpdateHelper
                 return true;
             }, maxAttempts: 3, cancellationToken);
             
-            App.splashScreen.AddMessage("Download complete. Installing...");
+            App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.DownloadComplete"));
             await Task.Delay(500, cancellationToken);
             
             ExtractAndRunUpdatedApp();
         }
         catch (OperationCanceledException)
         {
-            App.splashScreen.AddMessage("Download cancelled.");
+            App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.DownloadCancelled"));
             await Task.Delay(1500);
         }
         catch(Exception ex)
@@ -320,9 +338,13 @@ public static class UpdateHelper
             {
                 await File.WriteAllTextAsync("download_failed.log", $"[{DateTime.Now}]\n{ex}");
             }
-            catch { }
+            catch (Exception logEx)
+            {
+                LogCleanupException("DownloadUpdate:writeLog", logEx);
+            }
+            try { SentrySdk.CaptureException(ex); } catch { }
 
-            App.splashScreen.AddMessage("Download failed. Please try again later.");
+            App.splashScreen.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.DownloadFailed"));
             await Task.Delay(2000);
         }
     }
@@ -395,9 +417,13 @@ public static class UpdateHelper
             {
                 File.WriteAllText("extract_failed.log", $"[{DateTime.Now}]\n{ex}");
             }
-            catch { }
-            
-            App.splashScreen?.AddMessage("Installation failed. Please update manually.");
+            catch (Exception logEx)
+            {
+                LogCleanupException("ExtractAndRunUpdatedApp:writeLog", logEx);
+            }
+            try { SentrySdk.CaptureException(ex); } catch { }
+
+            App.splashScreen?.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.InstallationFailed"));
             Task.Delay(2500).Wait();
         }
     }
@@ -460,9 +486,10 @@ public static class UpdateHelper
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     // Continue with next file even if one fails
+                    LogCleanupException("RemoveTempFiles:moveFile", ex);
                 }
             }
 
@@ -495,16 +522,22 @@ public static class UpdateHelper
                         {
                             SafeDeleteDirectory(folder, maxAttempts: 2);
                         }
-                        catch { }
+                        catch (Exception ex)
+                        {
+                            LogCleanupException("RemoveTempFiles:delete-extract", ex);
+                        }
                     }
-                    
+
                     if (Directory.GetFileSystemEntries(_updateFolder).Length == 0)
                     {
                         Directory.Delete(_updateFolder);
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogCleanupException("RemoveTempFiles:outer", ex);
+            }
 
             ForceShutdown();
         }
@@ -512,11 +545,15 @@ public static class UpdateHelper
         {
             try
             {
-                File.WriteAllText(Path.Combine(Path.GetTempPath(), "grzyclothtool_cleanup_error.log"), 
+                File.WriteAllText(Path.Combine(Path.GetTempPath(), "grzyclothtool_cleanup_error.log"),
                     $"[{DateTime.Now}]\n{ex}");
             }
-            catch { }
-            
+            catch (Exception logEx)
+            {
+                LogCleanupException("RemoveTempFiles:writeLog", logEx);
+            }
+            try { SentrySdk.CaptureException(ex); } catch { }
+
             ForceShutdown();
         }
     }
@@ -549,15 +586,17 @@ public static class UpdateHelper
                     
                     process.Dispose();
                 }
-                catch
+                catch (Exception ex)
                 {
                     // Continue with other processes even if one fails
+                    LogCleanupException("KillAllOtherInstances:process", ex);
                 }
             }
         }
-        catch
+        catch (Exception ex)
         {
             // Continue update even if we can't kill processes
+            LogCleanupException("KillAllOtherInstances:outer", ex);
         }
     }
 

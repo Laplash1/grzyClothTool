@@ -78,15 +78,15 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                var errorMsg = $"3D Preview initialization failed: {ex.Message}";
+                var errorMsg = LocalizationHelper.GetFormat("Str.PreviewWindowHost.Log.InitFailedFormat", ex.Message);
                 LogHelper.Log(errorMsg, Views.LogType.Error);
                 ErrorLogHelper.LogError("3D Preview initialization failed", ex);
-                
+
                 bool isGtaError = ex.Message.Contains("GTA") || ex.Message.Contains("DLC") || ex.Message.Contains("corrupted");
-                PlaceholderText.Text = isGtaError 
-                    ? "3D Preview unavailable (GTA V installation issue - see log)" 
-                    : "3D Preview unavailable (GPU/Graphics error - see log)";
-                
+                PlaceholderText.Text = isGtaError
+                    ? LocalizationHelper.Get("Str.PreviewWindowHost.Placeholder.GtaIssue")
+                    : LocalizationHelper.Get("Str.PreviewWindowHost.Placeholder.GpuIssue");
+
                 SettingsHelper.Preview3DAvailable = false;
                 Preview3DAvailabilityChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -117,7 +117,7 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                var errorMsg = $"3D Preview background initialization failed: {ex.Message}";
+                var errorMsg = LocalizationHelper.GetFormat("Str.PreviewWindowHost.Log.BackgroundInitFailedFormat", ex.Message);
                 LogHelper.Log(errorMsg, Views.LogType.Error);
                 ErrorLogHelper.LogError("3D Preview background initialization failed", ex);
                 SettingsHelper.Preview3DAvailable = false;
@@ -137,7 +137,7 @@ namespace grzyClothTool.Controls
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Error closing preview: {ex.Message}", Views.LogType.Error);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.PreviewWindowHost.Log.CloseErrorFormat", ex.Message), Views.LogType.Error);
 
                     _customPedsForm = null;
                     _isInitialized = false;
@@ -156,7 +156,7 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                HandlePreviewError("Failed to set ped model", ex);
+                HandlePreviewError(LocalizationHelper.Get("Str.PreviewWindowHost.Error.SetPedModel"), ex);
             }
         }
 
@@ -221,14 +221,14 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                HandlePreviewError("Failed to update drawables in 3D preview", ex);
+                HandlePreviewError(LocalizationHelper.Get("Str.PreviewWindowHost.Error.UpdateDrawables"), ex);
             }
         }
 
         private void HandlePreviewError(string context, Exception ex)
         {
             ErrorLogHelper.LogError($"3D Preview error - {context}: {ex.Message}", ex);
-            LogHelper.Log($"3D Preview error: {context}", Views.LogType.Warning);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.PreviewWindowHost.Log.PreviewErrorFormat", context), Views.LogType.Warning);
             
             // Disable the preview if it's having issues
             try
@@ -245,7 +245,7 @@ namespace grzyClothTool.Controls
                 {
                     System.Windows.Application.Current.Dispatcher.Invoke(() =>
                     {
-                        PlaceholderText.Text = "3D Preview disabled due to errors (see log)";
+                        PlaceholderText.Text = LocalizationHelper.Get("Str.PreviewWindowHost.Placeholder.Disabled");
                         PlaceholderText.Visibility = Visibility.Visible;
                     });
                 }

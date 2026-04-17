@@ -253,7 +253,7 @@ namespace grzyClothTool.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to open changelog: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(LocalizationHelper.GetFormat("Str.Home.Error.OpenChangelog", ex.Message), LocalizationHelper.Get("Str.Common.Error"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -269,7 +269,7 @@ namespace grzyClothTool.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to open website: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(LocalizationHelper.GetFormat("Str.Home.Error.OpenWebsite", ex.Message), LocalizationHelper.Get("Str.Common.Error"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -287,7 +287,7 @@ namespace grzyClothTool.Views
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Failed to open URL: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(LocalizationHelper.GetFormat("Str.Home.Error.OpenUrl", ex.Message), LocalizationHelper.Get("Str.Common.Error"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -299,18 +299,18 @@ namespace grzyClothTool.Views
                 var mainProjectsFolder = PersistentSettingsHelper.Instance.MainProjectsFolder;
                 if (string.IsNullOrEmpty(mainProjectsFolder))
                 {
-                    Show("Please configure the main projects folder in settings first.", 
-                         "Configuration Required", 
-                         CustomMessageBoxButtons.OKOnly, 
+                    Show(LocalizationHelper.Get("Str.Home.Warning.ConfigureMainFolder"),
+                         LocalizationHelper.Get("Str.Home.Warning.ConfigurationRequired"),
+                         CustomMessageBoxButtons.OKOnly,
                          CustomMessageBoxIcon.Warning);
                     return;
                 }
 
                 if (!Directory.Exists(mainProjectsFolder))
                 {
-                    Show($"Main projects folder does not exist: {mainProjectsFolder}\n\nPlease update it in settings.", 
-                         "Folder Not Found", 
-                         CustomMessageBoxButtons.OKOnly, 
+                    Show(LocalizationHelper.GetFormat("Str.Home.Warning.MainFolderMissing", mainProjectsFolder),
+                         LocalizationHelper.Get("Str.Home.Warning.FolderNotFound"),
+                         CustomMessageBoxButtons.OKOnly,
                          CustomMessageBoxIcon.Warning);
                     return;
                 }
@@ -326,9 +326,9 @@ namespace grzyClothTool.Views
 
                 if (projectName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
                 {
-                    Show("Project name contains invalid characters. Please choose a different name.", 
-                         "Invalid Name", 
-                         CustomMessageBoxButtons.OKOnly, 
+                    Show(LocalizationHelper.Get("Str.Home.Warning.InvalidProjectNameChars"),
+                         LocalizationHelper.Get("Str.Home.Warning.InvalidName"),
+                         CustomMessageBoxButtons.OKOnly,
                          CustomMessageBoxIcon.Warning);
                     return;
                 }
@@ -367,16 +367,18 @@ namespace grzyClothTool.Views
                 
                 LoadRecentProjects();
 
-                var projectType = isExternal ? "External" : "Self-contained";
-                LogHelper.Log($"Created new {projectType} project: {projectName} at {projectFolder}");
+                var projectType = isExternal
+                    ? LocalizationHelper.Get("Str.Common.ProjectType.External")
+                    : LocalizationHelper.Get("Str.Common.ProjectType.SelfContained");
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.CreatedProject", projectType, projectName, projectFolder));
                 MainWindow.NavigationHelper.Navigate("Project");
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Failed to create new project: {ex.Message}", Views.LogType.Error);
-                Show($"Failed to create new project: {ex.Message}", 
-                     "Error", 
-                     CustomMessageBoxButtons.OKOnly, 
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.CreateProjectFailed", ex.Message), Views.LogType.Error);
+                Show(LocalizationHelper.GetFormat("Str.Home.Error.CreateProjectFailed", ex.Message),
+                     LocalizationHelper.Get("Str.Common.Error"),
+                     CustomMessageBoxButtons.OKOnly,
                      CustomMessageBoxIcon.Error);
             }
         }
@@ -405,8 +407,8 @@ namespace grzyClothTool.Views
             {
                 OpenFileDialog openFileDialog = new()
                 {
-                    Title = "Open Save File",
-                    Filter = "Save files (*.json)|*.json|All files (*.*)|*.*",
+                    Title = LocalizationHelper.Get("Str.Home.Dialog.OpenSaveFile"),
+                    Filter = LocalizationHelper.Get("Str.FileDialog.Filter.SaveFiles"),
                     Multiselect = false
                 };
 
@@ -424,9 +426,9 @@ namespace grzyClothTool.Views
             }
             catch (Exception ex)
             {
-                Show($"Failed to load save: {ex.Message}", 
-                     "Error", 
-                     CustomMessageBoxButtons.OKOnly, 
+                Show(LocalizationHelper.GetFormat("Str.Home.Error.LoadSaveFailed", ex.Message),
+                     LocalizationHelper.Get("Str.Common.Error"),
+                     CustomMessageBoxButtons.OKOnly,
                      CustomMessageBoxIcon.Error);
             }
         }
@@ -439,9 +441,9 @@ namespace grzyClothTool.Views
                 {
                     if (!File.Exists(filePath))
                     {
-                        Show("This save file no longer exists.", 
-                             "File Not Found", 
-                             CustomMessageBoxButtons.OKOnly, 
+                        Show(LocalizationHelper.Get("Str.Home.Warning.SaveFileMissing"),
+                             LocalizationHelper.Get("Str.Home.Warning.FileNotFound"),
+                             CustomMessageBoxButtons.OKOnly,
                              CustomMessageBoxIcon.Warning);
                         
                         var recentProjects = PersistentSettingsHelper.Instance.RecentlyOpenedProjects;
@@ -462,9 +464,9 @@ namespace grzyClothTool.Views
                 }
                 catch (Exception ex)
                 {
-                    Show($"Failed to load save: {ex.Message}", 
-                         "Error", 
-                         CustomMessageBoxButtons.OKOnly, 
+                    Show(LocalizationHelper.GetFormat("Str.Home.Error.LoadSaveFailed", ex.Message),
+                         LocalizationHelper.Get("Str.Common.Error"),
+                         CustomMessageBoxButtons.OKOnly,
                          CustomMessageBoxIcon.Error);
                 }
             }
@@ -488,12 +490,12 @@ namespace grzyClothTool.Views
                     PersistentSettingsHelper.Instance.RecentlyOpenedProjects = recentProjects;
                     
                     LoadRecentProjects();
-                    
-                    LogHelper.Log($"Removed project from recent list: {projectName}");
+
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.RemovedRecentProject", projectName));
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Failed to remove recent project: {ex.Message}", Views.LogType.Error);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.RemoveRecentProjectFailed", ex.Message), Views.LogType.Error);
                 }
             }
         }
@@ -519,7 +521,7 @@ namespace grzyClothTool.Views
                     if (File.Exists(saveFile))
                     {
                         File.Delete(saveFile);
-                        LogHelper.Log($"Deleted old save file: {saveFile}");
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.DeletedOldSaveFile", saveFile));
                     }
                 }
 
@@ -527,14 +529,14 @@ namespace grzyClothTool.Views
                 if (Directory.Exists(assetsFolder))
                 {
                     Directory.Delete(assetsFolder, recursive: true);
-                    LogHelper.Log($"Deleted old assets folder: {assetsFolder}");
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.DeletedOldAssetsFolder", assetsFolder));
                 }
 
-                LogHelper.Log($"Cleared project folder for overwrite: {projectFolder}");
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.ClearedProjectFolder", projectFolder));
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Warning: Could not fully clear project folder: {ex.Message}", LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.Home.Log.ClearProjectFolderFailed", ex.Message), LogType.Warning);
             }
         }
 

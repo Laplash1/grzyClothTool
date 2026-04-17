@@ -1,3 +1,4 @@
+using grzyClothTool.Helpers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,9 +31,9 @@ namespace grzyClothTool.Controls
             if (d is AutoSaveIndicator indicator)
             {
                 int seconds = (int)e.NewValue;
-                indicator.TooltipBorder.ToolTip = seconds > 0 
-                    ? $"Auto-saving in {seconds} seconds" 
-                    : "Save in progress";
+                indicator.TooltipBorder.ToolTip = seconds > 0
+                    ? LocalizationHelper.GetFormat("Str.AutoSaveIndicator.Tooltip.AutoSavingFormat", seconds)
+                    : LocalizationHelper.Get("Str.AutoSaveIndicator.Tooltip.SaveInProgress");
             }
         }
 

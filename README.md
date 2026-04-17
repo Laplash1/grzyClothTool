@@ -1,6 +1,28 @@
-# grzyClothTool (WIP)
+# grzyClothTool 日本語版 (Japanese fork) (WIP)
+
+> **これは [grzybeek/grzyClothTool](https://github.com/grzybeek/grzyClothTool)
+> の日本語ローカライズフォークです。** 上流の GPLv3 ライセンスを継承し、
+> 日本語UIと既知バグのいくつかの修正を加えています。
+>
+> **This is a Japanese localization fork of upstream
+> [grzybeek/grzyClothTool](https://github.com/grzybeek/grzyClothTool).**
+> Inherits the upstream GPLv3 license. Adds Japanese UI and a handful of
+> bug fixes. See [NOTICE](NOTICE) for details.
 
 **_Please be aware that this tool is still in a "WORK IN PROGRESS" state. It is likely that you will encounter bugs, missing features or functionality issues._**
+
+## このフォークについて / About this fork
+
+- **日本語化**: WPF UI 全体 (Views/Controls/メッセージ) の日本語訳を同梱。
+  起動時は日本語が既定、環境変数 `GRZY_CLOTHTOOL_LANG=en` で英語へ切替可能。
+- **バグ修正**:
+  - `IValueConverter.ConvertBack` の `NotImplementedException` を
+    `Binding.DoNothing` に置換 (潜在的クラッシュ防止)。
+  - `Helpers/UpdateHelper.cs` の空 `catch { }` を Debug ログ + Sentry 記録へ変更。
+- **ライセンス**: GPLv3 を継承 (`LICENSE` 参照)。
+- **上流連携**: 翻訳のみの変更であれば上流への寄与もご検討ください。
+
+
 
 <p align="center">
   <img src="https://github.com/grzybeek/grzyClothTool/assets/40837847/30c72912-8828-4fa8-a84f-6f27a1f8eb5f">

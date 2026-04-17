@@ -121,7 +121,7 @@ public class SaveFile
         {
             var timer = new Stopwatch();
             timer.Start();
-            LogHelper.Log("Started saving...");
+            LogHelper.Log(LocalizationHelper.Get("Str.SaveHelper.StartedSaving"));
 
             string json;
             lock (AddonManager.AddonsLock)
@@ -152,16 +152,16 @@ public class SaveFile
                     var autoSavePath = Path.Combine(projectFolder, saveFileName);
                     await File.WriteAllTextAsync(autoSavePath, json);
 
-                    LogHelper.Log($"Auto-saved to {autoSavePath} in {timer.ElapsedMilliseconds}ms");
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.SaveHelper.AutoSavedFormat", autoSavePath, timer.ElapsedMilliseconds));
                 }
                 else
                 {
-                    LogHelper.Log("Could not auto-save: Project folder not configured or project name not set", Views.LogType.Warning);
+                    LogHelper.Log(LocalizationHelper.Get("Str.SaveHelper.CouldNotAutoSave"), Views.LogType.Warning);
                 }
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Auto-save failed: {ex.Message}", Views.LogType.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.SaveHelper.AutoSaveFailedFormat", ex.Message), Views.LogType.Error);
             }
 
             SaveCreated?.Invoke();
@@ -179,7 +179,7 @@ public class SaveFile
 
         MainWindow.Instance.Dispatcher.Invoke(() =>
         {
-            string unsavedText = " (Unsaved changes)";
+            string unsavedText = LocalizationHelper.Get("Str.SaveHelper.UnsavedTitleSuffix");
             bool titleContainsUnsaved = MainWindow.Instance.Title.Contains(unsavedText);
 
             if (status && !titleContainsUnsaved)
@@ -201,7 +201,7 @@ public class SaveFile
 
         MainWindow.Instance.Dispatcher.Invoke(() =>
         {
-            var clickResult = Show("You have unsaved changes. Do you want to continue with this action?", "Unsaved changes", CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.Warning);
+            var clickResult = Show(LocalizationHelper.Get("Str.SaveHelper.UnsavedChangesMessage"), LocalizationHelper.Get("Str.SaveHelper.UnsavedChangesTitle"), CustomMessageBoxButtons.OKCancel, CustomMessageBoxIcon.Warning);
 
             result = clickResult == CustomMessageBoxResult.OK;
         });
@@ -273,7 +273,7 @@ public class SaveFile
                 isExternal: isExternalProject
             );
 
-            LogHelper.Log("Scanning project for duplicate drawables...");
+            LogHelper.Log(LocalizationHelper.Get("Str.SaveHelper.ScanningDuplicates"));
             DuplicateDetector.Clear();
             
             foreach (var addon in MainWindow.AddonManager.Addons)
@@ -284,8 +284,8 @@ public class SaveFile
                 }
             }
             
-            LogHelper.Log($"Duplicate scan complete. Found {DuplicateDetector.GetDuplicateGroupCount()} duplicate drawable groups.");
-            LogHelper.Log($"Loaded save from: {filePath}");
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.SaveHelper.DuplicateScanCompleteFormat", DuplicateDetector.GetDuplicateGroupCount()));
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.SaveHelper.LoadedSaveFromFormat", filePath));
         }
         finally
         {
