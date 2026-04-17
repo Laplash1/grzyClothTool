@@ -15,6 +15,7 @@
 
 - **日本語化**: WPF UI 全体 (Views/Controls/メッセージ) の日本語訳を同梱。
   起動時は日本語が既定、環境変数 `GRZY_CLOTHTOOL_LANG=en` で英語へ切替可能。
+  日本語ユーザー向け詳細ガイドは [README_JA.md](README_JA.md) を参照。
 - **バグ修正**:
   - `IValueConverter.ConvertBack` の `NotImplementedException` を
     `Binding.DoNothing` に置換 (潜在的クラッシュ防止)。
