@@ -306,6 +306,9 @@
     <system:String x:Key="Str.Home.Log.ClearedProjectFolder">上書きのためプロジェクトフォルダをクリアしました: {0}</system:String>
     <system:String x:Key="Str.Home.Log.ClearProjectFolderFailed">警告: プロジェクトフォルダを完全にクリアできませんでした: {0}</system:String>
     <system:String x:Key="Str.Home.Dialog.OpenSaveFile">保存ファイルを開く</system:String>
+    <system:String x:Key="Str.Home.Error.FetchPatreons">パトロンリストの取得に失敗しました</system:String>
+    <system:String x:Key="Str.Home.Error.FetchVersion">バージョン情報を取得できませんでした</system:String>
+    <system:String x:Key="Str.Home.Error.FetchChangelog">更新履歴の読み込みに失敗しました</system:String>
     <system:String x:Key="Str.FileDialog.Filter.SaveFiles">保存ファイル (*.json)|*.json|すべてのファイル (*.*)|*.*</system:String>
 
     <!-- LogWindow -->

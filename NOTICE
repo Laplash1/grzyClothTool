@@ -22,23 +22,41 @@ Modifications in this fork
    - Replaced silently-swallowed `catch { }` blocks in
      Helpers/UpdateHelper.cs with logging (Debug.WriteLine + Sentry) so
      update failures are observable.
+5. Hardening / defensive refactors:
+   - Removed `Task.Delay().Wait()` busy-wait in DuplicateDetector and
+     the install-failure sleep in UpdateHelper (`Thread.Sleep` now).
+   - Replaced `NotImplementedException` on live BuildWindow paths with
+     `ArgumentOutOfRangeException`.
+   - Guarded OptimizeWindow `int.Parse` on the texture-size ComboBox
+     with `int.TryParse`.
+   - Wrapped the App unhandled-exception log writers so a secondary
+     IO failure cannot mask the original crash.
+   - Replaced bare `catch { }` in ProjectWindow and Home_Loaded with
+     logged / localized error reporting.
+
+Fixed upstream issues in this fork
+----------------------------------
+
+The following upstream issues have root-cause fixes in this fork:
+
+  - grzybeek/grzyClothTool#55 "Unchecking 'Hides Hair' doesn't work".
+    `GDrawable.Flags` / `SelectedFlags` were both `[JsonIgnore]`, so no
+    flag state survived a save+reload. Flags are now persisted and
+    rebuilt on load.
+  - grzybeek/grzyClothTool#56 "3D Preview error: Failed to update
+    drawables in 3D preview". `PreviewWindowHost.UpdateDrawables` now
+    tolerates a null value stored in `LoadedDrawables`.
+  - grzybeek/grzyClothTool#50 "Crashes on startup" (partial). The
+    unhandled-exception log writers no longer crash-in-crash on IO
+    failure, and upstream mitigations are inherited.
 
 Known issues inherited from upstream (not yet fixed in this fork)
 ---------------------------------------------------------------
 
-The following upstream issues are under investigation but not resolved
-in this fork's first release:
-
-  - grzybeek/grzyClothTool#55 "Unchecking 'Hides Hair' doesn't work"
-    (BERD/Mask unchecked state may not persist after build+reopen).
-  - grzybeek/grzyClothTool#50 "Crashes on startup" (partial upstream
-    mitigations merged; fork inherits those).
   - grzybeek/grzyClothTool#49 "RPF_INVALID_ENTRY_4: Empty archive
-    entry name" (archive edge case in CodeWalker).
-  - grzybeek/grzyClothTool#56 "3D Preview error: Failed to update
-    drawables in 3D preview".
+    entry name" (archive edge case in CodeWalker; bundled binary).
   - grzybeek/grzyClothTool#46 "Male ped has female invisible drawable
-    numbers showed in preview".
+    numbers showed in preview" (requires Windows repro).
 
 CodeWalker
 ----------
