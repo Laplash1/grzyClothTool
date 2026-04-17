@@ -1,0 +1,64 @@
+grzyClothTool — Japanese localization fork (日本語版)
+======================================================
+
+This is a fork of grzyClothTool by grzybeek
+(https://github.com/grzybeek/grzyClothTool), released under the
+GNU General Public License version 3 (see LICENSE).
+
+Modifications in this fork
+--------------------------
+
+1. Complete Japanese (ja-JP) localization covering the full WPF UI
+   surface (Views, Controls, and user-facing code-behind messages).
+2. Runtime language dictionary swap via `App.ChangeLanguage` that mirrors
+   the existing `App.ChangeTheme` pattern. Startup priority:
+     GRZY_CLOTHTOOL_LANG env var > Settings.Default.Language > "ja".
+3. `LocalizationHelper` utility for C# callers (`Get`, `GetFormat`).
+4. Bug fixes:
+   - Replaced `NotImplementedException` in ConvertBack of three
+     IValueConverters (CompressionFormatConverter, IntToVisibilityConverter,
+     NullOrEmptyToFalseConverter) with `Binding.DoNothing` to prevent a
+     latent crash if the bindings are ever changed to TwoWay.
+   - Replaced silently-swallowed `catch { }` blocks in
+     Helpers/UpdateHelper.cs with logging (Debug.WriteLine + Sentry) so
+     update failures are observable.
+
+Known issues inherited from upstream (not yet fixed in this fork)
+---------------------------------------------------------------
+
+The following upstream issues are under investigation but not resolved
+in this fork's first release:
+
+  - grzybeek/grzyClothTool#55 "Unchecking 'Hides Hair' doesn't work"
+    (BERD/Mask unchecked state may not persist after build+reopen).
+  - grzybeek/grzyClothTool#50 "Crashes on startup" (partial upstream
+    mitigations merged; fork inherits those).
+  - grzybeek/grzyClothTool#49 "RPF_INVALID_ENTRY_4: Empty archive
+    entry name" (archive edge case in CodeWalker).
+  - grzybeek/grzyClothTool#56 "3D Preview error: Failed to update
+    drawables in 3D preview".
+  - grzybeek/grzyClothTool#46 "Male ped has female invisible drawable
+    numbers showed in preview".
+
+CodeWalker
+----------
+
+The bundled CodeWalker 3D preview components are © dexyfex
+(https://github.com/dexyfex/CodeWalker) and are redistributed under
+their own license. This fork does not modify CodeWalker source; it is
+consumed as a dependency.
+
+License
+-------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 3 as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details (see LICENSE).
+
+Upstream:  https://github.com/grzybeek/grzyClothTool
+Fork date: 2026-04
