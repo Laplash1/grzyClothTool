@@ -256,7 +256,10 @@ namespace grzyClothTool.Views
                     {
                         menuItem.IsEnabled = menuItem.Header != addon.Name;
                     }
-                } catch (Exception)  { }
+                } catch (Exception ex)
+                {
+                    LogHelper.Log($"Failed to select addon: {ex.Message}", LogType.Warning);
+                }
             }
         }
 

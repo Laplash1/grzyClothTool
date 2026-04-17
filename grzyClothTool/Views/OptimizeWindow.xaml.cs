@@ -59,12 +59,15 @@ namespace grzyClothTool.Views
 
                     if (value && SelectedTextureSize != null)
                     {
-                        var size = SelectedTextureSize.Split('x');
-                        var width = int.Parse(size[0]);
-                        var height = int.Parse(size[1]);
-                        OutputTextureDetails.Width = width;
-                        OutputTextureDetails.Height = height;
-                        OutputTextureDetails.MipMapCount = ImgHelper.GetCorrectMipMapAmount(width, height);
+                        var parts = SelectedTextureSize.Split('x');
+                        if (parts.Length == 2
+                            && int.TryParse(parts[0], out var width)
+                            && int.TryParse(parts[1], out var height))
+                        {
+                            OutputTextureDetails.Width = width;
+                            OutputTextureDetails.Height = height;
+                            OutputTextureDetails.MipMapCount = ImgHelper.GetCorrectMipMapAmount(width, height);
+                        }
                     }
 
                     if (!value)

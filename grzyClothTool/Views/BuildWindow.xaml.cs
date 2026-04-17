@@ -195,7 +195,7 @@ namespace grzyClothTool.Views
                     await buildHelper.BuildSingleplayerResource();
                     break;
                 default:
-                    throw new NotImplementedException($"Unsupported resource type: {_resourceType}");
+                    throw new ArgumentOutOfRangeException(nameof(_resourceType), _resourceType, "Unsupported resource type");
             }
         }
 
@@ -271,7 +271,7 @@ namespace grzyClothTool.Views
                     "FiveM" => BuildResourceType.FiveM,
                     "AltV" => BuildResourceType.AltV,
                     "Singleplayer" => BuildResourceType.Singleplayer,
-                    _ => throw new NotImplementedException()
+                    _ => throw new ArgumentOutOfRangeException(nameof(radioButton.Label), radioButton.Label, "Unknown build target")
                 };
 
 

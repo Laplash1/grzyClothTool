@@ -424,7 +424,7 @@ public static class UpdateHelper
             try { SentrySdk.CaptureException(ex); } catch { }
 
             App.splashScreen?.AddMessage(LocalizationHelper.Get("Str.UpdateHelper.InstallationFailed"));
-            Task.Delay(2500).Wait();
+            Thread.Sleep(2500);
         }
     }
 

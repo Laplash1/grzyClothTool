@@ -17,6 +17,9 @@ public static class DuplicateDetector
         if (drawable == null || drawable.IsReserved || drawable.IsEncrypted)
             return null;
 
+        if (drawable.IsLoading)
+            return null;
+
         try
         {
             if (!File.Exists(drawable.FullFilePath))
@@ -24,13 +27,6 @@ public static class DuplicateDetector
 
             var fileInfo = new FileInfo(drawable.FullFilePath);
             var fileSize = fileInfo.Length;
-
-            int attempts = 0;
-            while (drawable.IsLoading && attempts < 50)
-            {
-                Task.Delay(100).Wait();
-                attempts++;
-            }
 
             var hashComponents = new List<string>
             {
