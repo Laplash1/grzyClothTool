@@ -280,6 +280,7 @@ public class SaveFile
             {
                 foreach (var drawable in addon.Drawables)
                 {
+                    drawable.RebuildFlagsFromPersisted();
                     DuplicateDetector.RegisterDrawable(drawable);
                 }
             }
