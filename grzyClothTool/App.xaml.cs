@@ -1,7 +1,9 @@
 ﻿using grzyClothTool.Extensions;
+using grzyClothTool.Helpers;
 using grzyClothTool.Views;
 using Material.Icons;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows;
@@ -57,6 +59,8 @@ namespace grzyClothTool
             //get value from settings properties
             bool isDarkTheme = Settings.Default.IsDarkMode;
             ChangeTheme(isDarkTheme);
+
+            ChangeLanguage(ResolveStartupLanguage());
         }
 
         public App()
@@ -215,7 +219,7 @@ namespace grzyClothTool
         {
             Exception ex = (Exception)e.ExceptionObject;
 
-            Show($"An error occurred: {ex.Message}", "Error", CustomMessageBoxButtons.OKOnly);
+            Show(LocalizationHelper.GetFormat("Str.App.Error.Unhandled", ex.Message), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly);
             var date = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             var path = Path.Combine(AppContext.BaseDirectory, $"error-{date}.log");
             File.WriteAllText(path, ex.ToString());
@@ -251,11 +255,70 @@ namespace grzyClothTool
             ResourceDictionary theme = new() { Source = uri };
             ResourceDictionary shared = new() { Source = new Uri("Themes/Shared.xaml", UriKind.Relative) };
 
+            var previousLanguage = _currentLanguageDictionary;
             Current.Resources.MergedDictionaries.Clear();
             Current.Resources.MergedDictionaries.Add(theme);
             Current.Resources.MergedDictionaries.Add(shared);
+            if (previousLanguage != null)
+            {
+                Current.Resources.MergedDictionaries.Add(previousLanguage);
+            }
 
             grzyClothTool.MainWindow.Instance?.UpdateAvalonDockTheme(isDarkMode);
+        }
+
+        public const string DefaultLanguage = "ja";
+        public static readonly string[] SupportedLanguages = { "ja", "en" };
+        private static ResourceDictionary _currentLanguageDictionary;
+
+        public static void ChangeLanguage(string lang)
+        {
+            if (string.IsNullOrWhiteSpace(lang) || Array.IndexOf(SupportedLanguages, lang) < 0)
+            {
+                lang = DefaultLanguage;
+            }
+
+            Uri uri = new($"Resources/Strings/Strings.{lang}.xaml", UriKind.Relative);
+            ResourceDictionary dict = new() { Source = uri };
+
+            if (_currentLanguageDictionary != null)
+            {
+                Current.Resources.MergedDictionaries.Remove(_currentLanguageDictionary);
+            }
+
+            Current.Resources.MergedDictionaries.Add(dict);
+            _currentLanguageDictionary = dict;
+
+            try
+            {
+                var culture = new CultureInfo(lang == "ja" ? "ja-JP" : "en-US");
+                Thread.CurrentThread.CurrentUICulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+            }
+            catch (CultureNotFoundException)
+            {
+                // Fall back silently if the OS doesn't ship the requested culture.
+            }
+
+            Settings.Default.Language = lang;
+            Settings.Default.Save();
+        }
+
+        private static string ResolveStartupLanguage()
+        {
+            var envLang = Environment.GetEnvironmentVariable("GRZY_CLOTHTOOL_LANG");
+            if (!string.IsNullOrWhiteSpace(envLang) && Array.IndexOf(SupportedLanguages, envLang) >= 0)
+            {
+                return envLang;
+            }
+
+            var saved = Settings.Default.Language;
+            if (!string.IsNullOrWhiteSpace(saved) && Array.IndexOf(SupportedLanguages, saved) >= 0)
+            {
+                return saved;
+            }
+
+            return DefaultLanguage;
         }
 
     }
