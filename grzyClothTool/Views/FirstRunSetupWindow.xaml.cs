@@ -31,8 +31,8 @@ namespace grzyClothTool.Views
             if (!SetupCompleted)
             {
                 var result = System.Windows.MessageBox.Show(
-                    "You must select a main folder to continue using the application.\n\nThis will close the application. Are you sure?",
-                    "Setup Required",
+                    LocalizationHelper.Get("Str.FirstRunSetup.Confirm.ExitWithoutSetup"),
+                    LocalizationHelper.Get("Str.FirstRunSetup.Confirm.SetupRequired"),
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
 
@@ -51,7 +51,7 @@ namespace grzyClothTool.Views
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             using var dialog = new FolderBrowserDialog();
-            dialog.Description = "Select the MAIN folder where ALL your projects will be stored (not a specific project folder)";
+            dialog.Description = LocalizationHelper.Get("Str.FirstRunSetup.Dialog.BrowseDescription");
             dialog.ShowNewFolderButton = true;
 
             if (!string.IsNullOrWhiteSpace(FolderPathTextBox.Text) && Directory.Exists(FolderPathTextBox.Text))
@@ -73,14 +73,14 @@ namespace grzyClothTool.Views
 
             if (string.IsNullOrWhiteSpace(selectedPath))
             {
-                ValidationMessage.Text = "Please select a main folder before continuing.";
+                ValidationMessage.Text = LocalizationHelper.Get("Str.FirstRunSetup.Validation.SelectMainFolder");
                 ValidationMessage.Visibility = Visibility.Visible;
                 return;
             }
 
             if (PersistentSettingsHelper.IsRootDrive(selectedPath))
             {
-                ValidationMessage.Text = "You cannot use a root drive (e.g., C:\\) as the main folder. Please select or create a subfolder.";
+                ValidationMessage.Text = LocalizationHelper.Get("Str.FirstRunSetup.Validation.RootDriveNotAllowed");
                 ValidationMessage.Visibility = Visibility.Visible;
                 return;
             }
@@ -105,12 +105,12 @@ namespace grzyClothTool.Views
             }
             catch (UnauthorizedAccessException)
             {
-                ValidationMessage.Text = "Access denied. Please select a folder where you have write permissions.";
+                ValidationMessage.Text = LocalizationHelper.Get("Str.FirstRunSetup.Validation.AccessDenied");
                 ValidationMessage.Visibility = Visibility.Visible;
             }
             catch (Exception ex)
             {
-                ValidationMessage.Text = $"Error: {ex.Message}";
+                ValidationMessage.Text = LocalizationHelper.GetFormat("Str.FirstRunSetup.Validation.ErrorFormat", ex.Message);
                 ValidationMessage.Visibility = Visibility.Visible;
             }
         }

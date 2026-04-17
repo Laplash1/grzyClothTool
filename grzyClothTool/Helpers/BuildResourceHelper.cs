@@ -136,7 +136,7 @@ public class BuildResourceHelper
                         txtBytes = await ImgHelper.Optimize(t);
                         if (txtBytes == null)
                         {
-                            LogHelper.Log($"Skipping corrupted texture: {t.DisplayName}", LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkippingCorruptedTextureFormat", t.DisplayName), LogType.Warning);
                             continue;
                         }
                         fileOperations.Add(File.WriteAllBytesAsync(finalTexPath, txtBytes));
@@ -148,7 +148,7 @@ public class BuildResourceHelper
                             txtBytes = await ImgHelper.Optimize(t, true);
                             if (txtBytes == null)
                             {
-                                LogHelper.Log($"Skipping corrupted texture: {t.DisplayName}", LogType.Warning);
+                                LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkippingCorruptedTextureFormat", t.DisplayName), LogType.Warning);
                                 continue;
                             }
                         } 
@@ -416,7 +416,7 @@ public class BuildResourceHelper
                         var optimizedBytes = await ImgHelper.Optimize(t);
                         if (optimizedBytes == null)
                         {
-                            LogHelper.Log($"Skipping corrupted texture: {t.DisplayName}", LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkippingCorruptedTextureFormat", t.DisplayName), LogType.Warning);
                             continue;
                         }
                         fileOperations.Add(File.WriteAllBytesAsync(finalTexPath, optimizedBytes));
@@ -505,7 +505,7 @@ public class BuildResourceHelper
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Failed to delete existing dlc.rpf: {ex.Message}", LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.FailedDeleteDlcRpfFormat", ex.Message), LogType.Warning);
             }
         }
 
@@ -786,7 +786,7 @@ public class BuildResourceHelper
                         var optimizedBytes = await ImgHelper.Optimize(t);
                         if (optimizedBytes == null)
                         {
-                            LogHelper.Log($"Skipping corrupted texture: {t.DisplayName}", LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkippingCorruptedTextureFormat", t.DisplayName), LogType.Warning);
                             continue;
                         }
                         RpfFile.CreateFile(folder, $"{displayName}{Path.GetExtension(t.FullFilePath)}", optimizedBytes);
@@ -1325,7 +1325,7 @@ public class BuildResourceHelper
                         var optimizedBytes = await ImgHelper.Optimize(dds, embeddedDto.OptimizeDetails);
                         if (optimizedBytes == null)
                         {
-                            LogHelper.Log($"Skipping corrupted embedded texture: {embeddedDto.Details.Name} in drawable {dr.Name}", LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkippingCorruptedEmbeddedTextureFormat", embeddedDto.Details.Name, dr.Name), LogType.Warning);
                             continue;
                         }
                         newTexture = DDSIO.GetTexture(optimizedBytes);
@@ -1379,7 +1379,7 @@ public class BuildResourceHelper
 
                 if (originalTexturePair.Value == null)
                 {
-                    LogHelper.Log($"Original texture '{embeddedDto.OriginalName}' not found in TextureDictionary for drawable {dr.Name}. Skipping.", LogType.Warning);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.OriginalTextureNotFoundFormat", embeddedDto.OriginalName, dr.Name), LogType.Warning);
                     continue;
                 }
 
@@ -1390,7 +1390,7 @@ public class BuildResourceHelper
                     var optimizedBytes = await ImgHelper.Optimize(dds, embeddedDto.OptimizeDetails);
                     if (optimizedBytes == null)
                     {
-                        LogHelper.Log($"Skipping corrupted embedded texture: {embeddedDto.Details.Name} in drawable {dr.Name}", LogType.Warning);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkippingCorruptedEmbeddedTextureFormat", embeddedDto.Details.Name, dr.Name), LogType.Warning);
                         continue;
                     }
                     textureToUpdate = DDSIO.GetTexture(optimizedBytes);
@@ -1405,7 +1405,7 @@ public class BuildResourceHelper
                     var optimizedBytes = await ImgHelper.Optimize(dds, embeddedDto.OptimizeDetails);
                     if (optimizedBytes == null)
                     {
-                        LogHelper.Log($"Skipping corrupted embedded texture: {embeddedDto.Details.Name} in drawable {dr.Name}", LogType.Warning);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkippingCorruptedEmbeddedTextureFormat", embeddedDto.Details.Name, dr.Name), LogType.Warning);
                         continue;
                     }
                     textureToUpdate = DDSIO.GetTexture(optimizedBytes);
@@ -1472,7 +1472,7 @@ public class BuildResourceHelper
         }
         catch (Exception ex)
         {
-            LogHelper.Log($"Exception occurred while processing file: {dr.Name}\nException: {ex}", Views.LogType.Error);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.ProcessingExceptionFormat", dr.Name, ex), Views.LogType.Error);
             throw;
         }
     }
@@ -1512,14 +1512,14 @@ public class BuildResourceHelper
             // only delete if the path explicitly ends with "build_output"
             if (!_baseBuildPath.EndsWith("build_output", StringComparison.OrdinalIgnoreCase))
             {
-                LogHelper.Log($"Skipping cleanup: Build path does not end with 'build_output'. Path: {_baseBuildPath}", LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkipCleanupNotBuildOutputFormat", _baseBuildPath), LogType.Warning);
                 return;
             }
 
             // ensure the path is not a root directory
             if (Path.GetPathRoot(_baseBuildPath) == _baseBuildPath)
             {
-                LogHelper.Log($"Skipping cleanup: Cannot delete root directory. Path: {_baseBuildPath}", LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.SkipCleanupRootDirFormat", _baseBuildPath), LogType.Warning);
                 return;
             }
 
@@ -1528,11 +1528,11 @@ public class BuildResourceHelper
                 try
                 {
                     Directory.Delete(_baseBuildPath, true);
-                    LogHelper.Log($"Deleted existing build output directory: {_baseBuildPath}", LogType.Info);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.DeletedBuildOutputFormat", _baseBuildPath), LogType.Info);
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Failed to delete build output directory: {ex.Message}", LogType.Warning);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.FailedDeleteBuildOutputFormat", ex.Message), LogType.Warning);
                 }
             }
 
@@ -1540,7 +1540,7 @@ public class BuildResourceHelper
         }
         catch (Exception ex)
         {
-            LogHelper.Log($"Error during build output cleanup: {ex.Message}", LogType.Warning);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.ErrorBuildOutputCleanupFormat", ex.Message), LogType.Warning);
         }
     }
     private void CleanupBuildTempDirectory()
@@ -1550,12 +1550,12 @@ public class BuildResourceHelper
             if (Directory.Exists(_buildTempFolderPath))
             {
                 Directory.Delete(_buildTempFolderPath, true);
-                LogHelper.Log($"Deleted build temp directory: {_buildTempFolderPath}", LogType.Info);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.DeletedBuildTempFormat", _buildTempFolderPath), LogType.Info);
             }
         }
         catch (Exception ex)
         {
-            LogHelper.Log($"Failed to clean up temp directory: {ex.Message}", LogType.Warning);
+            LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildResourceHelper.FailedCleanupTempFormat", ex.Message), LogType.Warning);
         }
     }
 

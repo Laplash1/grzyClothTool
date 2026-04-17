@@ -41,10 +41,10 @@
             </Border.Effect>
         </Border>
         <!-- Header of our message box to keep Caption and to be used for window move -->
-        <TextBlock x:Name="CMBCaption" 
-                   HorizontalAlignment="Stretch" 
-                   Grid.Row="0" 
-                   Text="Custom Message Box Caption"
+        <TextBlock x:Name="CMBCaption"
+                   HorizontalAlignment="Stretch"
+                   Grid.Row="0"
+                   Text="{DynamicResource Str.CustomMessageBox.Caption.Default}"
                    Grid.ColumnSpan="2" 
                    Background="Gainsboro"
                    Foreground="Black"
@@ -65,10 +65,10 @@
                Grid.Row="1" 
                VerticalContentAlignment="Center" 
                Margin="2,24,4,24">
-            <TextBlock x:Name="CMBMessage" 
+            <TextBlock x:Name="CMBMessage"
                        TextWrapping="Wrap"
                        Foreground="{DynamicResource Brush950}"
-                       Text="Custom Message Box Message"/>
+                       Text="{DynamicResource Str.CustomMessageBox.Message.Default}"/>
         </Label>
         <TextBox x:Name="CMBTextBox"
              Grid.Column="1"

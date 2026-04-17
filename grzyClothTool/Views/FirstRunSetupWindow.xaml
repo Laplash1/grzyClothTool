@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:icons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
-        Title="Welcome to grzyClothTool - First Time Setup"
+        Title="{DynamicResource Str.FirstRunSetup.Title}"
         Height="350" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -20,12 +20,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
-            <TextBlock Text="Welcome to grzyClothTool!"
+            <TextBlock Text="{DynamicResource Str.FirstRunSetup.Heading.Welcome}"
                        FontSize="24"
                        FontWeight="Bold"
                        Foreground="{DynamicResource Brush950}"
                        HorizontalAlignment="Center"/>
-            <TextBlock Text="First Time Setup"
+            <TextBlock Text="{DynamicResource Str.FirstRunSetup.Heading.Subtitle}"
                        FontSize="16"
                        Foreground="{DynamicResource Brush700}"
                        HorizontalAlignment="Center"
@@ -33,23 +33,23 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="0,0,0,20">
-            <TextBlock Text="Select Main Projects Folder"
+            <TextBlock Text="{DynamicResource Str.FirstRunSetup.Folder.SelectLabel}"
                        FontSize="14"
                        FontWeight="SemiBold"
                        Foreground="{DynamicResource Brush950}"
                        Margin="0,0,0,10"/>
-            
+
             <TextBlock TextWrapping="Wrap"
                        FontSize="12"
                        Foreground="{DynamicResource Brush700}"
                        Margin="0,0,0,5">
-                <Run Text="Choose a MAIN folder where ALL self-contained projects will be stored."/>
+                <Run Text="{DynamicResource Str.FirstRunSetup.Folder.Description}"/>
                 <LineBreak/>
-                <Run Text="Example: " FontWeight="SemiBold"/>
-                <Run Text="C:\grzyClothTool Projects"/>
+                <Run Text="{DynamicResource Str.FirstRunSetup.Folder.ExampleLabel}" FontWeight="SemiBold"/>
+                <Run Text="{DynamicResource Str.FirstRunSetup.Folder.ExamplePath}"/>
             </TextBlock>
-            
-            <TextBlock Text="(Do NOT select a specific project folder - select the parent folder that will contain multiple projects)"
+
+            <TextBlock Text="{DynamicResource Str.FirstRunSetup.Folder.Hint}"
                        TextWrapping="Wrap"
                        FontSize="11"
                        FontStyle="Italic"
@@ -75,7 +75,7 @@
 
                 <Button x:Name="BrowseButton"
                         Grid.Column="1"
-                        Content="Browse..."
+                        Content="{DynamicResource Str.FirstRunSetup.Button.Browse}"
                         Click="BrowseButton_Click"
                         Padding="15,10"
                         Margin="10,0,0,0"
@@ -103,19 +103,19 @@
                 CornerRadius="5"
                 Margin="0,0,0,20">
             <StackPanel>
-                <TextBlock Text="[i] Important Information"
+                <TextBlock Text="{DynamicResource Str.FirstRunSetup.Info.Heading}"
                            FontSize="13"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource Brush950}"
                            Margin="0,0,0,10"/>
-                
+
                 <TextBlock TextWrapping="Wrap"
                            FontSize="11"
                            Foreground="{DynamicResource Brush700}"
                            LineHeight="18">
-                    <Run Text="* This setting is stored in your user profile and will persist across application updates."/>
+                    <Run Text="{DynamicResource Str.FirstRunSetup.Info.Line1}"/>
                     <LineBreak/>
-                    <Run Text="* You can change this folder later in the Settings menu."/>
+                    <Run Text="{DynamicResource Str.FirstRunSetup.Info.Line2}"/>
                 </TextBlock>
             </StackPanel>
         </Border>
@@ -124,7 +124,7 @@
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right">
             <Button x:Name="ContinueButton"
-                    Content="Continue"
+                    Content="{DynamicResource Str.FirstRunSetup.Button.Continue}"
                     Click="ContinueButton_Click"
                     Padding="30,10"
                     Background="{DynamicResource Brush950}"

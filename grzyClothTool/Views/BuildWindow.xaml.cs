@@ -149,7 +149,7 @@ namespace grzyClothTool.Views
             if (string.IsNullOrEmpty(ProjectName))
             {
                 IsWarningVisible = true;
-                WarningMessage = "No project loaded. Please create or open a project first.";
+                WarningMessage = LocalizationHelper.Get("Str.BuildWindow.Warning.NoProjectLoaded");
                 CanBuild = false;
                 return;
             }
@@ -157,7 +157,7 @@ namespace grzyClothTool.Views
             if (string.IsNullOrEmpty(BuildPath))
             {
                 IsWarningVisible = true;
-                WarningMessage = "Build path could not be determined. Please check your project settings.";
+                WarningMessage = LocalizationHelper.Get("Str.BuildWindow.Warning.BuildPathMissing");
                 CanBuild = false;
                 return;
             }
@@ -166,7 +166,7 @@ namespace grzyClothTool.Views
             if (allDrawablesCount == 0)
             {
                 IsWarningVisible = true;
-                WarningMessage = "No drawables found. Add drawables to be able to build resource.";
+                WarningMessage = LocalizationHelper.Get("Str.BuildWindow.Warning.NoDrawables");
                 CanBuild = false;
             }
         }
@@ -210,7 +210,7 @@ namespace grzyClothTool.Views
 
             if (string.IsNullOrEmpty(ProjectName) || string.IsNullOrEmpty(BuildPath))
             {
-                CustomMessageBox.Show("Please fill in all fields. Make sure a project is loaded.", "Error", CustomMessageBoxButtons.OKOnly);
+                CustomMessageBox.Show(LocalizationHelper.Get("Str.BuildWindow.Error.FillAllFields"), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly);
                 return;
             }
 
@@ -240,13 +240,13 @@ namespace grzyClothTool.Views
                 await Task.Run(() => BuildResource(buildHelper)); // moved out of ui thread, so users don't think tool stopped responding
 
                 timer.Stop();
-                CustomMessageBox.Show($"Build done, elapsed time: {timer.Elapsed}", "Build done", CustomMessageBoxButtons.OpenFolder, BuildPath);
-                LogHelper.Log($"Build done, elapsed time: {timer.Elapsed}");
+                CustomMessageBox.Show(LocalizationHelper.GetFormat("Str.BuildWindow.Success.BuildDone", timer.Elapsed), LocalizationHelper.Get("Str.BuildWindow.Success.BuildDoneTitle"), CustomMessageBoxButtons.OpenFolder, BuildPath);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildWindow.Success.BuildDone", timer.Elapsed));
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Build failed: {ex}", LogType.Error);
-                CustomMessageBox.Show($"Build failed:\n\n{ex}", "Error", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.BuildWindow.Error.BuildFailedLog", ex), LogType.Error);
+                CustomMessageBox.Show(LocalizationHelper.GetFormat("Str.BuildWindow.Error.BuildFailed", ex), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
             }
             finally
             {
@@ -294,19 +294,19 @@ namespace grzyClothTool.Views
 
             if (string.IsNullOrEmpty(ProjectName))
             {
-                result = "Project name cannot be empty";
+                result = LocalizationHelper.Get("Str.BuildWindow.Validation.NameEmpty");
             }
             else if (ProjectName.Length < 3)
             {
-                result = "Project name must be at least 3 characters long";
+                result = LocalizationHelper.Get("Str.BuildWindow.Validation.NameTooShort");
             }
             else if (ProjectName.Length > 50)
             {
-                result = "Project name cannot be longer than 50 characters";
+                result = LocalizationHelper.Get("Str.BuildWindow.Validation.NameTooLong");
             }
             else if (!Regex.IsMatch(ProjectName, @"^[a-z0-9_]+$"))
             {
-                result = "Project name can only contain lowercase letters, numbers, and underscores";
+                result = LocalizationHelper.Get("Str.BuildWindow.Validation.NameInvalidChars");
 
             }
 

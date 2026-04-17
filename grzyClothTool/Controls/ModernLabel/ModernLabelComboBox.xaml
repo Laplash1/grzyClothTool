@@ -270,7 +270,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                 Cursor="Hand"
-                ToolTip="Clear Group"
+                ToolTip="{DynamicResource Str.ModernLabelComboBox.ClearButton.ToolTip}"
                 Visibility="Collapsed"
                 Click="ClearButton_Click">
             <Button.Style>

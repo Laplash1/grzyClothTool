@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:icons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
     mc:Ignorable="d"
-    Title="Duplicate Inspector" 
+    Title="{DynamicResource Str.DuplicateInspector.Window.Title}"
     Height="700" 
     Width="900"
     WindowStartupLocation="CenterOwner"
@@ -54,12 +54,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
-            <TextBlock Text="Duplicate Inspector" 
-                      FontSize="24" 
+            <TextBlock Text="{DynamicResource Str.DuplicateInspector.Header.Title}"
+                      FontSize="24"
                       FontWeight="Bold"
                       Foreground="{DynamicResource Brush900}"/>
             <TextBlock x:Name="SubtitleText"
-                      Text="Found X duplicate groups"
+                      Text="{DynamicResource Str.DuplicateInspector.Header.Subtitle}"
                       FontSize="14"
                       Foreground="{DynamicResource Brush600}"
                       Margin="0,4,0,0"/>
@@ -98,7 +98,7 @@
                                             <TextBlock FontSize="11"
                                                       FontWeight="Bold"
                                                       Foreground="White">
-                                                <Run Text="DUP" />
+                                                <Run Text="{DynamicResource Str.DuplicateInspector.Badge.Dup}" />
                                                 <Run Text="{Binding Count, Mode=OneWay}" />
                                             </TextBlock>
                                         </Border>
@@ -115,7 +115,7 @@
                                         </StackPanel>
                                         
                                         <Button Grid.Column="2"
-                                               Content="Delete All Except First"
+                                               Content="{DynamicResource Str.DuplicateInspector.Group.DeleteAllExceptFirst}"
                                                Tag="{Binding}"
                                                Click="DeleteGroupExceptFirst_Click"
                                                Style="{StaticResource ActionButton}"
@@ -169,13 +169,13 @@
                                                     <StackPanel Grid.Column="1" 
                                                               Orientation="Horizontal"
                                                               VerticalAlignment="Center">
-                                                        <Button Content="Open"
+                                                        <Button Content="{DynamicResource Str.DuplicateInspector.Item.Open}"
                                                                Tag="{Binding}"
                                                                Click="OpenItem_Click"
                                                                Style="{StaticResource ActionButton}"
                                                                Padding="8,4"
                                                                FontSize="10"/>
-                                                        <Button Content="Delete"
+                                                        <Button Content="{DynamicResource Str.DuplicateInspector.Item.Delete}"
                                                                Tag="{Binding}"
                                                                Click="DeleteItem_Click"
                                                                Style="{StaticResource ActionButton}"
@@ -212,10 +212,10 @@
                    Orientation="Horizontal" 
                    HorizontalAlignment="Right"
                    Margin="0,16,0,0">
-            <Button Content="Refresh"
+            <Button Content="{DynamicResource Str.DuplicateInspector.Footer.Refresh}"
                    Click="Refresh_Click"
                    Style="{StaticResource ActionButton}"/>
-            <Button Content="Close"
+            <Button Content="{DynamicResource Str.DuplicateInspector.Footer.Close}"
                    Click="Close_Click"
                    Style="{StaticResource ActionButton}"
                    Margin="0"/>

@@ -46,7 +46,7 @@
                              VerticalContentAlignment="Center"/>
 
                     <Button Grid.Column="1"
-                            Content="Add"
+                            Content="{DynamicResource Str.TagsEditor.AddButton}"
                             Margin="4"
                             Padding="12,4"
                             Background="{DynamicResource Brush300}"

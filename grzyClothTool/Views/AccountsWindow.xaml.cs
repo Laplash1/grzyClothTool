@@ -1,4 +1,5 @@
-﻿using System;
+﻿using grzyClothTool.Helpers;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -14,7 +15,7 @@ namespace grzyClothTool.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string IsLoggedInText => IsPatreonLoggedIn ? "Yes" : "No";
+        public string IsLoggedInText => IsPatreonLoggedIn ? LocalizationHelper.Get("Str.Common.Yes") : LocalizationHelper.Get("Str.Common.No");
 
         private bool _isPatreonLoggedIn;
         public bool IsPatreonLoggedIn
@@ -114,11 +115,11 @@ namespace grzyClothTool.Views
                     PatreonUsername = App.patreonAuthPlugin?.Username;
                     PatreonImg = App.patreonAuthPlugin?.ImageUrl;
 
-                    PatreonStatus = App.patreonAuthPlugin?.Status == null ? "NOT ACTIVE" : "ACTIVE";
+                    PatreonStatus = App.patreonAuthPlugin?.Status == null ? LocalizationHelper.Get("Str.Accounts.Status.NotActive") : LocalizationHelper.Get("Str.Accounts.Status.Active");
                     PatreonLastChargeDate = (App.patreonAuthPlugin?.LastChargeDate) ?? "-";
                     PatreonNextChargeDate = (App.patreonAuthPlugin?.NextChargeDate) ?? "-";
                 }
-            } 
+            }
             catch
             {
                 Close();
@@ -139,14 +140,14 @@ namespace grzyClothTool.Views
                     PatreonUsername = App.patreonAuthPlugin.Username;
                     PatreonImg = App.patreonAuthPlugin.ImageUrl;
 
-                    PatreonStatus = App.patreonAuthPlugin.Status == null ? "NOT ACTIVE" : "ACTIVE";
+                    PatreonStatus = App.patreonAuthPlugin.Status == null ? LocalizationHelper.Get("Str.Accounts.Status.NotActive") : LocalizationHelper.Get("Str.Accounts.Status.Active");
                     PatreonLastChargeDate = (App.patreonAuthPlugin.LastChargeDate) ?? "-";
                     PatreonNextChargeDate = (App.patreonAuthPlugin.NextChargeDate) ?? "-";
                 }
             }
             catch
             {
-                MessageBox.Show("Failed to login");
+                MessageBox.Show(LocalizationHelper.Get("Str.Accounts.Error.LoginFailed"));
             }
         }
 

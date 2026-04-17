@@ -77,10 +77,10 @@ namespace grzyClothTool
             Dispatcher.BeginInvoke((Action)(async () =>
             {
 #if !DEBUG
-                App.splashScreen.AddMessage("Checking for updates...");
+                App.splashScreen.AddMessage(LocalizationHelper.Get("Str.MainWindow.Splash.CheckingUpdates"));
                 await UpdateHelper.CheckForUpdates();
 #endif
-                App.splashScreen.AddMessage("Starting app");
+                App.splashScreen.AddMessage(LocalizationHelper.Get("Str.MainWindow.Splash.StartingApp"));
 
                 while (App.splashScreen.MessageQueueCount > 0)
                 {
@@ -244,7 +244,7 @@ namespace grzyClothTool
         {
             if (!SaveHelper.HasUnsavedChanges)
             {
-                LogHelper.Log("No changes to save", LogType.Info);
+                LogHelper.Log(LocalizationHelper.Get("Str.MainWindow.Log.NoChangesToSave"), LogType.Info);
                 return;
             }
 
@@ -273,7 +273,7 @@ namespace grzyClothTool
 
             _navigationHelper.Navigate("Home");
 
-            LogHelper.Log("Cleared data, moved to home screen", LogType.Info);
+            LogHelper.Log(LocalizationHelper.Get("Str.MainWindow.Log.ClearedData"), LogType.Info);
         }
 
         public void OpenAddon_Click(object sender, RoutedEventArgs e)
@@ -295,9 +295,9 @@ namespace grzyClothTool
 
             OpenFileDialog metaFiles = new()
             {
-                Title = "Select .meta file(s)",
+                Title = LocalizationHelper.Get("Str.MainWindow.Dialog.SelectMetaFiles"),
                 Multiselect = true,
-                Filter = "Meta files (*.meta)|*.meta"
+                Filter = LocalizationHelper.Get("Str.FileDialog.Filter.MetaFiles")
             };
 
             if (metaFiles.ShowDialog() != true)
@@ -320,7 +320,7 @@ namespace grzyClothTool
                     if ((firstLine == null || !firstLine.Contains("ShopPedApparel")) &&
                         (secondLine == null || !secondLine.Contains("ShopPedApparel")))
                     {
-                        LogHelper.Log($"Skipped file {dir} as it is probably not a correct .meta file");
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.MainWindow.Log.SkippedMetaFile", dir));
                         continue;
                     }
                 }
@@ -373,7 +373,7 @@ namespace grzyClothTool
 
             if (validMetaFiles.Count == 0)
             {
-                Controls.CustomMessageBox.Show("No valid .meta files were selected.", "Error", Controls.CustomMessageBox.CustomMessageBoxButtons.OKOnly, Controls.CustomMessageBox.CustomMessageBoxIcon.Error);
+                Controls.CustomMessageBox.Show(LocalizationHelper.Get("Str.MainWindow.Error.NoValidMetaFiles"), LocalizationHelper.Get("Str.Common.Error"), Controls.CustomMessageBox.CustomMessageBoxButtons.OKOnly, Controls.CustomMessageBox.CustomMessageBoxIcon.Error);
                 return false;
             }
 
@@ -399,10 +399,9 @@ namespace grzyClothTool
             if (totalDrawableCount == 0)
             {
                 Controls.CustomMessageBox.Show(
-                    "No drawable files (.ydd) were found for the selected .meta file(s).\n\n" +
-                    "Please make sure the .ydd files are in the same directory or subdirectories as the .meta file.",
-                    "No Drawables Found", 
-                    Controls.CustomMessageBox.CustomMessageBoxButtons.OKOnly, 
+                    LocalizationHelper.Get("Str.MainWindow.Warning.NoDrawablesFound"),
+                    LocalizationHelper.Get("Str.MainWindow.Warning.NoDrawablesFoundTitle"),
+                    Controls.CustomMessageBox.CustomMessageBoxButtons.OKOnly,
                     Controls.CustomMessageBox.CustomMessageBoxIcon.Warning);
                 return false;
             }
@@ -413,7 +412,7 @@ namespace grzyClothTool
                 return false;
             }
 
-            ProgressHelper.Start("Started loading addon");
+            ProgressHelper.Start(LocalizationHelper.Get("Str.MainWindow.Progress.StartedLoadingAddon"));
 
             AddonManager.Addons = [];
             AddonManager.IsExternalProject = !dialog.IsSelfContained;
@@ -426,8 +425,10 @@ namespace grzyClothTool
 
             AddonManager.ProjectName = dialog.ProjectName;
 
-            var projectType = dialog.IsSelfContained ? "Self-contained" : "External";
-            ProgressHelper.Stop($"{projectType} addon loaded in {{0}}", true);
+            var projectType = dialog.IsSelfContained
+                ? LocalizationHelper.Get("Str.Common.ProjectType.SelfContained")
+                : LocalizationHelper.Get("Str.Common.ProjectType.External");
+            ProgressHelper.Stop(LocalizationHelper.GetFormat("Str.MainWindow.Progress.AddonLoadedIn", projectType, "{0}"), true);
             SaveHelper.SetUnsavedChanges(true);
             return true;
         }
@@ -436,14 +437,14 @@ namespace grzyClothTool
         {
             OpenFileDialog metaFiles = new()
             {
-                Title = "Select .meta file(s) to add",
+                Title = LocalizationHelper.Get("Str.MainWindow.Dialog.SelectMetaFilesToAdd"),
                 Multiselect = true,
-                Filter = "Meta files (*.meta)|*.meta"
+                Filter = LocalizationHelper.Get("Str.FileDialog.Filter.MetaFiles")
             };
 
             if (metaFiles.ShowDialog() == true)
             {
-                ProgressHelper.Start("Started adding addon");
+                ProgressHelper.Start(LocalizationHelper.Get("Str.MainWindow.Progress.StartedAddingAddon"));
 
                 // Import addon - add to existing addons instead of replacing
                 foreach (var dir in metaFiles.FileNames)
@@ -457,7 +458,7 @@ namespace grzyClothTool
                         if ((firstLine == null || !firstLine.Contains("ShopPedApparel")) &&
                             (secondLine == null || !secondLine.Contains("ShopPedApparel")))
                         {
-                            LogHelper.Log($"Skipped file {dir} as it is probably not a correct .meta file");
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.MainWindow.Log.SkippedMetaFile", dir));
                             return;
                         }
                     }
@@ -465,7 +466,7 @@ namespace grzyClothTool
                     await AddonManager.LoadAddon(dir, shouldSetProjectName);
                 }
 
-                ProgressHelper.Stop("Addon added in {0}", true);
+                ProgressHelper.Stop(LocalizationHelper.Get("Str.MainWindow.Progress.AddonAddedIn"), true);
                 SaveHelper.SetUnsavedChanges(true);
             }
         }
@@ -481,13 +482,13 @@ namespace grzyClothTool
             // open file dialog to select project file
             OpenFileDialog openFileDialog = new()
             {
-                Title = "Import project",
-                Filter = "grzyClothTool project (*.gctproject)|*.gctproject"
+                Title = LocalizationHelper.Get("Str.MainWindow.Dialog.ImportProject"),
+                Filter = LocalizationHelper.Get("Str.FileDialog.Filter.GctProject")
             };
 
             if (openFileDialog.ShowDialog() == true)
             {
-                ProgressHelper.Start($"Started importing {openFileDialog.SafeFileName}");
+                ProgressHelper.Start(LocalizationHelper.GetFormat("Str.MainWindow.Progress.StartedImporting", openFileDialog.SafeFileName));
 
                 var tempPath = Path.Combine(Path.GetTempPath(), TempFoldersNames["import"]);
                 Directory.CreateDirectory(tempPath);
@@ -519,7 +520,7 @@ namespace grzyClothTool
 
                 if (metaFiles.Count == 0)
                 {
-                    LogHelper.Log("No meta files found in project file, this shouldn't happen, please report it to developer on discord");
+                    LogHelper.Log(LocalizationHelper.Get("Str.MainWindow.Log.NoMetaFilesInProject"));
                     return false;
                 }
 
@@ -528,7 +529,7 @@ namespace grzyClothTool
                     await AddonManager.LoadAddon(metaFile);
                 }
 
-                ProgressHelper.Stop("Project imported in {0}", true);
+                ProgressHelper.Stop(LocalizationHelper.Get("Str.MainWindow.Progress.ProjectImportedIn"), true);
                 SaveHelper.SetUnsavedChanges(true);
                 return true;
             }
@@ -544,14 +545,14 @@ namespace grzyClothTool
             var savedProjectName = string.IsNullOrWhiteSpace(AddonManager.ProjectName) ? "project" : AddonManager.ProjectName;
             SaveFileDialog saveFileDialog = new()
             {
-                Title = "Export project",
-                Filter = "grzyClothTool project (*.gctproject)|*.gctproject",
+                Title = LocalizationHelper.Get("Str.MainWindow.Dialog.ExportProject"),
+                Filter = LocalizationHelper.Get("Str.FileDialog.Filter.GctProject"),
                 FileName = $"{savedProjectName}.gctproject"
             };
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                ProgressHelper.Start("Started exporting project");
+                ProgressHelper.Start(LocalizationHelper.Get("Str.MainWindow.Progress.StartedExportingProject"));
 
                 var tempPath = Path.Combine(Path.GetTempPath(), TempFoldersNames["export"]);
 
@@ -576,7 +577,7 @@ namespace grzyClothTool
                 await Task.Run(() => ZipFile.CreateFromDirectory(buildPath, zipPath, CompressionLevel.Fastest, false));
                 await ObfuscationHelper.XORFile(zipPath, selectedPath);
 
-                ProgressHelper.Stop("Project exported in {0}", true);
+                ProgressHelper.Stop(LocalizationHelper.Get("Str.MainWindow.Progress.ProjectExportedIn"), true);
             }
         }
 

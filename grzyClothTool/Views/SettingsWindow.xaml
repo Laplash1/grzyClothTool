@@ -37,7 +37,7 @@
                                 </Path.Data>
                             </Path>
                         </Grid>
-                        <TextBlock Foreground="{DynamicResource Brush950}" Margin="5,0,5,2" VerticalAlignment="Center" FontSize="16" FontWeight="Normal">Back</TextBlock>
+                        <TextBlock Foreground="{DynamicResource Brush950}" Margin="5,0,5,2" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" Text="{DynamicResource Str.Settings.Button.Back}" />
                     </StackPanel>
                 </Button>
 
@@ -94,7 +94,7 @@
 
 
         <Grid Grid.Row="1">
-            <GroupBox Grid.ColumnSpan="2" Style="{DynamicResource FixedGroupBox}" Header="Settings">
+            <GroupBox Grid.ColumnSpan="2" Style="{DynamicResource FixedGroupBox}" Header="{DynamicResource Str.Settings.Group.Settings}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -105,7 +105,7 @@
 
                             <GroupBox Margin="0,5" Height="120" Style="{DynamicResource FixedGroupBox}">
                                 <GroupBox.Header>
-                                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource Brush950}" Text="Drawable polygon count limit" />
+                                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource Brush950}" Text="{DynamicResource Str.Settings.Group.PolygonLimit}" />
                                 </GroupBox.Header>
                                 <Grid Margin="2">
                                     <Grid.RowDefinitions>
@@ -118,16 +118,16 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Padding="5,2,5,5" FontStyle="Italic" FontWeight="Normal" Foreground="{DynamicResource Brush500}" Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap">Sets limit for drawable polygon count, if it exceeds this number it will display warning</TextBlock>
-                                    <c:SettingsLabelTextBox Grid.Row="1" Grid.Column="0" Label="High LOD" LabelFontSize="12" Text="{Binding Path=Instance.PolygonLimitHigh, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" ButtonVisible="False" />
-                                    <c:SettingsLabelTextBox Grid.Row="1" Grid.Column="1" Label="Medium LOD" LabelFontSize="12" Text="{Binding Path=Instance.PolygonLimitMed, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" ButtonVisible="False" />
-                                    <c:SettingsLabelTextBox Grid.Row="1" Grid.Column="2" Label="Low LOD" LabelFontSize="12" Text="{Binding Path=Instance.PolygonLimitLow, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" ButtonVisible="False" />
+                                    <TextBlock Padding="5,2,5,5" FontStyle="Italic" FontWeight="Normal" Foreground="{DynamicResource Brush500}" Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{DynamicResource Str.Settings.PolygonLimit.Description}" />
+                                    <c:SettingsLabelTextBox Grid.Row="1" Grid.Column="0" Label="{DynamicResource Str.Settings.PolygonLimit.High}" LabelFontSize="12" Text="{Binding Path=Instance.PolygonLimitHigh, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" ButtonVisible="False" />
+                                    <c:SettingsLabelTextBox Grid.Row="1" Grid.Column="1" Label="{DynamicResource Str.Settings.PolygonLimit.Medium}" LabelFontSize="12" Text="{Binding Path=Instance.PolygonLimitMed, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" ButtonVisible="False" />
+                                    <c:SettingsLabelTextBox Grid.Row="1" Grid.Column="2" Label="{DynamicResource Str.Settings.PolygonLimit.Low}" LabelFontSize="12" Text="{Binding Path=Instance.PolygonLimitLow, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" ButtonVisible="False" />
                                 </Grid>
                             </GroupBox>
 
                             <GroupBox Margin="0,5" Height="140" Style="{DynamicResource FixedGroupBox}">
                                 <GroupBox.Header>
-                                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource Brush950}" Text="Texture resolution limits" />
+                                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource Brush950}" Text="{DynamicResource Str.Settings.Group.TextureResolution}" />
                                 </GroupBox.Header>
                                 <Grid Margin="2">
                                     <Grid.RowDefinitions>
@@ -140,54 +140,54 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Padding="5,2,5,5" FontStyle="Italic" FontWeight="Normal" Foreground="{DynamicResource Brush500}" Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap">Sets maximum resolution for each texture type. If width or height exceeds the limit, a warning will be displayed</TextBlock>
-                                    <c:SettingsLabelComboBox Grid.Row="1" Grid.Column="0" Label="Diffuse" LabelFontSize="12" ItemsSource="{Binding TextureResolutionOptions}" SelectedItem="{Binding Path=Instance.TextureResolutionLimitDiffuse, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
-                                    <c:SettingsLabelComboBox Grid.Row="1" Grid.Column="1" Label="Normal" LabelFontSize="12" ItemsSource="{Binding TextureResolutionOptions}" SelectedItem="{Binding Path=Instance.TextureResolutionLimitNormal, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
-                                    <c:SettingsLabelComboBox Grid.Row="1" Grid.Column="2" Label="Specular" LabelFontSize="12" ItemsSource="{Binding TextureResolutionOptions}" SelectedItem="{Binding Path=Instance.TextureResolutionLimitSpecular, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
+                                    <TextBlock Padding="5,2,5,5" FontStyle="Italic" FontWeight="Normal" Foreground="{DynamicResource Brush500}" Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{DynamicResource Str.Settings.TextureResolution.Description}" />
+                                    <c:SettingsLabelComboBox Grid.Row="1" Grid.Column="0" Label="{DynamicResource Str.Settings.TextureResolution.Diffuse}" LabelFontSize="12" ItemsSource="{Binding TextureResolutionOptions}" SelectedItem="{Binding Path=Instance.TextureResolutionLimitDiffuse, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
+                                    <c:SettingsLabelComboBox Grid.Row="1" Grid.Column="1" Label="{DynamicResource Str.Settings.TextureResolution.Normal}" LabelFontSize="12" ItemsSource="{Binding TextureResolutionOptions}" SelectedItem="{Binding Path=Instance.TextureResolutionLimitNormal, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
+                                    <c:SettingsLabelComboBox Grid.Row="1" Grid.Column="2" Label="{DynamicResource Str.Settings.TextureResolution.Specular}" LabelFontSize="12" ItemsSource="{Binding TextureResolutionOptions}" SelectedItem="{Binding Path=Instance.TextureResolutionLimitSpecular, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
                         <StackPanel Margin="5" Grid.Column="1">
                             <GroupBox Margin="0,5" Height="380" Style="{DynamicResource FixedGroupBox}">
                                 <GroupBox.Header>
-                                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource Brush950}" Text="General settings" />
+                                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource Brush950}" Text="{DynamicResource Str.Settings.Group.General}" />
                                 </GroupBox.Header>
 
                                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                                     <StackPanel Margin="0">
                                         <c:SettingsLabelTextBox
                                             Margin="5"
-                                            Label="Main Projects Folder"
+                                            Label="{DynamicResource Str.Settings.General.MainProjectsFolder.Label}"
                                             Text="{Binding MainProjectsFolder, Mode=TwoWay}"
-                                            Description="Main folder where all your clothing projects are stored"
-                                            Title="Select your Main Projects Folder"
+                                            Description="{DynamicResource Str.Settings.General.MainProjectsFolder.Description}"
+                                            Title="{DynamicResource Str.Settings.General.MainProjectsFolder.Title}"
                                             ButtonClick="MainProjectsFolder_Click" />
 
                                         <c:SettingsLabelTextBox
                                             Margin="5"
-                                            Label="Current GTAV Path"
+                                            Label="{DynamicResource Str.Settings.General.GTAVPath.Label}"
                                             Text="{Binding GTAVPath, Mode=OneWay}"
-                                            Description="GTAV path is required for 3D preview to work"
-                                            Title="Select your GTA V Path"
+                                            Description="{DynamicResource Str.Settings.General.GTAVPath.Description}"
+                                            Title="{DynamicResource Str.Settings.General.GTAVPath.Title}"
                                             ButtonClick="GTAVPath_Click" />
 
                                         <c:SettingsLabelCheckBox
                                             Margin="5"
-                                            Label="Display drawable path"
-                                            Text="Enabled will display used path for selected drawable"
+                                            Label="{DynamicResource Str.Settings.General.DisplayDrawablePath.Label}"
+                                            Text="{DynamicResource Str.Settings.General.DisplayDrawablePath.Text}"
                                             IsChecked="{Binding Path=Instance.DisplaySelectedDrawablePath, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
 
                                         <c:SettingsLabelCheckBox
                                             Margin="5"
-                                            Label="Delete drawable files automatically"
-                                            Text="When enabled, it will automatically remove the associated files from your system when you delete a drawable from the addon"
-                                            DisplayWarning="WARNING: This function will modify and remove files from your PC. Any removed files cannot be recovered.&#x0a;&#x0a;Are you sure you want to enable it?"
+                                            Label="{DynamicResource Str.Settings.General.AutoDeleteFiles.Label}"
+                                            Text="{DynamicResource Str.Settings.General.AutoDeleteFiles.Text}"
+                                            DisplayWarning="{DynamicResource Str.Settings.General.AutoDeleteFiles.Warning}"
                                             IsChecked="{Binding Path=Instance.AutoDeleteFiles, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
 
                                         <c:SettingsLabelCheckBox
                                             Margin="5"
-                                            Label="Mark new drawables"
-                                            Text="When enabled, new drawables will be marked with a yellow dot"
+                                            Label="{DynamicResource Str.Settings.General.MarkNewDrawables.Label}"
+                                            Text="{DynamicResource Str.Settings.General.MarkNewDrawables.Text}"
                                             IsChecked="{Binding Path=Instance.MarkNewDrawables, Source={x:Static helpers:SettingsHelper.Instance}, Mode=TwoWay}" />
                                     </StackPanel>
                                 </ScrollViewer>

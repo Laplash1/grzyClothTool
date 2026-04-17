@@ -409,7 +409,7 @@ namespace grzyClothTool.Controls
 
                 if (!addon.CanFitDrawables(selectedDrawables))
                 {
-                    Show("The selected addon cannot fit the selected drawables.", "Addon full", CustomMessageBoxButtons.OKOnly);
+                    Show(LocalizationHelper.Get("Str.DrawableList.AddonFull.Message"), LocalizationHelper.Get("Str.DrawableList.AddonFull.Title"), CustomMessageBoxButtons.OKOnly);
                     return;
                 }
 
@@ -517,12 +517,12 @@ namespace grzyClothTool.Controls
                 MainWindow.AddonManager.Addons.Sort(true);
                 
                 SaveHelper.SetUnsavedChanges(true);
-                LogHelper.Log($"Duplicated drawable '{drawable.Name}' to opposite gender ({oppositeGender}) - new drawable is {newDrawable.Name}");
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.DrawableList.Log.DuplicatedOppositeGenderFormat", drawable.Name, oppositeGender, newDrawable.Name));
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error duplicating drawable to opposite gender: {ex.Message}", Views.LogType.Error);
-                Show($"Failed to duplicate drawable: {ex.Message}", "Error", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.DrawableList.Log.DuplicateOppositeErrorFormat", ex.Message), Views.LogType.Error);
+                Show(LocalizationHelper.GetFormat("Str.DrawableList.Dialog.DuplicateFailedFormat", ex.Message), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
             }
         }
 
@@ -533,8 +533,8 @@ namespace grzyClothTool.Controls
 
             OpenFileDialog files = new()
             {
-                Title = $"Select drawable file to replace '{drawable.Name}'",
-                Filter = "Drawable files (*.ydd)|*.ydd",
+                Title = LocalizationHelper.GetFormat("Str.DrawableList.Dialog.SelectReplaceDrawableTitleFormat", drawable.Name),
+                Filter = LocalizationHelper.Get("Str.DrawableList.Filter.DrawableFiles"),
                 Multiselect = false
             };
 
@@ -548,12 +548,12 @@ namespace grzyClothTool.Controls
                     SaveHelper.SetUnsavedChanges(true);
 
                     CWHelper.SendDrawableUpdateToPreview(e);
-                    LogHelper.Log($"Replaced drawable '{drawable.Name}' with new file", Views.LogType.Info);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.DrawableList.Log.ReplacedDrawableFormat", drawable.Name), Views.LogType.Info);
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"Failed to replace drawable: {ex.Message}", Views.LogType.Error);
-                    Show($"Failed to replace drawable: {ex.Message}", "Error", CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
+                    LogHelper.Log(LocalizationHelper.GetFormat("Str.DrawableList.Log.ReplaceFailedFormat", ex.Message), Views.LogType.Error);
+                    Show(LocalizationHelper.GetFormat("Str.DrawableList.Dialog.ReplaceFailedFormat", ex.Message), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly, CustomMessageBoxIcon.Error);
                 }
             }
         }
@@ -570,9 +570,9 @@ namespace grzyClothTool.Controls
             {
                 Title = tag switch
                 {
-                    "DDS" or "PNG" => $"Select the folder to export textures as {tag}",
-                    "YTD" => "Select the folder to export drawable with textures",
-                    _ => "Select the folder to export drawable"
+                    "DDS" or "PNG" => LocalizationHelper.GetFormat("Str.DrawableList.Dialog.ExportTexturesFormat", tag),
+                    "YTD" => LocalizationHelper.Get("Str.DrawableList.Dialog.ExportDrawableWithTextures"),
+                    _ => LocalizationHelper.Get("Str.DrawableList.Dialog.ExportDrawable")
                 },
                 Multiselect = false
             };
@@ -603,7 +603,7 @@ namespace grzyClothTool.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred during export: {ex.Message}", "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(LocalizationHelper.GetFormat("Str.DrawableList.Dialog.ExportErrorFormat", ex.Message), LocalizationHelper.Get("Str.DrawableList.Dialog.ExportErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -834,7 +834,7 @@ namespace grzyClothTool.Controls
                         {
                             var oldGroup = droppedData.Group;
                             droppedData.Group = targetGroupName;
-                            LogHelper.Log($"Drawable '{droppedData.Name}' moved from group '{oldGroup ?? "Ungrouped"}' to '{targetGroupName}'");
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.DrawableList.Log.MovedGroupFormat", droppedData.Name, oldGroup ?? LocalizationHelper.Get("Str.DrawableList.Ungrouped"), targetGroupName));
                             SaveHelper.SetUnsavedChanges(true);
                         }
                         CleanupGhostLine();
@@ -857,7 +857,7 @@ namespace grzyClothTool.Controls
                     {
                         var oldGroup = droppedData.Group;
                         droppedData.Group = target.Group;
-                        LogHelper.Log($"Drawable '{droppedData.Name}' moved from group '{oldGroup ?? "Ungrouped"}' to '{target.Group ?? "Ungrouped"}'");
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.DrawableList.Log.MovedGroupFormat", droppedData.Name, oldGroup ?? LocalizationHelper.Get("Str.DrawableList.Ungrouped"), target.Group ?? LocalizationHelper.Get("Str.DrawableList.Ungrouped")));
                         SaveHelper.SetUnsavedChanges(true);
                     }
 
@@ -920,7 +920,7 @@ namespace grzyClothTool.Controls
                             sameTypeDrawables[i].SetDrawableName();
                         }
 
-                        LogHelper.Log($"Drawable '{droppedData.Name}' moved from position {oldVisualIndex} to {newVisualIndex}");
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.DrawableList.Log.MovedPositionFormat", droppedData.Name, oldVisualIndex, newVisualIndex));
                         SaveHelper.SetUnsavedChanges(true);
 
                         DrawablesView?.Refresh();

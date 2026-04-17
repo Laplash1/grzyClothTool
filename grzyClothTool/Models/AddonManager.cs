@@ -155,7 +155,7 @@ namespace grzyClothTool.Models
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error loading pedalternativevariations.meta: {ex.Message}", Views.LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.LoadPedAltVariationsFailedFormat", ex.Message), Views.LogType.Warning);
                 return null;
             }
         }
@@ -215,13 +215,13 @@ namespace grzyClothTool.Models
 
             if (yddFiles.Length == 0)
             {
-                CustomMessageBox.Show($"No .ydd files found for selected .meta file ({Path.GetFileName(path)})", "Error");
+                CustomMessageBox.Show(LocalizationHelper.GetFormat("Str.AddonManager.Dialog.NoYddFilesFormat", Path.GetFileName(path)), LocalizationHelper.Get("Str.Common.Error"));
                 return;
             }
 
             if (ymtFile == null)
             {
-                CustomMessageBox.Show($"No .ymt file found for selected .meta file ({Path.GetFileName(path)})", "Error");
+                CustomMessageBox.Show(LocalizationHelper.GetFormat("Str.AddonManager.Dialog.NoYmtFileFormat", Path.GetFileName(path)), LocalizationHelper.Get("Str.Common.Error"));
                 return;
             }
 
@@ -343,7 +343,7 @@ namespace grzyClothTool.Models
                         var number = FileHelper.GetDrawableNumberFromFileName(Path.GetFileName(filePath));
                         if (number == null)
                         {
-                            LogHelper.Log($"Could not find associated YDD file for first person file: {filePath}, please do it manually", Views.LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.NoAssociatedYddFirstPersonFormat", filePath), Views.LogType.Warning);
                             continue;
                         }
 
@@ -374,14 +374,14 @@ namespace grzyClothTool.Models
                                 }
                                 catch (Exception ex)
                                 {
-                                    LogHelper.Log($"Failed to copy first person file to project assets: {ex.Message}. Using original path.", Views.LogType.Warning);
+                                    LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.CopyFirstPersonFailedFormat", ex.Message), Views.LogType.Warning);
                                     await System.Windows.Application.Current.Dispatcher.InvokeAsync(() => foundDrawable.FirstPersonPath = filePath);
                                 }
                             }
                         }
                         else
                         {
-                            LogHelper.Log($"Could not find associated YDD file for first person file: {filePath}, please do it manually", Views.LogType.Warning);
+                            LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.NoAssociatedYddFirstPersonFormat", filePath), Views.LogType.Warning);
                         }
                     }
                     continue;
@@ -392,7 +392,7 @@ namespace grzyClothTool.Models
                     var number = FileHelper.GetDrawableNumberFromFileName(Path.GetFileName(filePath));
                     if (number == null)
                     {
-                        LogHelper.Log($"Could not find associated YDD file for this YLD: {filePath}, please do it manually", Views.LogType.Warning);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.NoAssociatedYddYldFormat", filePath), Views.LogType.Warning);
                         continue;
                     }
 
@@ -422,14 +422,14 @@ namespace grzyClothTool.Models
                             }
                             catch (Exception ex)
                             {
-                                LogHelper.Log($"Failed to copy cloth physics file to project assets: {ex.Message}. Using original path.", Views.LogType.Warning);
+                                LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.CopyClothPhysicsFailedFormat", ex.Message), Views.LogType.Warning);
                                 await System.Windows.Application.Current.Dispatcher.InvokeAsync(() => foundDrawable.ClothPhysicsPath = filePath);
                             }
                         }
                     }
                     else
                     {
-                        LogHelper.Log($"Could not find associated YDD file for this YLD: {filePath}, please do it manually", Views.LogType.Warning);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.NoAssociatedYddYldFormat", filePath), Views.LogType.Warning);
                     }
                     continue;
                 }
@@ -564,14 +564,14 @@ namespace grzyClothTool.Models
 
                     foreach (var drawable in result.DrawablesToSkip)
                     {
-                        LogHelper.Log($"Drawable '{Path.GetFileName(drawable.FilePath)}' was not added (user skipped duplicate)", Views.LogType.Info);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.DrawableSkippedDuplicateFormat", Path.GetFileName(drawable.FilePath)), Views.LogType.Info);
                     }
                 }
                 else if (result?.Cancelled == true)
                 {
                     foreach (var drawable in drawablesWithDuplicates)
                     {
-                        LogHelper.Log($"Drawable '{Path.GetFileName(drawable.FilePath)}' was not added (user cancelled duplicate batch)", Views.LogType.Info);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.DrawableCancelledBatchFormat", Path.GetFileName(drawable.FilePath)), Views.LogType.Info);
                     }
                 }
             }
@@ -625,7 +625,7 @@ namespace grzyClothTool.Models
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"Error extracting group from path: {ex.Message}", Views.LogType.Warning);
+                LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.ExtractGroupErrorFormat", ex.Message), Views.LogType.Warning);
             }
             
             return null;
@@ -638,17 +638,17 @@ namespace grzyClothTool.Models
                 var existingDuplicates = DuplicateDetector.CheckDrawableDuplicate(drawable);
                 if (existingDuplicates != null && existingDuplicates.Count > 0)
                 {
-                    var duplicateNames = string.Join("\n", existingDuplicates.Select(d => $"  • {d.Name} (Addon: {Addons.FirstOrDefault(a => a.Drawables.Contains(d))?.Name ?? "Unknown"})"));
-                    var message = $"A duplicate drawable has been detected!\n\nThe drawable you're trying to add appears to be identical to:\n{duplicateNames}\n\nThis new drawable will be added but marked as a duplicate.\n\nDo you want to continue?";
-                    
+                    var duplicateNames = string.Join("\n", existingDuplicates.Select(d => LocalizationHelper.GetFormat("Str.AddonManager.Dialog.DuplicateItemFormat", d.Name, Addons.FirstOrDefault(a => a.Drawables.Contains(d))?.Name ?? LocalizationHelper.Get("Str.AddonManager.Unknown"))));
+                    var message = LocalizationHelper.GetFormat("Str.AddonManager.Dialog.DuplicateDetectedMessageFormat", duplicateNames);
+
                     var result = System.Windows.Application.Current.Dispatcher.Invoke(() =>
-                        Controls.CustomMessageBox.Show(message, "Duplicate Drawable Detected", 
-                            Controls.CustomMessageBox.CustomMessageBoxButtons.OKCancel, 
+                        Controls.CustomMessageBox.Show(message, LocalizationHelper.Get("Str.AddonManager.Dialog.DuplicateDetectedTitle"),
+                            Controls.CustomMessageBox.CustomMessageBoxButtons.OKCancel,
                             Controls.CustomMessageBox.CustomMessageBoxIcon.Warning));
-                    
+
                     if (result == Controls.CustomMessageBox.CustomMessageBoxResult.Cancel)
                     {
-                        LogHelper.Log($"Drawable '{Path.GetFileName(drawable.FilePath)}' was not added (user cancelled duplicate)", Views.LogType.Info);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.DrawableCancelledDuplicateFormat", Path.GetFileName(drawable.FilePath)), Views.LogType.Info);
                         return;
                     }
                 }
@@ -742,7 +742,7 @@ namespace grzyClothTool.Models
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Log($"Failed to delete files for drawable '{drawable.Name}': {ex.Message}", Views.LogType.Warning);
+                        LogHelper.Log(LocalizationHelper.GetFormat("Str.AddonManager.Log.DeleteFilesFailedFormat", drawable.Name, ex.Message), Views.LogType.Warning);
                     }
                 }
             }

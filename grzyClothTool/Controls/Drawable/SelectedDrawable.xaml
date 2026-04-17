@@ -117,13 +117,13 @@
                                        Foreground="{DynamicResource Brush400}"
                                        HorizontalAlignment="Center"
                                        Margin="0,0,0,16" />
-                    <TextBlock Text="No drawable selected"
+                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.NoDrawable.Title}"
                                FontSize="16"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource Brush700}"
                                HorizontalAlignment="Center"
                                Margin="0,0,0,8" />
-                    <TextBlock Text="Select a drawable from the list to view and edit its properties"
+                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.NoDrawable.Description}"
                                FontSize="12"
                                Foreground="{DynamicResource Brush500}"
                                HorizontalAlignment="Center"
@@ -149,13 +149,13 @@
                                            Foreground="#f59e0b"
                                            HorizontalAlignment="Center"
                                            Margin="0,0,0,16" />
-                        <TextBlock Text="Reserved Drawable"
+                        <TextBlock Text="{DynamicResource Str.SelectedDrawable.Reserved.Title}"
                                    FontSize="18"
                                    FontWeight="Bold"
                                    Foreground="#f59e0b"
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,12" />
-                        <TextBlock Text="This is a reserved drawable slot and cannot be edited."
+                        <TextBlock Text="{DynamicResource Str.SelectedDrawable.Reserved.Description}"
                                    FontSize="13"
                                    Foreground="{DynamicResource Brush700}"
                                    HorizontalAlignment="Center"
@@ -167,7 +167,7 @@
                         <c:CustomButton FontWeight="Medium" 
                                        Width="300" 
                                        Height="50" 
-                                       Label="REPLACE RESERVED DRAWABLE" 
+                                       Label="{DynamicResource Str.SelectedDrawable.Reserved.ReplaceButton}"
                                        Padding="2" 
                                        CornerRadius="5" 
                                        DropdownEnabled="False" 
@@ -186,7 +186,7 @@
                                            Foreground="{DynamicResource Brush400}"
                                            HorizontalAlignment="Center"
                                            Margin="0,0,0,12" />
-                        <TextBlock Text="Options Disabled"
+                        <TextBlock Text="{DynamicResource Str.SelectedDrawable.Reserved.OptionsDisabled}"
                                    FontSize="13"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource Brush600}"
@@ -219,7 +219,7 @@
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,8">
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="Selected {0} drawable(s)">
+                                <MultiBinding StringFormat="{DynamicResource Str.SelectedDrawable.MultiSelect.SelectedCount.Format}">
                                     <Binding Path="SelectedAddon.SelectedDrawables.Count" />
                                 </MultiBinding>
                             </TextBlock.Text>
@@ -240,13 +240,13 @@
                                                        Foreground="#dc2626"
                                                        Margin="0,0,8,0"
                                                        VerticalAlignment="Top" />
-                                    <TextBlock Text="WARNING"
+                                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.MultiSelect.WarningTitle}"
                                                FontSize="13"
                                                FontWeight="Bold"
                                                Foreground="#dc2626"
                                                VerticalAlignment="Center" />
                                 </StackPanel>
-                                <TextBlock Text="The selected drawables are not exactly the same. To edit drawable options, select the same or click button below to force override." 
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.MultiSelect.WarningMessage}"
                                            Foreground="#7f1d1d"
                                            TextWrapping="Wrap"
                                            FontSize="12"
@@ -265,7 +265,7 @@
                                 IsEnabled="{Binding SelectedAddon.IsMultipleDrawablesSameType}">
                             <Button.Style>
                                 <Style TargetType="Button">
-                                    <Setter Property="Content" Value="Force Override" />
+                                    <Setter Property="Content" Value="{DynamicResource Str.SelectedDrawable.MultiSelect.ForceOverride}" />
                                     <Setter Property="Background" Value="#3b82f6" />
                                     <Setter Property="Foreground" Value="White" />
                                     <Setter Property="Cursor" Value="Hand" />
@@ -290,7 +290,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding SelectedAddon.IsMultipleDrawablesSameType}" Value="False">
-                                            <Setter Property="Content" Value="Override Disabled" />
+                                            <Setter Property="Content" Value="{DynamicResource Str.SelectedDrawable.MultiSelect.OverrideDisabled}" />
                                             <Setter Property="Background" Value="{DynamicResource Brush200}" />
                                             <Setter Property="Foreground" Value="{DynamicResource Brush500}" />
                                             <Setter Property="Cursor" Value="No" />
@@ -312,7 +312,7 @@
                                                    Height="18"
                                                    Foreground="#059669"
                                                    Margin="0,0,6,0" />
-                                <TextBlock Text="OVERRIDE ENABLED"
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.MultiSelect.OverrideEnabled}"
                                            FontSize="12"
                                            FontWeight="Bold"
                                            Foreground="#059669" />
@@ -333,7 +333,7 @@
                                                    Foreground="#ea580c"
                                                    Margin="0,0,8,0"
                                                    VerticalAlignment="Top" />
-                                <TextBlock Text="Override cannot be enabled for drawables of different type. Select only one type of drawables"
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.MultiSelect.DifferentTypeWarning}"
                                            Foreground="#7c2d12"
                                            TextWrapping="Wrap"
                                            FontSize="11"
@@ -348,34 +348,34 @@
                         <StackPanel>
                             <Grid IsEnabled="{Binding SelectedAddon.CanEditMultipleDrawables}">
                                 <StackPanel>
-                                    <TextBlock Text="Drawable Options" Style="{StaticResource SectionTitle}" />
+                                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.Section.DrawableOptions}" Style="{StaticResource SectionTitle}" />
 
-                                    <c:ModernLabelComboBox Label="Audio" 
-                                                          Tag="Audio" 
+                                    <c:ModernLabelComboBox Label="{DynamicResource Str.SelectedDrawable.Field.Audio}"
+                                                          Tag="Audio"
                                                           SelectedItem="{Binding SelectedAddon.FirstDrawable.Audio, Mode=TwoWay}" 
                                                           ItemsSource="{Binding SelectedAddon.FirstDrawable.AvailableAudioList}" 
                                                           IsUpdated="SelectedDrawable_Updated"
                                                           Margin="0,0,0,12" />
 
-                                    <c:ModernLabelComboBox Visibility="{Binding SelectedAddon.FirstDrawable.IsProp, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                                          Label="RenderFlag" 
-                                                          Tag="RenderFlag" 
+                                    <c:ModernLabelComboBox Visibility="{Binding SelectedAddon.FirstDrawable.IsProp, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                          Label="{DynamicResource Str.SelectedDrawable.Field.RenderFlag}"
+                                                          Tag="RenderFlag"
                                                           SelectedItem="{Binding SelectedAddon.FirstDrawable.RenderFlag}" 
                                                           ItemsSource="{Binding SelectedAddon.FirstDrawable.AvailableRenderFlagList}" 
                                                           IsUpdated="SelectedDrawable_Updated"
                                                           Margin="0,0,0,12" />
 
-                                    <c:ModernLabelCheckBox Visibility="{Binding SelectedAddon.FirstDrawable.IsComponent, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                                          Tag="HasSkin" 
-                                                          Label="Has Skin" 
+                                    <c:ModernLabelCheckBox Visibility="{Binding SelectedAddon.FirstDrawable.IsComponent, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                          Tag="HasSkin"
+                                                          Label="{DynamicResource Str.SelectedDrawable.Field.HasSkin}"
                                                           IsChecked="{Binding SelectedAddon.FirstDrawable.HasSkin}" 
                                                           IsUpdated="SelectedDrawable_Updated"
                                                           Margin="0,0,0,12" />
 
-                                    <c:ModernLabelComboBox IsMultiSelect="True" 
-                                                          Label="Flags" 
-                                                          Tag="SelectedFlags" 
-                                                          Text="{Binding SelectedAddon.FirstDrawable.FlagsText}" 
+                                    <c:ModernLabelComboBox IsMultiSelect="True"
+                                                          Label="{DynamicResource Str.SelectedDrawable.Field.Flags}"
+                                                          Tag="SelectedFlags"
+                                                          Text="{Binding SelectedAddon.FirstDrawable.FlagsText}"
                                                           SelectedItems="{Binding SelectedAddon.FirstDrawable.SelectedFlags, Mode=TwoWay}" 
                                                           ItemsSourceSelectable="{Binding SelectedAddon.FirstDrawable.AvailableFlags}" 
                                                           IsUpdated="SelectedDrawable_Updated"
@@ -397,9 +397,9 @@
                                             </Style>
                                         </StackPanel.Style>
 
-                                        <c:ModernLabelCheckBox Tag="HidesHair" 
-                                                              Label="Hides Hair" 
-                                                              IsChecked="{Binding SelectedAddon.FirstDrawable.HidesHair}" 
+                                        <c:ModernLabelCheckBox Tag="HidesHair"
+                                                              Label="{DynamicResource Str.SelectedDrawable.Field.HidesHair}"
+                                                              IsChecked="{Binding SelectedAddon.FirstDrawable.HidesHair}"
                                                               IsUpdated="SelectedDrawable_Updated" />
                                     </StackPanel>
 
@@ -419,15 +419,15 @@
                                             </Style>
                                         </StackPanel.Style>
 
-                                        <c:ModernLabelCheckBox x:Name="EnableHairScaleMulti" 
-                                                              Tag="EnableHairScale" 
-                                                              Label="Enable Hair scale" 
-                                                              IsChecked="{Binding SelectedAddon.FirstDrawable.EnableHairScale}" 
+                                        <c:ModernLabelCheckBox x:Name="EnableHairScaleMulti"
+                                                              Tag="EnableHairScale"
+                                                              Label="{DynamicResource Str.SelectedDrawable.Field.EnableHairScale}"
+                                                              IsChecked="{Binding SelectedAddon.FirstDrawable.EnableHairScale}"
                                                               IsUpdated="SelectedDrawable_Updated"
                                                               Margin="0,0,0,8" />
-                                        <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHairScaleMulti, Path=IsChecked}" 
-                                                                   Tag="HairScaleValue" 
-                                                                   Label="Hair scale" 
+                                        <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHairScaleMulti, Path=IsChecked}"
+                                                                   Tag="HairScaleValue"
+                                                                   Label="{DynamicResource Str.SelectedDrawable.Field.HairScale}"
                                                                    Value="{Binding SelectedAddon.FirstDrawable.HairScaleValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                                    Increment="0.05" 
                                                                    Maximum="1.0" 
@@ -447,15 +447,15 @@
                                             </Style>
                                         </StackPanel.Style>
 
-                                        <c:ModernLabelCheckBox x:Name="EnableHighHeelsMulti" 
-                                                              Tag="EnableHighHeels" 
-                                                              Label="Enable High heels" 
-                                                              IsChecked="{Binding SelectedAddon.FirstDrawable.EnableHighHeels}" 
+                                        <c:ModernLabelCheckBox x:Name="EnableHighHeelsMulti"
+                                                              Tag="EnableHighHeels"
+                                                              Label="{DynamicResource Str.SelectedDrawable.Field.EnableHighHeels}"
+                                                              IsChecked="{Binding SelectedAddon.FirstDrawable.EnableHighHeels}"
                                                               IsUpdated="SelectedDrawable_Updated"
                                                               Margin="0,0,0,8" />
-                                        <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHighHeelsMulti, Path=IsChecked}" 
-                                                                   Tag="HighHeelsValue" 
-                                                                   Label="High heels amount" 
+                                        <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHighHeelsMulti, Path=IsChecked}"
+                                                                   Tag="HighHeelsValue"
+                                                                   Label="{DynamicResource Str.SelectedDrawable.Field.HighHeelsAmount}"
                                                                    Value="{Binding SelectedAddon.FirstDrawable.HighHeelsValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                                    Increment="0.1" 
                                                                    Maximum="3.0" 
@@ -468,9 +468,9 @@
                                             Margin="0,8,0,16"
                                             SnapsToDevicePixels="True" />
 
-                                    <TextBlock Text="Preview Options" Style="{StaticResource SectionTitle}" />
+                                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.Section.PreviewOptions}" Style="{StaticResource SectionTitle}" />
 
-                                    <TextBlock Text="Run 3D Preview to enable options"
+                                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.Preview.RunToEnable}"
                                                HorizontalAlignment="Center"
                                                FontSize="11"
                                                Foreground="{DynamicResource Brush500}"
@@ -487,9 +487,9 @@
                                         </TextBlock.Style>
                                     </TextBlock>
 
-                                    <c:ModernLabelCheckBox Tag="EnableKeepPreview" 
-                                                          Label="Keep preview" 
-                                                          IsChecked="{Binding SelectedAddon.FirstDrawable.EnableKeepPreview}" 
+                                    <c:ModernLabelCheckBox Tag="EnableKeepPreview"
+                                                          Label="{DynamicResource Str.SelectedDrawable.Field.KeepPreview}"
+                                                          IsChecked="{Binding SelectedAddon.FirstDrawable.EnableKeepPreview}"
                                                           IsUpdated="SelectedDrawable_Updated"
                                                           IsEnabled="{Binding IsPreviewEnabled}" />
 
@@ -500,9 +500,9 @@
                                 </StackPanel>
                             </Grid>
 
-                            <TextBlock Text="Organization" Style="{StaticResource SectionTitle}" />
+                            <TextBlock Text="{DynamicResource Str.SelectedDrawable.Section.Organization}" Style="{StaticResource SectionTitle}" />
 
-                            <TextBlock Text="Group"
+                            <TextBlock Text="{DynamicResource Str.SelectedDrawable.Field.Group}"
                                        FontSize="11"
                                        FontWeight="SemiBold"
                                        Foreground="{DynamicResource Brush700}"
@@ -516,14 +516,14 @@
                                         <Setter Property="PlaceholderText" Value="" />
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding SelectedAddon.HasMultipleDifferentGroups}" Value="True">
-                                                <Setter Property="PlaceholderText" Value="(Multiple groups)" />
+                                                <Setter Property="PlaceholderText" Value="{DynamicResource Str.SelectedDrawable.MultiSelect.MultipleGroups}" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </c:GroupEditor.Style>
                             </c:GroupEditor>
 
-                            <TextBlock Text="Tags"
+                            <TextBlock Text="{DynamicResource Str.SelectedDrawable.Field.Tags}"
                                        FontSize="11"
                                        FontWeight="SemiBold"
                                        Foreground="{DynamicResource Brush700}"
@@ -593,23 +593,23 @@
                                 </Grid.ColumnDefinitions>
 
                                 <c:ModernLabelTextBox Grid.Column="0"
-                                Tag="DisplayName" 
-                                Label="Display Name" 
-                                Text="{Binding SelectedAddon.SelectedDrawable.DisplayName, UpdateSourceTrigger=PropertyChanged}" 
-                                Margin="0,0,8,0" 
+                                Tag="DisplayName"
+                                Label="{DynamicResource Str.SelectedDrawable.Field.DisplayName}"
+                                Text="{Binding SelectedAddon.SelectedDrawable.DisplayName, UpdateSourceTrigger=PropertyChanged}"
+                                Margin="0,0,8,0"
                                 IsUpdated="SelectedDrawable_Updated"/>
 
                                 <c:ModernLabelComboBox Grid.Column="1"
                                                       Width="150"
-                                                      Label="Drawable Type" 
-                                                      SelectedItem="{Binding SelectedAddon.SelectedDrawable.TypeName, Mode=TwoWay}" 
-                                                      ItemsSource="{Binding SelectedAddon.SelectedDrawable.AvailableTypes}" 
+                                                      Label="{DynamicResource Str.SelectedDrawable.Field.DrawableType}"
+                                                      SelectedItem="{Binding SelectedAddon.SelectedDrawable.TypeName, Mode=TwoWay}"
+                                                      ItemsSource="{Binding SelectedAddon.SelectedDrawable.AvailableTypes}"
                                                       IsUpdated="DrawableType_Changed"
                                                       Margin="0,0,8,0" />
 
                                 <c:ModernLabelComboBox Grid.Column="2"
                                                       Width="120"
-                                                      Label="Sex" 
+                                                      Label="{DynamicResource Str.SelectedDrawable.Field.Sex}"
                                                       SelectedItem="{Binding SelectedAddon.SelectedDrawable.SexName, Mode=TwoWay}" 
                                                       ItemsSource="{Binding SelectedAddon.SelectedDrawable.AvailableSex}" 
                                                       IsUpdated="DrawableSex_Changed" />
@@ -622,7 +622,7 @@
                                 </Grid.ColumnDefinitions>
                                 <c:ModernLabelTextBox Tag="FirstPersonPath"
                                                      Grid.Column="0"
-                                                     Label="First person file" 
+                                                     Label="{DynamicResource Str.SelectedDrawable.Field.FirstPersonFile}"
                                                      IsFileSelection="True" 
                                                      FileExtension=".ydd" 
                                                      FontSize="12" 
@@ -634,7 +634,7 @@
 
                                 <c:ModernLabelTextBox Tag="ClothPhysicsPath"
                                                      Grid.Column="1"
-                                                     Label="Cloth physics file (.yld)" 
+                                                     Label="{DynamicResource Str.SelectedDrawable.Field.ClothPhysicsFile}"
                                                      IsFileSelection="True" 
                                                      FileExtension=".yld" 
                                                      FontSize="12" 
@@ -673,7 +673,7 @@
                                                     Cursor="Hand"
                                                     MouseLeftButtonDown="TexturesTab_Click">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="Textures" 
+                                                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.Tab.Textures}"
                                                                FontSize="12"
                                                                Foreground="{DynamicResource Brush950}"
                                                                VerticalAlignment="Center" />
@@ -693,7 +693,7 @@
                                                                        Height="14" 
                                                                        Foreground="#f59e0b"
                                                                        Margin="6,0,0,0"
-                                                                       ToolTip="At least one texture has warning"
+                                                                       ToolTip="{DynamicResource Str.SelectedDrawable.Tab.Textures.WarningToolTip}"
                                                                        ToolTipService.InitialShowDelay="0">
                                                         <icons:MaterialIcon.Style>
                                                             <Style TargetType="icons:MaterialIcon">
@@ -717,7 +717,7 @@
                                                     Cursor="Hand"
                                                     MouseLeftButtonDown="EmbeddedTexturesTab_Click">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="Embedded" 
+                                                    <TextBlock Text="{DynamicResource Str.SelectedDrawable.Tab.Embedded}"
                                                                FontSize="12"
                                                                Foreground="{DynamicResource Brush950}"
                                                                VerticalAlignment="Center" />
@@ -727,7 +727,7 @@
                                                                        Height="14" 
                                                                        Foreground="#f59e0b"
                                                                        Margin="6,0,0,0"
-                                                                       ToolTip="At least one embedded texture has warning"
+                                                                       ToolTip="{DynamicResource Str.SelectedDrawable.Tab.Embedded.WarningToolTip}"
                                                                        ToolTipService.InitialShowDelay="0">
                                                         <icons:MaterialIcon.Style>
                                                             <Style TargetType="icons:MaterialIcon">
@@ -836,7 +836,7 @@
                                                                     </icons:MaterialIcon.Style>
                                                                 </icons:MaterialIcon>
 
-                                                                <ContentControl ToolTip="This texture will be optimized on resource build" ToolTipService.InitialShowDelay="0">
+                                                                <ContentControl ToolTip="{DynamicResource Str.SelectedDrawable.Texture.OptimizedToolTip}" ToolTipService.InitialShowDelay="0">
                                                                     <icons:MaterialIcon Kind="CheckCircle" Width="16" Height="16" Foreground="#22c55e" Margin="0,0,2,0">
                                                                         <icons:MaterialIcon.Style>
                                                                             <Style TargetType="{x:Type icons:MaterialIcon}">
@@ -870,7 +870,7 @@
                                                                     </icons:MaterialIcon>
                                                                 </ContentControl>
 
-                                                                <ContentControl ToolTip="Texture not found. Most likely this .ytd is empty" ToolTipService.InitialShowDelay="0">
+                                                                <ContentControl ToolTip="{DynamicResource Str.SelectedDrawable.Texture.NotFoundToolTip}" ToolTipService.InitialShowDelay="0">
                                                                     <icons:MaterialIcon Kind="CloseCircle" Width="16" Height="16" Foreground="#ef4444" Margin="0,0,2,0">
                                                                         <icons:MaterialIcon.Style>
                                                                             <Style TargetType="{x:Type icons:MaterialIcon}">
@@ -912,7 +912,7 @@
                                                                     <Style TargetType="TextBlock">
                                                                         <Style.Triggers>
                                                                             <DataTrigger Binding="{Binding TxtDetails}" Value="{x:Null}">
-                                                                                <Setter Property="Text" Value="N/A" />
+                                                                                <Setter Property="Text" Value="{DynamicResource Str.SelectedDrawable.Texture.NotAvailable}" />
                                                                             </DataTrigger>
                                                                         </Style.Triggers>
                                                                     </Style>
@@ -934,7 +934,7 @@
                                                                     <Style TargetType="TextBlock">
                                                                         <Style.Triggers>
                                                                             <DataTrigger Binding="{Binding TxtDetails}" Value="{x:Null}">
-                                                                                <Setter Property="Text" Value="N/A" />
+                                                                                <Setter Property="Text" Value="{DynamicResource Str.SelectedDrawable.Texture.NotAvailable}" />
                                                                             </DataTrigger>
                                                                         </Style.Triggers>
                                                                     </Style>
@@ -957,7 +957,7 @@
                                                             </Border>
 
                                                             <Button Grid.Column="6"
-                                                                    Content="Preview"
+                                                                    Content="{DynamicResource Str.SelectedDrawable.Button.Preview}"
                                                                     FontSize="11"
                                                                     Margin="0"
                                                                     Padding="8,4"
@@ -976,21 +976,21 @@
                                                                     <MenuItem Click="HandleTextureOptimization_Click">
                                                                         <MenuItem.Style>
                                                                             <Style TargetType="MenuItem">
-                                                                                <Setter Property="Header" Value="Optimize texture" />
+                                                                                <Setter Property="Header" Value="{DynamicResource Str.SelectedDrawable.Menu.OptimizeTexture}" />
                                                                                 <Style.Triggers>
                                                                                     <DataTrigger Binding="{Binding IsOptimizedDuringBuild}" Value="True">
-                                                                                        <Setter Property="Header" Value="Undo optimize" />
+                                                                                        <Setter Property="Header" Value="{DynamicResource Str.SelectedDrawable.Menu.UndoOptimize}" />
                                                                                     </DataTrigger>
                                                                                 </Style.Triggers>
                                                                             </Style>
                                                                         </MenuItem.Style>
                                                                     </MenuItem>
-                                                                    <MenuItem Header="Remove" Click="DeleteTexture_Click"/>
-                                                                    <MenuItem Header="Replace" Click="ReplaceTexture_Click"/>
-                                                                    <MenuItem Header="Open file location" Click="OpenFileLocation_Click" />
-                                                                    <MenuItem Header="Export as YTD" Click="ExportTexture_Click" Tag="YTD" />
-                                                                    <MenuItem Header="Export texture as DDS" Click="ExportTexture_Click" Tag="DDS"/>
-                                                                    <MenuItem Header="Export texture as PNG" Click="ExportTexture_Click" Tag="PNG"/>
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.RemoveTexture}" Click="DeleteTexture_Click"/>
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.ReplaceTexture}" Click="ReplaceTexture_Click"/>
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.OpenFileLocation}" Click="OpenFileLocation_Click" />
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.ExportAsYtd}" Click="ExportTexture_Click" Tag="YTD" />
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.ExportAsDds}" Click="ExportTexture_Click" Tag="DDS"/>
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.ExportAsPng}" Click="ExportTexture_Click" Tag="PNG"/>
                                                                 </ContextMenu>
                                                             </Grid.ContextMenu>
                                                         </Grid>
@@ -1080,7 +1080,7 @@
                                                                     </icons:MaterialIcon.Style>
                                                                 </icons:MaterialIcon>
 
-                                                                <ContentControl ToolTip="This texture will be optimized on resource build" ToolTipService.InitialShowDelay="0">
+                                                                <ContentControl ToolTip="{DynamicResource Str.SelectedDrawable.Texture.OptimizedToolTip}" ToolTipService.InitialShowDelay="0">
                                                                     <icons:MaterialIcon Kind="CheckCircle" Width="16" Height="16" Foreground="#22c55e" Margin="0,0,2,0">
                                                                         <icons:MaterialIcon.Style>
                                                                             <Style TargetType="{x:Type icons:MaterialIcon}">
@@ -1114,7 +1114,7 @@
                                                                     </icons:MaterialIcon>
                                                                 </ContentControl>
 
-                                                                <ContentControl ToolTip="This is a replacement texture" ToolTipService.InitialShowDelay="0">
+                                                                <ContentControl ToolTip="{DynamicResource Str.SelectedDrawable.Texture.ReplacementToolTip}" ToolTipService.InitialShowDelay="0">
                                                                     <icons:MaterialIcon Kind="SwapHorizontal" Width="16" Height="16" Foreground="#3b82f6" Margin="0,0,2,0">
                                                                         <icons:MaterialIcon.Style>
                                                                             <Style TargetType="{x:Type icons:MaterialIcon}">
@@ -1217,7 +1217,7 @@
                                                             </Border>
 
                                                             <Button Grid.Column="6"
-                                                                    Content="Preview"
+                                                                    Content="{DynamicResource Str.SelectedDrawable.Button.Preview}"
                                                                     FontSize="11"
                                                                     Margin="0"
                                                                     Padding="8,4"
@@ -1235,17 +1235,17 @@
                                                                     <MenuItem Click="HandleEmbeddedTextureOptimization_Click">
                                                                         <MenuItem.Style>
                                                                             <Style TargetType="MenuItem">
-                                                                                <Setter Property="Header" Value="Optimize texture" />
+                                                                                <Setter Property="Header" Value="{DynamicResource Str.SelectedDrawable.Menu.OptimizeTexture}" />
                                                                                 <Style.Triggers>
                                                                                     <DataTrigger Binding="{Binding IsOptimizedDuringBuild}" Value="True">
-                                                                                        <Setter Property="Header" Value="Undo optimize" />
+                                                                                        <Setter Property="Header" Value="{DynamicResource Str.SelectedDrawable.Menu.UndoOptimize}" />
                                                                                     </DataTrigger>
                                                                                 </Style.Triggers>
                                                                             </Style>
                                                                         </MenuItem.Style>
                                                                     </MenuItem>
-                                                                    <MenuItem Header="Rename" Click="RenameEmbeddedTexture_Click"/>
-                                                                    <MenuItem Header="Replace" Click="ReplaceEmbeddedTexture_Click"/>
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.RenameEmbedded}" Click="RenameEmbeddedTexture_Click"/>
+                                                                    <MenuItem Header="{DynamicResource Str.SelectedDrawable.Menu.ReplaceEmbedded}" Click="ReplaceEmbeddedTexture_Click"/>
                                                                 </ContextMenu>
                                                             </Grid.ContextMenu>
                                                         </Grid>
@@ -1264,7 +1264,7 @@
                                             Padding="12,8">
                                         <StackPanel Orientation="Horizontal">
                                             <Button x:Name="AddTexturesButton"
-                                                    Content="ADD TEXTURES"
+                                                    Content="{DynamicResource Str.SelectedDrawable.Button.AddTextures}"
                                                     FontSize="11"
                                                     FontWeight="SemiBold"
                                                     Padding="12,6"
@@ -1280,7 +1280,7 @@
                                                     Background="{DynamicResource Brush200}"
                                                     BorderBrush="{DynamicResource Brush300}"
                                                     Padding="0"
-                                                    ToolTip="Delete Selected"
+                                                    ToolTip="{DynamicResource Str.SelectedDrawable.Button.DeleteSelected}"
                                                     Click="DeleteTexture_Click">
                                                 <icons:MaterialIcon Kind="Delete" 
                                                                    Width="14" 
@@ -1297,34 +1297,34 @@
                     <Border Grid.Column="1" Style="{StaticResource ModernCard}" Margin="4,0,0,0">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                             <StackPanel>
-                                <TextBlock Text="Drawable Options" Style="{StaticResource SectionTitle}" />
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.Section.DrawableOptions}" Style="{StaticResource SectionTitle}" />
 
-                                <c:ModernLabelComboBox Label="Audio" 
-                                                      Tag="Audio" 
-                                                      SelectedItem="{Binding SelectedAddon.SelectedDrawable.Audio, Mode=TwoWay}" 
+                                <c:ModernLabelComboBox Label="{DynamicResource Str.SelectedDrawable.Field.Audio}"
+                                                      Tag="Audio"
+                                                      SelectedItem="{Binding SelectedAddon.SelectedDrawable.Audio, Mode=TwoWay}"
                                                       ItemsSource="{Binding SelectedAddon.SelectedDrawable.AvailableAudioList}" 
                                                       IsUpdated="SelectedDrawable_Updated"
                                                       Margin="0,0,0,12" />
 
-                                <c:ModernLabelComboBox Visibility="{Binding SelectedAddon.SelectedDrawable.IsProp, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                                      Label="RenderFlag" 
-                                                      Tag="RenderFlag" 
+                                <c:ModernLabelComboBox Visibility="{Binding SelectedAddon.SelectedDrawable.IsProp, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                      Label="{DynamicResource Str.SelectedDrawable.Field.RenderFlag}"
+                                                      Tag="RenderFlag"
                                                       SelectedItem="{Binding SelectedAddon.SelectedDrawable.RenderFlag}" 
                                                       ItemsSource="{Binding SelectedAddon.SelectedDrawable.AvailableRenderFlagList}" 
                                                       IsUpdated="SelectedDrawable_Updated"
                                                       Margin="0,0,0,12" />
 
-                                <c:ModernLabelCheckBox Visibility="{Binding SelectedAddon.SelectedDrawable.IsComponent, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                                      Tag="HasSkin" 
-                                                      Label="Has Skin" 
+                                <c:ModernLabelCheckBox Visibility="{Binding SelectedAddon.SelectedDrawable.IsComponent, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                      Tag="HasSkin"
+                                                      Label="{DynamicResource Str.SelectedDrawable.Field.HasSkin}"
                                                       IsChecked="{Binding SelectedAddon.SelectedDrawable.HasSkin}" 
                                                       IsUpdated="SelectedDrawable_Updated"
                                                       Margin="0,0,0,12" />
 
-                                <c:ModernLabelComboBox IsMultiSelect="True" 
-                                                      Label="Flags" 
-                                                      Tag="SelectedFlags" 
-                                                      Text="{Binding SelectedAddon.SelectedDrawable.FlagsText}" 
+                                <c:ModernLabelComboBox IsMultiSelect="True"
+                                                      Label="{DynamicResource Str.SelectedDrawable.Field.Flags}"
+                                                      Tag="SelectedFlags"
+                                                      Text="{Binding SelectedAddon.SelectedDrawable.FlagsText}"
                                                       SelectedItems="{Binding SelectedAddon.SelectedDrawable.SelectedFlags, Mode=TwoWay}" 
                                                       ItemsSourceSelectable="{Binding SelectedAddon.SelectedDrawable.AvailableFlags}" 
                                                       IsUpdated="SelectedDrawable_Updated"
@@ -1346,9 +1346,9 @@
                                         </Style>
                                     </StackPanel.Style>
 
-                                    <c:ModernLabelCheckBox Tag="HidesHair" 
-                                                          Label="Hides Hair" 
-                                                          IsChecked="{Binding SelectedAddon.SelectedDrawable.HidesHair}" 
+                                    <c:ModernLabelCheckBox Tag="HidesHair"
+                                                          Label="{DynamicResource Str.SelectedDrawable.Field.HidesHair}"
+                                                          IsChecked="{Binding SelectedAddon.SelectedDrawable.HidesHair}"
                                                           IsUpdated="SelectedDrawable_Updated" />
                                 </StackPanel>
 
@@ -1368,15 +1368,15 @@
                                         </Style>
                                     </StackPanel.Style>
 
-                                    <c:ModernLabelCheckBox x:Name="EnableHairScale" 
-                                                          Tag="EnableHairScale" 
-                                                          Label="Enable Hair scale" 
-                                                          IsChecked="{Binding SelectedAddon.SelectedDrawable.EnableHairScale}" 
+                                    <c:ModernLabelCheckBox x:Name="EnableHairScale"
+                                                          Tag="EnableHairScale"
+                                                          Label="{DynamicResource Str.SelectedDrawable.Field.EnableHairScale}"
+                                                          IsChecked="{Binding SelectedAddon.SelectedDrawable.EnableHairScale}"
                                                           IsUpdated="SelectedDrawable_Updated"
                                                           Margin="0,0,0,8" />
-                                    <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHairScale, Path=IsChecked}" 
-                                                               Tag="HairScaleValue" 
-                                                               Label="Hair scale" 
+                                    <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHairScale, Path=IsChecked}"
+                                                               Tag="HairScaleValue"
+                                                               Label="{DynamicResource Str.SelectedDrawable.Field.HairScale}"
                                                                Value="{Binding SelectedAddon.SelectedDrawable.HairScaleValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                                Increment="0.05" 
                                                                Maximum="1.0" 
@@ -1396,15 +1396,15 @@
                                         </Style>
                                     </StackPanel.Style>
 
-                                    <c:ModernLabelCheckBox x:Name="EnableHighHeels" 
-                                                          Tag="EnableHighHeels" 
-                                                          Label="Enable High heels" 
-                                                          IsChecked="{Binding SelectedAddon.SelectedDrawable.EnableHighHeels}" 
+                                    <c:ModernLabelCheckBox x:Name="EnableHighHeels"
+                                                          Tag="EnableHighHeels"
+                                                          Label="{DynamicResource Str.SelectedDrawable.Field.EnableHighHeels}"
+                                                          IsChecked="{Binding SelectedAddon.SelectedDrawable.EnableHighHeels}"
                                                           IsUpdated="SelectedDrawable_Updated"
                                                           Margin="0,0,0,8" />
-                                    <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHighHeels, Path=IsChecked}" 
-                                                               Tag="HighHeelsValue" 
-                                                               Label="High heels amount" 
+                                    <c:ModernLabelNumericUpDown IsEnabled="{Binding ElementName=EnableHighHeels, Path=IsChecked}"
+                                                               Tag="HighHeelsValue"
+                                                               Label="{DynamicResource Str.SelectedDrawable.Field.HighHeelsAmount}"
                                                                Value="{Binding SelectedAddon.SelectedDrawable.HighHeelsValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                                Increment="0.1" 
                                                                Maximum="3.0" 
@@ -1417,9 +1417,9 @@
                                         Margin="0,8,0,16"
                                         SnapsToDevicePixels="True" />
 
-                                <TextBlock Text="Preview Options" Style="{StaticResource SectionTitle}" />
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.Section.PreviewOptions}" Style="{StaticResource SectionTitle}" />
 
-                                <TextBlock Text="Run 3D Preview to enable options"
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.Preview.RunToEnable}"
                                            HorizontalAlignment="Center"
                                            FontSize="11"
                                            Foreground="{DynamicResource Brush500}"
@@ -1436,9 +1436,9 @@
                                     </TextBlock.Style>
                                 </TextBlock>
 
-                                <c:ModernLabelCheckBox Tag="EnableKeepPreview" 
-                                                      Label="Keep preview" 
-                                                      IsChecked="{Binding SelectedAddon.SelectedDrawable.EnableKeepPreview}" 
+                                <c:ModernLabelCheckBox Tag="EnableKeepPreview"
+                                                      Label="{DynamicResource Str.SelectedDrawable.Field.KeepPreview}"
+                                                      IsChecked="{Binding SelectedAddon.SelectedDrawable.EnableKeepPreview}"
                                                       IsUpdated="SelectedDrawable_Updated"
                                                       IsEnabled="{Binding IsPreviewEnabled}" />
 
@@ -1447,9 +1447,9 @@
                                         Margin="0,16,0,16"
                                         SnapsToDevicePixels="True" />
 
-                                <TextBlock Text="Organization" Style="{StaticResource SectionTitle}" />
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.Section.Organization}" Style="{StaticResource SectionTitle}" />
 
-                                <TextBlock Text="Group"
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.Field.Group}"
                                            FontSize="11"
                                            FontWeight="SemiBold"
                                            Foreground="{DynamicResource Brush700}"
@@ -1457,7 +1457,7 @@
                                 <c:GroupEditor Group="{Binding SelectedAddon.SelectedDrawable.Group, Mode=TwoWay}"
                                               Margin="0,0,0,12" />
 
-                                <TextBlock Text="Tags"
+                                <TextBlock Text="{DynamicResource Str.SelectedDrawable.Field.Tags}"
                                            FontSize="11"
                                            FontWeight="SemiBold"
                                            Foreground="{DynamicResource Brush700}"
