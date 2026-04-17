@@ -173,7 +173,8 @@ namespace grzyClothTool.Controls
                 var removedDrawables = _customPedsForm.LoadedDrawables.Keys.Where(name => !selectedNames.Contains(name)).ToList();
                 foreach (var removed in removedDrawables)
                 {
-                    if (_customPedsForm.LoadedDrawables.TryGetValue(removed, out var removedDrawable))
+                    if (_customPedsForm.LoadedDrawables.TryGetValue(removed, out var removedDrawable)
+                        && removedDrawable != null)
                     {
                         _customPedsForm.LoadedTextures.Remove(removedDrawable);
                     }

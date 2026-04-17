@@ -306,6 +306,9 @@ Exception: {1}</system:String>
     <system:String x:Key="Str.Home.Log.ClearedProjectFolder">Cleared project folder for overwrite: {0}</system:String>
     <system:String x:Key="Str.Home.Log.ClearProjectFolderFailed">Warning: Could not fully clear project folder: {0}</system:String>
     <system:String x:Key="Str.Home.Dialog.OpenSaveFile">Open Save File</system:String>
+    <system:String x:Key="Str.Home.Error.FetchPatreons">Failed to fetch patreons</system:String>
+    <system:String x:Key="Str.Home.Error.FetchVersion">Unable to fetch version</system:String>
+    <system:String x:Key="Str.Home.Error.FetchChangelog">Failed to load changelog highlights</system:String>
     <system:String x:Key="Str.FileDialog.Filter.SaveFiles">Save files (*.json)|*.json|All files (*.*)|*.*</system:String>
 
     <!-- LogWindow -->

@@ -372,8 +372,24 @@ public class GDrawable : INotifyPropertyChanged
         } 
     }
 
-    [JsonIgnore]
-    public int Flags => SelectedFlags.Where(f => f.IsSelected).Sum(f => f.Value);
+    private int _persistedFlags;
+
+    public int Flags
+    {
+        get => SelectedFlags.Count > 0
+            ? SelectedFlags.Where(f => f.IsSelected).Sum(f => f.Value)
+            : _persistedFlags;
+        set => _persistedFlags = value;
+    }
+
+    public void RebuildFlagsFromPersisted()
+    {
+        if (_persistedFlags == 0 && SelectedFlags.Count > 0) return;
+        _availableFlags = EnumHelper.GetFlags(_persistedFlags);
+        SelectedFlags = new ObservableCollection<SelectableItem>(_availableFlags);
+        OnPropertyChanged(nameof(AvailableFlags));
+        OnPropertyChanged(nameof(FlagsText));
+    }
 
     private List<SelectableItem> _availableFlags;
 

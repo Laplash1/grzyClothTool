@@ -138,20 +138,22 @@ namespace grzyClothTool.Views
             try
             {
                 await FetchPatreons();
-            } 
-            catch
+            }
+            catch (Exception ex)
             {
-                PatreonList = ["Failed to fetch patreons"];
+                LogHelper.Log($"FetchPatreons failed: {ex.Message}", LogType.Warning);
+                PatreonList = [LocalizationHelper.Get("Str.Home.Error.FetchPatreons")];
             }
 
             try
             {
                 await FetchLatestRelease();
             }
-            catch
+            catch (Exception ex)
             {
-                LatestVersion = "Unable to fetch version";
-                ChangelogHighlights = ["Failed to load changelog highlights"];
+                LogHelper.Log($"FetchLatestRelease failed: {ex.Message}", LogType.Warning);
+                LatestVersion = LocalizationHelper.Get("Str.Home.Error.FetchVersion");
+                ChangelogHighlights = [LocalizationHelper.Get("Str.Home.Error.FetchChangelog")];
             }
         }
 
