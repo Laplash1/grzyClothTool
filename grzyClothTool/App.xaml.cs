@@ -220,9 +220,7 @@ namespace grzyClothTool
             Exception ex = (Exception)e.ExceptionObject;
 
             Show(LocalizationHelper.GetFormat("Str.App.Error.Unhandled", ex.Message), LocalizationHelper.Get("Str.Common.Error"), CustomMessageBoxButtons.OKOnly);
-            var date = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            var path = Path.Combine(AppContext.BaseDirectory, $"error-{date}.log");
-            File.WriteAllText(path, ex.ToString());
+            TryWriteCrashLog(ex);
             Console.WriteLine("Unhandled exception: " + ex.ToString());
 
             SentrySdk.CaptureException(ex);
@@ -230,12 +228,24 @@ namespace grzyClothTool
 
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            var date = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            var path = Path.Combine(AppContext.BaseDirectory, $"error-{date}.log");
-            File.WriteAllText(path, e.Exception.ToString());
+            TryWriteCrashLog(e.Exception);
             SentrySdk.CaptureException(e.Exception);
 
             e.Handled = true;
+        }
+
+        private static void TryWriteCrashLog(Exception ex)
+        {
+            try
+            {
+                var date = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+                var path = Path.Combine(AppContext.BaseDirectory, $"error-{date}.log");
+                File.WriteAllText(path, ex.ToString());
+            }
+            catch (Exception ioEx)
+            {
+                Debug.WriteLine($"Failed to write crash log: {ioEx.Message}");
+            }
         }
 
         private void ShowSplash()
