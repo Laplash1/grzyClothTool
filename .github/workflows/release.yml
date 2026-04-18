@@ -26,8 +26,14 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
       - name: Restore dependencies
         run: dotnet restore grzyClothTool.sln
+
+      - name: Build solution (produces CodeWalker DLLs into packages/)
+        run: dotnet build grzyClothTool.sln -c Release --no-restore
 
       - name: Publish (self-contained win-x64)
         run: >
