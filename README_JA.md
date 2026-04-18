@@ -37,11 +37,27 @@
 
 ## 入手と起動
 
-1. Release ページ (上流もしくは本フォーク) から zip を取得します。
-2. 任意のフォルダに展開します。
+### 方法 A: Release zip を使う (推奨)
+
+1. [Releases ページ](https://github.com/Laplash1/grzyClothTool/releases)
+   から `grzyClothTool-ja-vX.Y.Z-win-x64.zip` を取得します。
+2. 任意のフォルダに展開します (Program Files 直下は推奨しません、
+   書き込み権限の都合)。
 3. `grzyClothTool.exe` をダブルクリックで起動します。
-4. 初回起動時に **初期設定ウィザード** が開きます。GTA5 のインストール
-   フォルダ (任意) と作業フォルダを指定してください。
+4. 初回起動時に **Windows SmartScreen** が
+   「Windows によって PC が保護されました」と表示する場合があります。
+   コード署名が未付与のためです。「詳細情報」→「実行」で起動できます。
+
+### 方法 B: ソースからビルドする
+
+1. `git clone https://github.com/Laplash1/grzyClothTool.git`
+2. `cd grzyClothTool`
+3. `dotnet publish grzyClothTool/grzyClothTool.csproj -c Release -r win-x64 --self-contained`
+4. `grzyClothTool/bin/Release/net10.0-windows/win-x64/publish/grzyClothTool.exe`
+   を起動
+
+初回起動時に **初期設定ウィザード** が開きます。GTA5 のインストール
+フォルダ (任意) と作業フォルダを指定してください。
 
 > :warning: **ドライブ直下 (例: `C:\`) を作業フォルダに指定しないで
 > ください。** 誤って大量のファイルを削除する事故につながります。
