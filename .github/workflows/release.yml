@@ -1,0 +1,87 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v1.2.2-ja). Used only for manual runs.'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore grzyClothTool.sln
+
+      - name: Publish (self-contained win-x64)
+        run: >
+          dotnet publish grzyClothTool/grzyClothTool.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          --no-restore
+          -o publish
+
+      - name: Resolve release tag
+        id: tag
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -like 'refs/tags/*') {
+            $tag = $env:GITHUB_REF -replace '^refs/tags/', ''
+          } else {
+            $tag = '${{ github.event.inputs.tag }}'
+          }
+          if ([string]::IsNullOrWhiteSpace($tag)) {
+            throw "No tag resolved. Push a v*.*.* tag or supply one via workflow_dispatch."
+          }
+          "name=$tag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Create release archive
+        id: zip
+        shell: pwsh
+        run: |
+          $tag = '${{ steps.tag.outputs.name }}'
+          $zipName = "grzyClothTool-ja-$tag-win-x64.zip"
+          Compress-Archive -Path publish\* -DestinationPath $zipName -Force
+          "path=$zipName" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grzyClothTool-ja-${{ steps.tag.outputs.name }}
+          path: ${{ steps.zip.outputs.path }}
+          retention-days: 30
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.name }}
+          name: ${{ steps.tag.outputs.name }}
+          files: ${{ steps.zip.outputs.path }}
+          draft: false
+          prerelease: false
+          body: |
+            grzyClothTool Japanese fork build for `${{ steps.tag.outputs.name }}`.
+
+            **Unsigned binary.** Windows SmartScreen may flag this executable on first launch
+            ("Windows protected your PC"). Click "More info" → "Run anyway" to proceed.
+
+            Code-signing support is wired in but disabled until the repository owner adds the
+            `CODE_SIGN_PFX_BASE64` and `CODE_SIGN_PASSWORD` secrets.
